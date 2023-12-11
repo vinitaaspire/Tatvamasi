@@ -50,19 +50,19 @@
 
 <body>
 
-    <header class="header_wrap fixed-top dark_skin main_menu_uppercase main_menu_weight_600 transparent_header">
+<header class="header_wrap fixed-top dark_skin main_menu_uppercase main_menu_weight_600 transparent_header">
         <div class="container">
             <nav class="navbar navbar-expand-lg row align-items-md-center">
                 <div class="col-lg-3 col-md-12 col-12">
-                     <a class="navbar-brand logo p-0" href="{{route('/')}}">
-                    <div class="wrapper">
-                    <img src="assets/images/tatvamasi.png">
-                </div>
-                </a>
+                    <a class="navbar-brand logo p-0" href="index.html">
+                        <div class="wrapper">
+                            <img src="{{asset('front/assets/images/tatvamasi.png')}}">
+                        </div>
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <img src="assets/images/icons/menu.png" class="img-fluid" alt="Menu" />
+                        <img src="{{asset('front/assets/images/icons/menu.png')}}" class="img-fluid" alt="Menu" />
                     </button>
                 </div>
                 <div class="col-lg-9 col-md-12 col-12">
@@ -70,30 +70,30 @@
                         style="margin-top:-10px">
                         <ul class="navbar-nav align-items-md-center">
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('/') ? 'active' : '' }}" href="{{route('/')}}">HOME</a>
+                                <a class="nav-link active" href="index.html">HOME</a>
                             </li>
 
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('about') ? 'active' : '' }}" href="{{route('about')}}">ABOUT US</a>
+                                <a class="nav-link" href="about.html">ABOUT US</a>
                             </li>
 
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('course') ? 'active' : '' }} " href="{{route('course')}}">COURSES</a>
+                                <a class="nav-link" href="course.html">COURSES</a>
                             </li>
 
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('testimonial') ? 'active' : '' }}" href="{{route('testimonial')}}">TESTIMONIALS</a>
+                                <a class="nav-link" href="testimonial.html">TESTIMONIALS</a>
                             </li>
 
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('blog') ? 'active' : '' }}" href="{{route('blog-list')}}">BLOG</a>
+                                <a class="nav-link" href="blog-list.html">BLOG</a>
                             </li>
                             <li>
-                                <a class="nav-link {{ Route::currentRouteNamed('contact') ? 'active' : '' }}" href="{{route('contact')}}">CONTACT</a>
+                                <a class="nav-link" href="contact.html">CONTACT</a>
                             </li>
                             <li>
-                                <a class="btn btn-dark btn-nav1" href="{{route('login-head')}}"> <img
-                                        src="assets/images/icons/login.png" class="login-icn" alt="Login" /> login</a>
+                                <a class="btn btn-dark btn-nav1" href="login.html"> <img
+                                        src="{{asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
                             </li>
                         </ul>
                     </div>
@@ -105,202 +105,215 @@
 
        
                 {{ $slot }}
-                
- <!-- START FOOTER -->
- <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
-    <div class="top_footer">
+     <!-- START FOOTER -->
+     <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+        <div class="top_footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mb-lg-0">
+                        <h5 class="widget_title">About Us</h5>
+                        <div class="footer_desc">
+                            <p>Welcome to Tatvamasi Yoga, where we offer the best online yoga classes from the top yoga
+                                instructors.</p>
+                        </div>
+                        <ul class="contact_info list_none">
+                            <li>
+                                <i class="ri-phone-fill"></i>
+                                <p>+91-93550-22333</p>
+                            </li>
+                            <li>
+                                <i class="ri-mail-fill"></i>
+                                <a href="#">info@tatvamasi.com</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-12 mb-4 mb-lg-0">
+                        <h5 class="widget_title">Quick Links</h5>
+                        <ul class=" widget_links links_style2">
+
+                            <li>
+                                <a href="about.html">About Us</a>
+                            </li>
+                            <li><a href="course.html">Courses</a></li>
+                            <li><a href="testimonial.html">Testimonials</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="blog-list.html">Blog</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mb-md-0">
+                        <h5 class="widget_title">Latest Post</h5>
+                        <ul class="recent_post border_bottom_dash list_none">
+                            <li>
+                                <div class="post_footer">
+                                    <div class="post_content">
+                                        <h6><a href="#">9 Best Yoga Poses to Become More Flexible</a></h6>
+                                        <span class="post_date"><i class="ri-time-line"></i>April 14, 2023</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post_footer">
+                                    <div class="post_content">
+                                        <h6><a href="#">Benefits and Specific Yoga Poses/Asanas</a></h6>
+                                        <span class="post_date"><i class="ri-time-line"></i>March 09, 2023</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <h5 class="widget_title">Subscribe Newsletter</h5>
+                        <div class="newsletter_form mb-4 mb-lg-5">
+                            <form>
+                                <input type="text" class="form-control " required="" placeholder="Enter Email Address">
+                                <button type="submit" title="Subscribe" class="btn btn-default " name="submit"
+                                    value="Submit"><Img src="assets/images/icons/right-arrow.png" class="login-icn"
+                                        alt="Button" /></button>
+                            </form>
+                        </div>
+                        <h5 class="widget_title">Stay Connected</h5>
+                        <ul class="list_none social_icons radius_social">
+                            <li><a href="#" class="sc_facebook"><i class="ri-facebook-circle-fill"></i></a></li>
+                            <li><a href="#" class="sc_twitter"><i class="ri-twitter-fill"></i></a></li>
+                            <li><a href="#" class="sc_google"><i class="ri-google-fill"></i></a></li>
+                            <li><a href="#" class="sc_instagram"><i class="ri-instagram-fill"></i></a></li>
+                            <li><a href="#" class="sc_pinterest"><i class="ri-messenger-fill"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4 mb-lg-0">
-                    <h5 class="widget_title">About Us</h5>
-                    <div class="footer_desc">
-                        <p>Welcome to Tatvamasi Yoga, where we offer the best online yoga classes from the top yoga
-                            instructors.</p>
-                    </div>
-                    <ul class="contact_info list_none">
-                        <li>
-                            <i class="ri-phone-fill"></i>
-                            <p>+91-93550-22333</p>
-                        </li>
-                        <li>
-                            <i class="ri-mail-fill"></i>
-                            <a href="#">info@tatvamasi.com</a>
-
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-12 mb-4 mb-lg-0">
-                    <h5 class="widget_title">Quick Links</h5>
-                    <ul class=" widget_links links_style2">
-
-                        <li>
-                            <a href="{{route('about')}}">About Us</a>
-                        </li>
-                        <li><a href="{{route('course')}}">Courses</a></li>
-                        <li><a href="{{route('testimonial')}}">Testimonials</a></li>
-
-                        <li><a href="{{route('blog-list')}}">Blog</a></li>
-                        <li><a href="{{route('contact')}}">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mb-md-0">
-                    <h5 class="widget_title">Latest Post</h5>
-                    <ul class="recent_post border_bottom_dash list_none">
-                        <li>
-                            <div class="post_footer">
-                                <div class="post_content">
-                                    <h6><a href="#">9 Best Yoga Poses to Become More Flexible</a></h6>
-                                    <span class="post_date"><i class="ri-time-line"></i>April 14, 2023</span>
-                                </div>
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="bottom_footer border_top_transparent">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="copyright m-md-0 text-left text-md-left">Copyright © 2023 | <a
+                                        href="index.html" class="text_default text-white">Tatvamasi</a></p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="post_footer">
-                                <div class="post_content">
-                                    <h6><a href="#">Benefits and Specific Yoga Poses/Asanas</a></h6>
-                                    <span class="post_date"><i class="ri-time-line"></i>March 09, 2023</span>
-                                </div>
+                            <div class="col-md-6">
+                                <ul class="list_none footer_link text-md-right text-sm-right">
+                                    <li><a href="#">Terms of use</a></li>
+                                    <li><a href="policy.html">Privacy Policy</a></li>
+                                </ul>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <h5 class="widget_title">Subscribe Newsletter</h5>
-                    <div class="newsletter_form mb-4 mb-lg-5">
-                        <form>
-                            <input type="text" class="form-control " required="" placeholder="Enter Email Address">
-                            <button type="submit" title="Subscribe" class="btn btn-default " name="submit"
-                                value="Submit"><Img src="assets/images/icons/right-arrow.png" class="login-icn"
-                                    alt="Button" /></button>
-                        </form>
-                    </div>
-                    <h5 class="widget_title">Stay Connected</h5>
-                    <ul class="list_none social_icons radius_social">
-                        <li><a href="#" class="sc_facebook"><i class="ri-facebook-circle-fill"></i></a></li>
-                        <li><a href="#" class="sc_twitter"><i class="ri-twitter-fill"></i></a></li>
-                        <li><a href="#" class="sc_google"><i class="ri-google-fill"></i></a></li>
-                        <li><a href="#" class="sc_instagram"><i class="ri-instagram-fill"></i></a></li>
-                        <li><a href="#" class="sc_pinterest"><i class="ri-messenger-fill"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12">
-                <div class="bottom_footer border_top_transparent">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="copyright m-md-0 text-left text-md-left">Copyright © 2023 | <a
-                                    href="{{route('/')}}" class="text_default text-white">Tatvamasi</a></p>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="list_none footer_link text-md-right text-sm-right">
-                                <li><a href="#">Terms of use</a></li>
-                                <li><a href="policy.html">Privacy Policy</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- END FOOTER -->
+    </footer>
+    <!-- END FOOTER -->
 
-<a href="#" class="scrollup" style="display: none; text-decoration: none;"><i class="ri-arrow-up-s-line"></i></a>
+    <a href="#" class="scrollup" style="display: none; text-decoration: none;"><i class="ri-arrow-up-s-line"></i></a>
 
-<!-- enqiury start -->
+    <!-- enqiury start -->
     <p class="text-center mb-0">
         <button id="myBtn" class="text-decoration-none text-white QuickInquiry">Enquiry</button>
     </p>
-<!-- The Modal -->
-<div id="myModal" class="modal modal-box">
-<!-- Modal content -->
-<div class="modal-content">
+    <!-- The Modal -->
+    <div id="myModal" class="modal modal-box">
+        <!-- Modal content -->
+        <div class="modal-content">
 
-<div class="cancel-modal">
+            <div class="cancel-modal">
 
-  <span class="close">&times;</span>
-</div>
-        <div class="row" style="padding:0 20px;">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-             <h1 class="mt-1 head-content">ENQUIRY</h1>
-            <form class="modal-box-info row mt-4 mb-4"> 
-                <div class="col-lg-6 col-md-12" >
-                    <div class="form-group">
-                        <input type="text" placeholder="Name *" class="modal-box" required="" />
-                    </div>
-                </div>
-                   
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12" >
-                    <div class="form-group">
-                        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" placeholder="Mobile No. *" required=""class="modal-box mobile_no" />   
-                    </div>
-                </div>
+                <span class="close">&times;</span>
+            </div>
+            <div class="row" style="padding:0 20px;">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h1 class="mt-1 head-content">Enquiry</h1>
+                    <form class="modal-box-info row mt-4 mb-4">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <input type="text" placeholder="Name *" class="modal-box" required="" />
+                            </div>
+                        </div>
 
-                <div class="col-lg-12 col-md-12 col-12 col-sm-12 otp d-none" >
-                    <div class="form-group">
-                        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="modal-box" placeholder="OTP *" name="otp" required="" />
-                    </div>
-                </div>
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                    maxlength="10" placeholder="Mobile No. *" required="" class="modal-box mobile_no" />
+                            </div>
+                        </div>
 
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12" >
-                    <div class="form-group">
-                         <input type="email" placeholder="Email *" class="modal-box" required="" />
-                    </div>
-                </div>
+                        <div class="col-lg-12 col-md-12 col-12 col-sm-12 otp d-none">
+                            <div class="form-group">
+                                <input type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                    class="modal-box" placeholder="OTP *" name="otp" required="" />
+                            </div>
+                        </div>
 
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12" >
-                    <div class="form-group">                                        
-                        <select class="modal-box" required="" onchange="myCategoryStatus(this);">
-                            <option class="">Select Category *</option>
-                            <option value="weight_loss_&amp;_fat_burn">Weight Loss, Fat Burn &amp;Toning</option>
-                            <option value="general_fitness_&amp;_Endurance">General Fitness And Endurance</option>
-                            <option value="De_Stress_&amp;_Improved_Sleep">De-Stress And Improved Sleep</option>
-                            <option value="thyroid_back_pain_&amp;_diabetes">Thyroid ,back pain &amp; Diabetes</option>
-                            <option value="PCOS_PCOD_Management ">PCOS/PCODManagement </option>
-                            <option value="yoga_for-pregnant_ladies">Yoga For Pregnant Ladies</option>
-                        </select>
-                    </div>
-                </div>
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email *" class="modal-box" required="" />
+                            </div>
+                        </div>
 
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-                    <div class="form-group">
-                        <select class="modal-box" required="">
-                            <option class="" selected="">Select Batch *</option>
-                            <option value="batch01">Batch 01 : 05:00-06:00 am</option>
-                            <option value="batch02">Batch 02 : 05:30-06:30 am</option>
-                            <option value="batch03">Batch 03 : 06:00-07:00 am</option>
-                            <option value="batch04">Batch 04 : 07:00-08:00 am</option>
-                            <option value="batch05">Batch 05 : 07:15-08:15 am</option>
-                            <option value="batch06">Batch 06 : 07:30-08:30 am</option>
-                            <option value="batch07">Batch 07 : 08:00-09:00 am</option>
-                            <option value="batch08">Batch 08 : 08:30-09:30 am</option>
-                            <option value="batch09">Batch 09 : 09:00-10:00 am</option>
-                            <option value="batch10">Batch 10 : 10:30-11:30 am</option>
-                            <option value="batch11">Batch 11 : 05:30-06:30 pm</option>
-                            <option value="batch12">Batch 12 : 06:00-07:00 pm</option>
-                            <option value="batch13">Batch 13 : 07:00-08:00 pm</option>
-                        </select>
-                    </div>
-                </div>
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <select class="modal-box" required="" onchange="myCategoryStatus(this);">
+                                    <option class="">Select Category *</option>
+                                    <option value="weight_loss_&amp;_fat_burn">Weight Loss, Fat Burn &amp;Toning
+                                    </option>
+                                    <option value="general_fitness_&amp;_Endurance">General Fitness And Endurance
+                                    </option>
+                                    <option value="De_Stress_&amp;_Improved_Sleep">De-Stress And Improved Sleep</option>
+                                    <option value="thyroid_back_pain_&amp;_diabetes">Thyroid ,back pain &amp; Diabetes
+                                    </option>
+                                    <option value="PCOS_PCOD_Management ">PCOS/PCODManagement </option>
+                                    <option value="yoga_for-pregnant_ladies">Yoga For Pregnant Ladies</option>
+                                </select>
+                            </div>
+                        </div>
 
-                <div class="col-lg-6 col-md-12 col-12 col-sm-12" >
-                    <div class="form-group">
-                        <input type="text" class="modal-box" placeholder="City " />
-                    </div>
-                </div>
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <select class="modal-box" required="">
+                                    <option class="" selected="">Select Batch *</option>
+                                    <option value="batch01">Batch 01 : 05:00-06:00 am</option>
+                                    <option value="batch02">Batch 02 : 05:30-06:30 am</option>
+                                    <option value="batch03">Batch 03 : 06:00-07:00 am</option>
+                                    <option value="batch04">Batch 04 : 07:00-08:00 am</option>
+                                    <option value="batch05">Batch 05 : 07:15-08:15 am</option>
+                                    <option value="batch06">Batch 06 : 07:30-08:30 am</option>
+                                    <option value="batch07">Batch 07 : 08:00-09:00 am</option>
+                                    <option value="batch08">Batch 08 : 08:30-09:30 am</option>
+                                    <option value="batch09">Batch 09 : 09:00-10:00 am</option>
+                                    <option value="batch10">Batch 10 : 10:30-11:30 am</option>
+                                    <option value="batch11">Batch 11 : 05:30-06:30 pm</option>
+                                    <option value="batch12">Batch 12 : 06:00-07:00 pm</option>
+                                    <option value="batch13">Batch 13 : 07:00-08:00 pm</option>
+                                </select>
+                            </div>
+                        </div>
 
-                <div class="col-lg-12 col-md-12 col-12 col-sm-12" >
-                    <button type="submit" title="Submit" name="submit" value="Submit"  class="btn btn-default submit-btn action-button animation animated fadeInUp" >Submit <img src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></button>
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="modal-box" placeholder="City " />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                            <button type="submit" title="Submit" name="submit" value="Submit"
+                                class="btn btn-default submit-btn action-button animation animated fadeInUp">Submit <img
+                                    src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>              
- </div>
-</div>
+    </div>
+
+    <!-- whatsapp start -->
+    <a href="https://web.whatsapp.com/send?phone=919355022333&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank" >
+        <img src="{{asset('front/assets/images/icons/whatsapp.png')}}" class="img-fluid w-100" alt="Whatsapp" />
+    </a>
 
 
 <script>

@@ -1,11 +1,11 @@
 <x-guest-layout>
 <!---START---HEAD---SECTION-->
-
-    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="3000">
+            @foreach($banners as  $key => $banner)
+            <div class="carousel-item  @if($key == 0)active @endif " data-bs-interval="3000">
                 <section class="sli-div">
-                    <img src="assets/images/header2.jpeg" class="img-fluid w-100" alt="Slider" />
+                    <img src="{{ asset('uploads/' . $banner->image ?? '')}}" class="img-fluid w-100" alt="Slider" />
                     <div class="top-head">
                         <div class="container">
                             <div class="row">
@@ -13,14 +13,13 @@
                                     <div class="sli-div-box position-relative">
                                         <div class="sli-content animation" data-animation="fadeInUp"
                                             data-animation-delay="0.5s">
-                                            <h4><span class="offline">Discover</span> the <br /><span
-                                                    class="classes">Ancient</span> wisdom of yoga</h4>
-                                            <a class="btn btn-default  animation" href="{{route('get-started')}}"
+                                              {!! $banner->title !!}
+                                            <a class="btn btn-default  animation" href="#trial-section"
                                                 data-animation="fadeInUp" data-animation-delay="0.7s"
                                                 style="margin-top:45px; border-radius:10px;"><img
                                                     src="assets/images/icons/namaste.png" class="login-icn"
-                                                    alt="Get Started" />GET STARTED</a>
-                                            <a class="btn btn-white  animation" href="{{route('contact')}}"
+                                                    alt="Get Started" />BOOK DEMO CLASSES</a>
+                                            <a class="btn btn-white d-none animation" href="contact.html"
                                                 data-animation="fadeInUp" data-animation-delay="0.8s"
                                                 style="margin-top:45px;"><img src="assets/images/icons/contact.png"
                                                     class="login-icn" alt="Contact Us" /> CONTACT US</a>
@@ -32,97 +31,8 @@
                     </div>
                 </section>
             </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <section class="sli-div">
-                    <img src="assets/images/header3.jpeg" class="img-fluid w-100" alt="Slider" />
-                    <div class="top-head">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-12">
-                                    <div class="sli-div-box position-relative">
-                                        <div class="sli-content animation" data-animation="fadeInUp"
-                                            data-animation-delay="0.5s">
-                                            <h4>Live a <span class="offline">healthy</span> & happy life free from <span
-                                                    class="classes">pain</span></h4>
-                                            <a class="btn btn-default  animation" href="{{route('get-started')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.7s"
-                                                style="margin-top:45px; border-radius:10px;"><img
-                                                    src="assets/images/icons/namaste.png" class="login-icn"
-                                                    alt="Get Started" />GET STARTED</a>
-                                            <a class="btn btn-white  animation" href="{{route('contact')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.8s"
-                                                style="margin-top:45px;"><img src="assets/images/icons/contact.png"
-                                                    class="login-icn" alt="Contact Us" /> CONTACT US</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-
-
-            <div class="carousel-item" data-bs-interval="3000">
-                <section class="sli-div">
-                    <img src="assets/images/header1.jpeg" class="img-fluid w-100" alt="Slider" />
-                    <div class="top-head">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-12">
-                                    <div class="sli-div-box position-relative">
-                                        <div class="sli-content animation" data-animation="fadeInUp"
-                                            data-animation-delay="0.5s">
-                                            <h4>Get <span class="offline">offline</span> experience in online <span
-                                                    class="classes">classes</span></h4>
-                                            <h5>Without highly interactive classes</h5>
-                                            <a class="btn btn-default  animation" href="{{route('get-started')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.7s"
-                                                style="margin-top:45px; border-radius:10px;"><img
-                                                    src="assets/images/icons/namaste.png" class="login-icn"
-                                                    alt="Get Started" />GET STARTED</a>
-                                            <a class="btn btn-white  animation" href="{{route('contact')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.8s"
-                                                style="margin-top:45px;"><img src="assets/images/icons/contact.png"
-                                                    class="login-icn" alt="Contact Us" /> CONTACT US</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="carousel-item" data-bs-interval="3000">
-                <section class="sli-div">
-                    <img src="assets/images/header4.jpeg" class="img-fluid w-100" alt="Slider" />
-                    <div class="top-head">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xl-12 col-md-12 col-12">
-                                    <div class="sli-div-box position-relative">
-                                        <div class="sli-content animation" data-animation="fadeInUp"
-                                            data-animation-delay="0.5s">
-                                            <h4>Live a <span class="offline">healthy</span> & happy life free from <span
-                                                    class="classes">pain</span></h4>
-                                            <a class="btn btn-default  animation" href="{{route('get-started')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.7s"
-                                                style="margin-top:45px; border-radius:10px;"><img
-                                                    src="assets/images/icons/namaste.png" class="login-icn"
-                                                    alt="Get Started" />GET STARTED</a>
-                                            <a class="btn btn-white  animation" href="{{route('contact')}}"
-                                                data-animation="fadeInUp" data-animation-delay="0.8s"
-                                                style="margin-top:45px;"><img src="assets/images/icons/contact.png"
-                                                    class="login-icn" alt="Contact Us" /> CONTACT US</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            @endforeach
+          
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
             data-bs-slide="prev">
@@ -220,7 +130,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-12">
-                    <a href="{{route('weight-fat-ton')}}" class="box-featur-link">
+                    <a href="weight-fat-ton.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInRight"
                             data-animation-delay="0.3s">
                             <div class="box_icon">
@@ -233,7 +143,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{route('fit-strength-flexible')}}" class="box-featur-link">
+                    <a href="fit-strength-flexible.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInRight"
                             data-animation-delay="0.35s">
                             <div class="box_icon">
@@ -246,7 +156,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{route('stress-sleep')}}" class="box-featur-link">
+                    <a href="stress-sleep.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInRight"
                             data-animation-delay="0.4s">
                             <div class="box_icon">
@@ -272,7 +182,7 @@
                 </div>
 
                 <div class="col-lg-4 col-sm-12">
-                    <a href="{{route('thyroid-back-diabete')}}" class="box-featur-link">
+                    <a href="thyroid-back-diabete.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInLeft"
                             data-animation-delay="0.4s">
                             <div class="box_icon">
@@ -285,7 +195,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="{{route('pcod-hormon')}}" class="box-featur-link">
+                    <a href="pcod-hormon.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInLeft"
                             data-animation-delay="0.45s">
                             <div class="box_icon">
@@ -299,7 +209,7 @@
                         </div>
                     </a>
 
-                    <a href="{{route('prenatal-yoga')}}" class="box-featur-link">
+                    <a href="prenatal-yoga.html" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInLeft"
                             data-animation-delay="0.5s">
                             <div class="box_icon">
@@ -324,7 +234,7 @@
     <!---start--why---choose---us--->
     <section class="why-us-section">
         <div class="top-why-sec">
-            <div class="container-xxl why py-md-5 py-0">
+            <div class="container-xxl why py-md-4 py-0">
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-lg-5 left-side-content animation" data-animation="fadeInUp"
@@ -413,20 +323,17 @@
     <!-- why--choose----us---End -->
 
     <!----free-trial--sec--->
-    <section class="trial-sec position-relative">
+    <section class="trial-sec position-relative" id="trial-section" >
         <div class="container">
             <div class="row position-relative">
-                <div class="col-lg-6 col-md-6  col-12">
+                <div class="col-lg-6 col-md-12  col-12">
                     <div class="form-for-trial mt-lg-5 mt-md-4 animation" data-animation="fadeInUp"
                         data-animation-delay="0.5s">
-                        <span class="sub_heading ">Form</span>
-                        <h1><span>19<sup><img src="assets/images/icons/rupee.png"
-                                        class="img-fluid login-icn" /></sup></span> TRIAL CLASS</h1>
+                        <span class="sub_heading "></span>
+                        <h1>TRIAL CLASS @<span>19<sup><img src="assets/images/icons/rupee.png"
+                            class="img-fluid login-icn" /></sup></span></h1>
                         <p>Ready to experience the benefits of our yoga classes? Get started by booking your trial class
                             today and take the first step towards a healthier and more balanced you.</p>
-
-
-
                         <form>
                             <div class="row pt-md-4 pt-3 ">
                                 <div class="col-lg-6 col-md-6">
@@ -434,7 +341,7 @@
                                         <input type="text" placeholder="Name *" class="name-box" required="" />
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
                                         <input type="text"
                                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -496,7 +403,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
                                         <input type="text" class="name-box" placeholder="City " />
                                     </div>
@@ -505,8 +412,8 @@
 
                                 <div class="col-lg-12 col-md-12">
                                     <div class="trail-sec-inp trail-sec-inp-btn">
-                                        <button type="button" class="btn btn-default  animation"
-                                            data-animation="fadeInUp" data-animation-delay="0.7s">GET STARTED <img
+                                        <button type="button" style="width: 260px!important; white-space: nowrap!important;" class="btn btn-default  animation"
+                                            data-animation="fadeInUp" data-animation-delay="0.7s">BOOK DEMO CLASSES <img
                                                 src="assets/images/icons/right-arrow-btn.png"
                                                 class="btn-icn" /></button>
                                     </div>
@@ -515,7 +422,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-12">
+                <div class="col-lg-6 col-md-12 col-12">
                     <div class="trail-sec-img">
                         <img src="assets/images/81235c7fefba59c99fe49fd68f5832ef.jpg" class="img-fliud w-100"
                             alt="Free Trail Form" />
@@ -692,10 +599,13 @@
                                 we are committed to creating a nurturing space for individuals of all levels. Our
                                 journey began after the challenges posed by the COVID-19 pandemic, inspiring us to bring
                                 the essence of authentic yoga to a global audience.</p>
-                                <STRONG CLASS="mt-md-2 mt-1" >*Our Mission*</STRONG>
-                                <P class="mt-md-2 mt-2 mb-md-4 mb-3" >At Tatvamasi Yoga, our mission is profound yet simple: to make the world healthier and happier. We believe that the practice of yoga goes beyond physical postures; it is a holistic journey towards well-being, mindfulness, and balance.
-                                </P>
-                            <a class="know-more-link  animation text-decoration-none" href="{{route('about')}}"
+                            <STRONG CLASS="mt-md-2 mt-1 mis-txt">Our Mission</STRONG>
+                            <P class="mt-md-2 mt-2 mb-md-4 mb-3">At Tatvamasi Yoga, our mission is profound yet simple:
+                                to make the world healthier and happier. We believe that the practice of yoga goes
+                                beyond physical postures; it is a holistic journey towards well-being, mindfulness, and
+                                balance.
+                            </P>
+                            <a class="know-more-link  animation text-decoration-none" href="about.html"
                                 data-animation="fadeInUp" data-animation-delay="0.7s">KNOW MORE</a>
                         </div>
                     </div>
@@ -723,10 +633,11 @@
 
 
                     <div class="carousel_slider owl-carousel owl-theme" data-margin="10" data-loop="true"
-                        data-autoplay="true" data-nav="true" data-autoplay="true"
+                        data-autoplay="true" data-nav="true" data-autoplay="true"  data-slideTransition="linear" data-autoplayTimeout="0"
+                        data-autoplaySpeed="3000"
                         data-responsive='{"0":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
 
-                        <div class="item">
+                        <div class="item" data-timing="1000" >
                             <div class="team_box animation" data-animation="fadeInUp" data-animation-delay="0.2s">
                                 <div class="team_img">
                                     <img src="assets/images/trainer1.png" alt="team1">
@@ -739,7 +650,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="item" data-timing="1000" >
                             <div class="team_box animation" data-animation="fadeInUp" data-animation-delay="0.2s">
                                 <div class="team_img">
                                     <img src="assets/images/trainer2.png" alt="team1">
@@ -752,7 +663,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        <div class="item" data-timing="1000" >
                             <div class="team_box animation" data-animation="fadeInUp" data-animation-delay="0.2s">
                                 <div class="team_img">
                                     <img src="assets/images/trainer3.png" alt="team1">
@@ -873,7 +784,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6 d-md-block d-none ">
                     <div class="classes_box  animation" data-animation="fadeInUp" data-animation-delay="0.45s">
                         <div class="classes_img">
                             <img src="assets/images/classes_img4.jpg" alt="image" />
@@ -897,7 +808,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6  d-md-block d-none">
                     <div class="classes_box  animation" data-animation="fadeInUp" data-animation-delay="0.5s">
                         <div class="classes_img">
                             <img src="assets/images/classes_img5.jpg" alt="image" />
@@ -921,7 +832,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6  d-md-block d-none" >
                     <div class="classes_box  animation" data-animation="fadeInUp" data-animation-delay="0.55s">
                         <div class="classes_img">
                             <img src="assets/images/istockphoto-1134374645-170667a.jpg" alt="image" />
@@ -1002,7 +913,7 @@
                                 </ul>
                             </div>
                             <div class="pr_footer">
-                                <a href="#" class="btn btn-dark text-uppercase">Buy Now <img
+                                <a href="get-started.html" class="btn btn-dark text-uppercase">Buy Now <img
                                         src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></a>
                             </div>
                         </div>
@@ -1035,7 +946,7 @@
                                 </ul>
                             </div>
                             <div class="pr_footer">
-                                <a href="#" class="btn btn-dark text-uppercase">Buy Now <img
+                                <a href="get-started.html" class="btn btn-dark text-uppercase">Buy Now <img
                                         src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></a>
                             </div>
                         </div>
@@ -1066,7 +977,7 @@
                                 </ul>
                             </div>
                             <div class="pr_footer">
-                                <a href="#" class="btn btn-dark text-uppercase">Buy Now <img
+                                <a href="get-started.html" class="btn btn-dark text-uppercase">Buy Now <img
                                         src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></a>
                             </div>
                         </div>
@@ -1108,12 +1019,12 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="blog_post  animation" data-animation="fadeInLeft" data-animation-delay="0.3s">
                         <div class="blog_img">
-                            <a href="{{route('blog-list')}}">
+                            <a href="blog.html">
                                 <img src="assets/images/best-meditation-retreats.jpg" alt="blog_small_img1">
                             </a>
                         </div>
                         <div class="blog_content">
-                            <h5 class="blog_title"><a href="{{route('blog-list')}}">9 Best Yoga Poses to Become More Flexible</a>
+                            <h5 class="blog_title"><a href="blog.html">9 Best Yoga Poses to Become More Flexible</a>
                             </h5>
                             <!--  <ul class="list_none blog_meta">
                             <li><a href="#"><img src="assets/images/cl_teacher_img1.jpg" alt="image"><span>Dayna</span></a></li>
@@ -1122,20 +1033,20 @@
                         </ul> -->
                             <p>Phasellus blandit massa enim elit variununc Lorems ipsum consectetur industry. If you are
                                 use dolor sit enim passage of Lorem Ipsum.</p>
-                            <a href="{{route('blog-list')}}" class="blog_link text-decoration-none">Read More</a>
+                            <a href="blog.html" class="blog_link text-decoration-none">Read More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog_post  animation" data-animation="fadeInUp" data-animation-delay="0.4s">
                         <div class="blog_img">
-                            <a href="{{route('blog-list')}}">
+                            <a href="blog.html">
                                 <img src="assets/images/main-qimg-80d4ef2f8d131e223d1bc1d7e6fddd05-lq.jpg"
                                     alt="blog_small_img2">
                             </a>
                         </div>
                         <div class="blog_content">
-                            <h5 class="blog_title"><a href="{{route('blog-list')}}">Benefits and Specific Yoga Poses/Asanas</a></h5>
+                            <h5 class="blog_title"><a href="blog.html">Benefits and Specific Yoga Poses/Asanas</a></h5>
                             <!-- <ul class="list_none blog_meta">
                             <li><a href="#"><img src="assets/images/cl_teacher_img3.jpg" alt="image"><span>Dayna</span></a></li>
                             <li><a href="#"><i class="far fa-calendar"></i>Mar 23, 2018</a></li>
@@ -1143,23 +1054,23 @@
                         </ul> -->
                             <p>Phasellus blandit massa enim elit variununc Lorems ipsum consectetur industry. If you are
                                 use dolor sit enim passage of Lorem Ipsum.</p>
-                            <a href="{{route('blog-list')}}" class="blog_link  text-decoration-none">Read More</a>
+                            <a href="blog.html" class="blog_link  text-decoration-none">Read More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="blog_post  animation" data-animation="fadeInRight" data-animation-delay="0.5s">
                         <div class="blog_img">
-                            <a href="{{route('blog-list')}}">
+                            <a href="blog.html">
                                 <img src="assets/images/1626099400-20141121chi0144-e-2.jpg" alt="blog_small_img3">
                             </a>
                         </div>
                         <div class="blog_content">
-                            <h5 class="blog_title"><a href="{{route('blog-list')}}">Yoga for PCOS: Benefits and Specific Yoga
+                            <h5 class="blog_title"><a href="blog.html">Yoga for PCOS: Benefits and Specific Yoga
                                     Poses/Asanas</a></h5>
                             <p>Phasellus blandit massa enim elit variununc Lorems ipsum consectetur industry. If you are
                                 use dolor sit enim passage of Lorem Ipsum.</p>
-                            <a href="{{route('blog-list')}}" class="blog_link  text-decoration-none">Read More</a>
+                            <a href="blog.html" class="blog_link  text-decoration-none">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1167,5 +1078,80 @@
         </div>
     </section>
     <!-- END SECTION BLOG -->
+
+
+    <!-- feature start -->
+    <section class="pb_70 featured-by-div d-none">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
+                    data-animation-delay="0.3s">
+                    <div class="heading_s1">
+                        <span class="sub_heading">Our Partners</span>
+                        <h2>Featured By</h2>
+                    </div>
+                    <div class="small_divider clearfix"></div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- partners start -->
+                <div class="col-xl-12 col-lg-12">
+                    <div class="slick slick-slider  client-logo" id="ser-div-partner">
+
+                        <div class="item">
+                            <a href="https://www.airtel.com/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/airtel.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="https://www.heromotocorp.com/en-in.html" target="_blank"
+                                class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/client/hero.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+
+                        <div class="item">
+                            <a href="https://www.google.com/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/google.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="https://www.microsoft.com/en-in/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/microsoft.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="https://www.amazon.in/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/client/amazon.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="https://english.bmrc.co.in/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/client/bmrcl.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="https://mmrcl.com/" target="_blank" class="text-decoration-none">
+                                <img src="https://www.aspireindia.com/iflow/assets/img/client/mmrc.png"
+                                    class="img-fluids w-10">
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature end -->
+
+   
 
 </x-guest-layout>

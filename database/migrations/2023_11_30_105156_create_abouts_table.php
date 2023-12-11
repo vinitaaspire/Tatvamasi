@@ -15,14 +15,10 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('image1')->nullable();
+            $table->string('image')->nullable();
             $table->tinyText('title')->nullable();
             $table->longText('description')->nullable();
-            $table->string('image2')->nullable();
-            $table->string('image3')->nullable();
-            $table->boolean('status')->default(1);
-            $table->integer('order')->nullable();
-            $table->softDeletes();
+            $table->string('images')->nullable();
             $table->timestamps();
         });
     }

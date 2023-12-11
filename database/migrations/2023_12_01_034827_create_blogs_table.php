@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
-            $table->tinyText('title')->nullable();
-            $table->tinyText('Shortdesc')->nullable();
+            $table->longText('name');
+            $table->string('image');
+            $table->longText('shortdesc')->nullable();
             $table->longText('longdesc')->nullable();
             $table->boolean('status')->default(1);
             $table->integer('order')->nullable();
-            $table->date('created')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->date('created_date')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

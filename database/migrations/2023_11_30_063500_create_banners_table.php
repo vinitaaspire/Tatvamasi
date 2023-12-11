@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->longText('title')->nullable();
             $table->string('image')->nullable();
+            $table->string('link')->nullable();
             $table->boolean('status')->default(1);
             $table->integer('order')->nullable();
             $table->softDeletes();

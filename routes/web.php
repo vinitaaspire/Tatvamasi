@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.welcome');
-})->name('/');
+Route::get('/',[HomeController::class,'home'])->name('/');
 
 Route::get('about', function () {
     return view('front.about');
@@ -99,9 +98,7 @@ Route::get('weight-fat-ton', function () {
 })->name('weight-fat-ton');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

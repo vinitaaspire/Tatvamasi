@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('status')->default(true);
-            $table->integer('user_id')->default(0);
             $table->integer('order')->nullable();
             $table->softDeletes();
             $table->timestamps();

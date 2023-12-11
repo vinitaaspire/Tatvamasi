@@ -16,15 +16,17 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category_id');
-            $table->integer('duration');
-            $table->integer('period_id');
-            $table->integer('lecture');
-            $table->longText('shortdesc');
-            $table->string('price');
-            $table->longText('longdesc');
-            $table->string('image');
-            $table->integer('boolean');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('course_categories');
+            $table->unsignedBigInteger('trainer_id')->nullable();
+            $table->foreign('trainer_id')->references('id')->on('trainers');
+            $table->string('image')->nullable();
+            $table->string('duration')->nullable(); 
+            $table->integer('no_of_lecture')->nullable();
+            $table->string('price')->nullable();
+            $table->longText('desc')->nullable();
+            $table->string('days')->nullable();
+            $table->string('timeing')->nullable();
             $table->integer('order')->nullable();
             $table->boolean('status')->default(1);
             $table->softDeletes();
