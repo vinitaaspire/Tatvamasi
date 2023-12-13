@@ -51,8 +51,8 @@
               class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('back/assets/img/user.png')}}"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
-              <div class="dropdown-title">Hello Sarah Smith</div>
-              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+              <div class="dropdown-title">Hello {{ Auth::guard('admin')->user()->name }}</div>
+              <a href="{{route('admin.profile')}}" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
               </a> 
               <div class="dropdown-divider"></div>
@@ -77,30 +77,30 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
             <li class="dropdown  {{ (request()->is('admin')) ? 'active' : '' }}">
-              <a href="{{route('admin.dashboard')}}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="{{route('admin.dashboard')}}" class="nav-link"><i data-feather="airplay"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown {{ (request()->is('admin/banner*')) ? 'active' : '' }} ">
               <a href="{{route('banner.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Banner</span></a>
+                  data-feather="camera"></i><span>Banner</span></a>
              
             </li>
             <li class="dropdown {{ (request()->is('admin/testimonial*')) ? 'active' : '' }}  ">
               <a href="{{route('testimonial.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Testimonial</span></a>
+                  data-feather="tag"></i><span>Testimonial</span></a>
              
             </li>
             <li class="dropdown {{ (request()->is('admin/trainers*')) ? 'active' : '' }}  ">
               <a href="{{route('trainers.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Trainers</span></a>
+                  data-feather="command"></i><span>Trainers</span></a>
             </li>
             <li class="dropdown {{ (request()->is('admin/blog*')) ? 'active' : '' }}  ">
               <a href="{{route('blog.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Blog</span></a>
+                  data-feather="umbrella"></i><span>Blog</span></a>
             </li>
 
 
             <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') ? 'active' : '') }}">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Courses</span></a>
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="target"></i><span>Courses</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{route('courses.index')}}">Courses</a></li>
                 <li><a class="nav-link" href="{{route('category.index')}}">Categorys</a></li>
@@ -108,18 +108,22 @@
             </li>
             <li class="dropdown {{ (request()->is('admin/pricing*')) ? 'active' : '' }}">
               <a href="{{route('pricing.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Pricing</span></a>
+                  data-feather="slack"></i><span>Pricing</span></a>
             </li>
 
             <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
               <a href="{{route('contactUs.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Contact Us </span></a>
+                  data-feather="radio"></i><span>Contact Us </span></a>
             </li>
             <li class="dropdown {{ (request()->is('admin/order*')) ? 'active' : '' }}">
               <a href="{{route('order.index')}}" class=" nav-link "><i
-                  data-feather="briefcase"></i><span>Orders</span></a>
+                  data-feather="pie-chart"></i><span>Orders</span></a>
             </li>
 
+            <li class="dropdown {{ (request()->is('admin/about*')) ? 'active' : '' }}">
+              <a href="{{route('about.index')}}" class=" nav-link "><i
+                  data-feather="server"></i><span>About US</span></a>
+            </li>
 
           </ul>
         </aside>

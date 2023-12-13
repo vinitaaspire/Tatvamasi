@@ -1,82 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- auth-login.html  21 Nov 2019 03:49:32 GMT -->
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Tatvamshi - Admin Dashboard </title>
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{asset('back/assets/css/app.min.css')}}">
-  <link rel="stylesheet" href="{{asset('back/assets/bundles/bootstrap-social/bootstrap-social.css')}}">
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('back/assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('back/assets/css/components.css')}}">
-  <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{asset('back/assets/css/custom.css')}}">
-  <link rel='shortcut icon' type='image/x-icon' href="{{asset('back/assets/img/favicon.ico')}} />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+       body {
+            background-image: url('https://images.unsplash.com/photo-1489769002049-ccd828976a6c?q=80&w=3161&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+      
+    </style>
+
+   </style>
 </head>
-
-<body>
-  <div class="loader"></div>
-  <div id="app">
-    <section class="section">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h4>Login</h4>
-              </div>
-              <div class="card-body">
-                <form method="POST" action="{{ route('admin.login') }}" class="needs-validation" novalidate="">
-                  @csrf
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                   
-                  </div>
-                  <div class="form-group">
-                    <div class="d-block">
-                      <label for="password" class="control-label">Password</label>
-                      <!-- <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div> -->
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Login</h3>
                     </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('admin.login') }}" class="needs-validation" novalidate>
+                            @csrf
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                <div class="invalid-feedback">
+                                    Please enter your password.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                                    <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Remember Me</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
-                    </button>
-                  </div>
-                </form>
-               
-              </div>
             </div>
-           
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
-  <!-- General JS Scripts -->
-  <script src="{{asset('back/assets/js/app.min.js')}}"></script>
-  <!-- JS Libraies -->
-  <!-- Page Specific JS File -->
-  <!-- Template JS File -->
-  <script src="{{asset('back/assets/js/scripts.js')}}"></script>
-  <!-- Custom JS File -->
-  <script src="{{asset('back/assets/js/custom.js')}}"></script>
-</body>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add your own scripts if needed -->
+</body>
 </html>

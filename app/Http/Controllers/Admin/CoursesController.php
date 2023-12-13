@@ -54,6 +54,8 @@ class CoursesController extends Controller
             'end_times.*' => 'date_format:H:i|after_or_equal:start_times.*',
             'status' => 'required|in:0,1',
             'order' => 'nullable|numeric',
+            'months' => 'required|array',
+            'price' => 'required|array',
         ]);
 
         $course = new Courses();
@@ -71,7 +73,7 @@ class CoursesController extends Controller
 
         $course->duration = $request->input('duration');
         $course->no_of_lecture = $request->input('no_of_lecture');
-        $course->price = $request->input('price');
+        $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');
         $course->days = implode(',', $request->input('days'));
         $course->timeing = $this->formatTimeRanges($request->input('start_times'), $request->input('end_times'));
@@ -155,6 +157,8 @@ class CoursesController extends Controller
             'end_times.*' => 'date_format:H:i|after_or_equal:start_times.*',
             'status' => 'required|in:0,1',
             'order' => 'nullable|numeric',
+            'months' => 'required|array',
+            'price' => 'required|array',
         ]);
 
         $course =  Courses::findorfail($id);
@@ -172,7 +176,7 @@ class CoursesController extends Controller
 
         $course->duration = $request->input('duration');
         $course->no_of_lecture = $request->input('no_of_lecture');
-        $course->price = $request->input('price');
+        $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');
         $course->days = implode(',', $request->input('days'));
         $course->timeing = $this->formatTimeRanges($request->input('start_times'), $request->input('end_times'));

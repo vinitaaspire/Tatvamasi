@@ -35,8 +35,7 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
 });
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('admin');
-Route::post('/login', [AuthController::class, 'login'])->name('admin.login');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)

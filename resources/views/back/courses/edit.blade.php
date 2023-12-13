@@ -96,10 +96,33 @@
                   </div>
 
                   <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Price</label>
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Months And price</label>
                     <div class="col-sm-12 col-md-7">
-                      <input type="number" step="0.00" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $courses->price }}">
-                      @error('price')
+                      <div id="monthprice">
+                        @php
+                        $monthPriceArray = explode(', ', $courses->price); 
+                        $oldMonths  = old('start_times', []);
+                        $oldPrices = old('end_times', []);
+
+                        @endphp
+
+                        @foreach($monthPriceArray as $index => $time)
+                        @php
+                        list($months, $prices) = explode(' - ', $time);
+                        @endphp
+                        <div class="month-price d-flex">
+                          <input type="number" class="form-control" name="months[]" value="{{ $months }}" placeholder="Enter Month here">
+                          <span class="m-2">To </span>
+                          <input type="number" class="form-control" name="price[]" value="{{ $prices }}" placeholder="Enter Price here">
+                          <button type="button" class="btn btn-sm btn-danger remove-month-price  m-2">Remove</button>
+                        </div>
+                        @endforeach
+                      </div>
+                      <button type="button" class="btn btn-sm btn-primary" id="addmonthpriuce">Add Month And Price</button>
+                      @error('start_times')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                      @error('end_times')
                       <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
                     </div>
@@ -274,5 +297,26 @@
         event.target.closest('.time-range').remove();
       }
     });
+
+
+    document.getElementById('addmonthpriuce').addEventListener('click', function() {
+      var timeRangesContainer = document.getElementById('monthprice');
+      var newTimeRange = document.querySelector('.month-price').cloneNode(true);
+
+      // Clear the values in the new time range
+      newTimeRange.querySelectorAll('input[type="number"]').forEach(function(input) {
+        input.value = '';
+      });
+
+      // Add the new time range
+      timeRangesContainer.appendChild(newTimeRange);
+    });
+
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('remove-month-price')) {
+        event.target.closest('.month-price').remove();
+      }
+    });
+
   </script>
 </x-app-layout>
