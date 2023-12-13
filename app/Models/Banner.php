@@ -11,6 +11,16 @@ class Banner extends Model
     use HasFactory , SoftDeletes;
 
 
+    protected $fillable = [
+        'title',
+        'image',
+        'link',
+        'status',
+        'order',
+        // Add other fields as needed
+    ];
+    
+
     public function scopeActive($query)
     {
         return $query->where('status', 1)->orderBy('order', 'asc');

@@ -5,7 +5,7 @@
             @foreach($banners as  $key => $banner)
             <div class="carousel-item  @if($key == 0)active @endif " data-bs-interval="3000">
                 <section class="sli-div">
-                    <img src="{{ asset('uploads/' . $banner->image ?? '')}}" class="img-fluid w-100" alt="Slider" />
+                    <img src="{{ asset( $banner->image ?? '')}}" class="img-fluid w-100" alt="Slider" />
                     <div class="top-head">
                         <div class="container">
                             <div class="row">

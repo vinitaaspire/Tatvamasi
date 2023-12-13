@@ -8,29 +8,11 @@ use App\Models\Banner;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        if($request->ajax()){
-           $banners =  Banner::get();
-         $data  = $banners->map( function($banner){
-            return [
-                'image' => '<img alt="image" src="' . asset("uploads/{$banner->image}") . '" width="35">',
-                'title' =>  " $banner->title ",
-                'status' => '<button data-banner="' . $banner->id . '" class="btn ' . ($banner->status == 1 ? 'btn-success Status' : 'btn-danger Status') . '">' . ($banner->status == 1 ? 'Active' : 'UnActive') . '</button>',
-                'option' => '<button data-banner="' . $banner->id . '"  class="btn btn-primary edit"> Edit </button> <button data-banner="' . $banner->id . '" class="btn btn-danger delete " > Delete </button>'
-            ];
-            
-           });
-           return response()->json(['status' => 200 , 'data' => $data ]);
-        }else{
-            return view('back.banner.index');
-        }
-   
+           $Banners =  Banner::latest()->get();
+            return view('back.Banner.index', compact('Banners'));
+     
     }
 
     /**
@@ -40,7 +22,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.Banner.create');
     }
 
     /**
@@ -51,8 +33,42 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $validator = $request->validate([
+            'title' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'link' => 'nullable',
+            'status' => 'nullable',
+            'order' => 'nullable|numeric',
+        ]);
+    
+        // Handle file upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            // Check if the file is valid
+            if ($request->file('image')->isValid()) {
+                $uniqueFileName = md5(time() . $request->file('image')->getClientOriginalName());
+                $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
+            }
+        }
+    
+        // Create a new Banner instance or find an existing one
+        $Banner = $request->filled('Banner_id') ? Banner::findOrFail($request->Banner_id) : new Banner();
+    
+        // Set properties of the banner
+        $Banner->title = $request->input('title');
+        $Banner->image = $imagePath ?? $Banner->image;
+        $Banner->link = $request->input('link');
+        $Banner->status = $request->input('status') ?? 1;
+        $Banner->order = $request->input('order');
+    
+        // Save the Banner
+        $Banner->save();
+    
+        return redirect()->back()->with('success', 'Banner has been saved successfully!');
     }
+    
+ 
 
     /**
      * Display the specified resource.
@@ -60,15 +76,16 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $banner = Banner::findorfail($id);
-        $banner->status =  $banner->status == 1 ? 0 : 1 ;
-        $banner->update();
-        $msg = 'Banner Status Update Successfully !';
-        return response()->json(['status' => 200 , 'message' => $msg ]);
+                public function show($id)
+            {
+                $Banner = Banner::findOrFail($id);
+                $Banner->status = $Banner->status == 1 ? 0 : 1;
+                $Banner->update();
 
-    }
+                // Redirect to a specific route or URL
+                return redirect()->back()->with('success', 'Banner Status Updated Successfully!');
+            }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -78,7 +95,10 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+         $Banner = Banner::findorfail($id);
+       return view('back.Banner.edit', compact('Banner'));
+
+     
     }
 
     /**
@@ -90,7 +110,43 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the incoming request data
+     
+    
+        // Find the Banner entry by ID
+        $Banner = Banner::findOrFail($id);
+    
+        // Update the Banner entry with the new data
+        $Banner->title = $request->input('title');
+        $Banner->link = $request->input('link');
+        $Banner->status = $request->input('status');
+        $Banner->order = $request->input('order');
+    
+        // Handle image upload if a new image is provided
+       // Handle file upload
+       if ($request->hasFile('image')) {
+        // Check if the file is valid
+        if ($request->file('image')->isValid()) {
+            $uniqueFileName = md5(time() . $request->file('image')->getClientOriginalName());
+            $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
+    
+        } else {
+           
+            $imagePath = null;
+        }
+    } else {
+        
+        $imagePath = null;
+    }
+   
+
+    $Banner->image = $imagePath ??  $Banner->image;
+
+        // Save the changes to the database
+        $Banner->save();
+    
+        // Redirect to a specific route or URL after the update
+        return redirect()->back()->with('success', 'Banner Updated Successfully!');
     }
 
     /**
@@ -103,7 +159,7 @@ class BannerController extends Controller
     {
       $banner = Banner::findorfail($id);
       $banner->delete();
-      return response()->json(['status' => 200 , 'message' => 'Banner Delete Successfull ']);
-
+      return redirect()->back()->with('success', 'Banner Delete Successfull!');
+     
     }
 }

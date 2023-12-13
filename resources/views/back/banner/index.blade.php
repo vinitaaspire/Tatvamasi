@@ -6,24 +6,67 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
-                <h4>Banners</h4>
-                <button class="btn btn-primary">Create New </button>
+                <h4>Banner</h4>
+                <form action="{{route('banner.create')}}" method="get">
+                  <button class="btn btn-primary" type="submit">Create New </button>
+                </form>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-striped" id="table">
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th class="text-center">
                           #
                         </th>
-                        <th>Banner </th>
-                        <th>Title</th>
+                        <th>Title </th>
+                        <th>Image</th>
+                        <th>Link</th>
                         <th>Status</th>
+                        <th>Order</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                      @foreach ($Banners as $key => $blog)
+                      <tr>
+                        <td>{{ $key+1 }}</td>
+                        <td>{!! $blog->title ?? '' !!}</td>
+                        <td><img src="{{asset($blog->image )}}" alt="" style="max-width: 100%; max-height: 50px;"> </td>
+                        <td>{{ $blog->link }}</td>
+
+                        <td>
+                          <!-- Status Update Form -->
+                          <form action="{{ route('banner.show', ['banner' => $blog->id]) }}" method="GET">
+                            @csrf
+                            
+
+                            <button type="submit" class="{{ $blog->status == 1 ? 'btn btn-success' : 'btn btn-danger' }}">
+                              {{ $blog->status == 1 ? 'Active' : 'Inactive' }}
+                            </button>
+
+                          </form>
+                        </td>
+                        <td>{{ $blog->order }}</td>
+                        <td>
+                          <form action="{{ route('banner.edit', ['banner' => $blog->id]) }}" method="GET" class="d-inline">
+                            @csrf
+                            <button type="submit" class="edit badge badge-primary btn btn-primary">Edit</button>
+                          </form>
+
+                          <form id="deleteForm{{ $blog->id }}" action="{{ route('banner.destroy', ['banner' => $blog->id]) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="confirmDelete({{ $blog->id }})" class="delete badge badge-danger btn btn-danger">Delete</button>
+                          </form>
+
+
+
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+
                   </table>
                 </div>
               </div>
@@ -35,121 +78,20 @@
     </section>
 
   </div>
-
-
   <script>
     $(document).ready(function() {
-      getAll();
+      // Update status when the select value changes
+      $('.statusSelect').on('change', function() {
+        $('#statusUpdateForm').submit(); // Submit the form
+      });
     });
 
 
-    function getAll() {
-      let url = '{{route("banner.index")}}';
-      $.ajax({
-        method: 'get',
-        url: url,
-        success: function(response) {
-          if (response.status == 200) {
-            $('#table').DataTable().destroy();
-            $('#table').DataTable({
-              data: response.data,
-              columns: [{
-                  data: null,
-                  render: function(data, type, row, meta) {
-                    return meta.row + 1;
-                  }
-                },
-                {
-                  data: 'image'
-                },
-                {
-                  data: 'title',
-                  render: function(data, type, row) {
-                    return data;
-                  }
-                },
-                {
-                  data: 'status'
-                },
-                {
-                  data: 'option'
-                }
-              ]
-            });
-          } else {
-            alert('somting went wrong');
-          }
-
-        }
-      })
+    function confirmDelete(blogId) {
+      if (confirm('Are you sure you want to delete this Banner entry?')) {
+        document.getElementById('deleteForm' + blogId).submit();
+      }
     }
-
-    $(document).on('click', '.delete', function(){
-    let id = $(this).data('banner');
-    
-    // Confirm before making the AJAX request
-    if (confirm('Are you sure you want to delete banner with ID ' + id + '?')) {
-        $.ajax({
-            method: 'DELETE',
-            url: '{{ route("banner.destroy", ["banner" => "__bannerid__"]) }}'.replace('__bannerid__', id),
-            success: function(response) {
-              if(response.status == 200 ){
-                getAll();
-               console.log(response.message )
-              }
-              console.log(response.message )
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
-    }
-});
-
-
-$(document).on('click', '.Status', function(){
-    let id = $(this).data('banner');
-        $.ajax({
-            method: 'GET',
-            url: '{{ route("banner.show", ["banner" => "__bannerid__"]) }}'.replace('__bannerid__', id),
-            success: function(response) {
-              if(response.status == 200 ){
-                getAll();
-               console.log(response.message )
-              }
-              console.log(response.message )
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
-  
-});
-
-
-$(document).on('click', '.edit', function(){
-    let id = $(this).data('banner');
-        $.ajax({
-            method: 'GET',
-            url: '{{ route("banner.show", ["banner" => "__bannerid__"]) }}'.replace('__bannerid__', id),
-            success: function(response) {
-              if(response.status == 200 ){
-                getAll();
-               console.log(response.message )
-              }
-              console.log(response.message )
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
-  
-});
-
-
-
-
-
-
   </script>
+
 </x-app-layout>
