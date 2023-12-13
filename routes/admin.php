@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\BlogContreoller;
 use App\Http\Controllers\Admin\PriceContreoller;
 use App\Http\Controllers\Admin\ContactUsContreoller;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CoursesCategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,9 +26,11 @@ use Illuminate\Support\Facades\Route;
           'blog' => BlogContreoller::class,
           'pricing' => PriceContreoller::class,
           'contactUs' => ContactUsContreoller::class,
+          'category' => CoursesCategoryController::class,
+          'courses' => CoursesController::class,
+          'order' => OrderController::class,
      ]);
-     Route::get('courses',[CoursesController::class,'index'])->name('courses');
-     Route::get('coursesCategory',[CoursesController::class,'index'])->name('coursesCategory');
+
 
 
 
