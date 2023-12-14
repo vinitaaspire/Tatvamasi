@@ -24,7 +24,7 @@
                     <div class="form-group row mb-4">
         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
         <div class="col-sm-12 col-md-7">
-            <input type="file" class="form-control" name="profile_pic" id="imageInput" accept="image/*" onchange="previewImage()">
+            <input type="file" class="form-control" name="image" id="imageInput" accept="image/*" onchange="previewImage()">
             <img id="imagePreview" src="{{ asset($trainer->image) }}" alt="Image Preview" style="max-width: 100%; max-height: 150px; display: block;">
         </div>
     </div>

@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ContactUsContreoller;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CoursesCategoryController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PartnersController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +36,8 @@ use Illuminate\Support\Facades\Route;
                'courses' => CoursesController::class,
                'order' => OrderController::class,
                'about' => AboutUsController::class,
+               'whyus' => WhyChooseUsController::class,
+               'partners' => PartnersController::class,
           ]);
      });
    

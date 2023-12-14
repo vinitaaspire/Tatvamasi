@@ -76,8 +76,29 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
+
             <li class="dropdown  {{ (request()->is('admin')) ? 'active' : '' }}">
               <a href="{{route('admin.dashboard')}}" class="nav-link"><i data-feather="airplay"></i><span>Dashboard</span></a>
+            </li>
+            <li class="dropdown {{ (request()->is('admin/order*')) ? 'active' : '' }}">
+              <a href="{{route('order.index')}}" class=" nav-link "><i
+                  data-feather="pie-chart"></i><span>Orders</span></a>
+            </li>
+
+            <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') ? 'active' : '') }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="target"></i><span>Courses</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{route('courses.index')}}">Courses</a></li>
+                <li><a class="nav-link" href="{{route('category.index')}}">Categorys</a></li>
+              </ul>
+            </li>
+            <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
+              <a href="{{route('contactUs.index')}}" class=" nav-link "><i
+                  data-feather="radio"></i><span>Contact Us </span></a>
+            </li>
+            <li class="dropdown {{ (request()->is('admin/blog*')) ? 'active' : '' }}  ">
+              <a href="{{route('blog.index')}}" class=" nav-link "><i
+                  data-feather="umbrella"></i><span>Blog</span></a>
             </li>
             <li class="dropdown {{ (request()->is('admin/banner*')) ? 'active' : '' }} ">
               <a href="{{route('banner.index')}}" class=" nav-link "><i
@@ -93,19 +114,10 @@
               <a href="{{route('trainers.index')}}" class=" nav-link "><i
                   data-feather="command"></i><span>Trainers</span></a>
             </li>
-            <li class="dropdown {{ (request()->is('admin/blog*')) ? 'active' : '' }}  ">
-              <a href="{{route('blog.index')}}" class=" nav-link "><i
-                  data-feather="umbrella"></i><span>Blog</span></a>
-            </li>
+           
 
 
-            <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') ? 'active' : '') }}">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="target"></i><span>Courses</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{route('courses.index')}}">Courses</a></li>
-                <li><a class="nav-link" href="{{route('category.index')}}">Categorys</a></li>
-              </ul>
-            </li>
+        
             <li class="dropdown {{ (request()->is('admin/pricing*')) ? 'active' : '' }}">
               <a href="{{route('pricing.index')}}" class=" nav-link "><i
                   data-feather="slack"></i><span>Pricing</span></a>
@@ -123,6 +135,15 @@
             <li class="dropdown {{ (request()->is('admin/about*')) ? 'active' : '' }}">
               <a href="{{route('about.index')}}" class=" nav-link "><i
                   data-feather="server"></i><span>About US</span></a>
+            </li>
+
+            <li class="dropdown {{ (request()->is('admin/whyus*')) ? 'active' : '' }}">
+              <a href="{{route('whyus.index')}}" class=" nav-link "><i
+                  data-feather="server"></i><span>Why Choose Us</span></a>
+            </li>
+            <li class="dropdown {{ (request()->is('admin/partners*')) ? 'active' : '' }}">
+              <a href="{{route('partners.index')}}" class=" nav-link "><i
+                  data-feather="server"></i><span>Partners</span></a>
             </li>
 
           </ul>

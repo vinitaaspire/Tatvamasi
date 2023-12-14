@@ -14,47 +14,51 @@
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="#">
     <!-- Animation CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/animate.css')}}">
     <!-- Latest Bootstrap min CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/bootstrap/css/bootstrap.min.css')}}">
     <!--font--awesome--cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/ionicons.min.css')}}">
     <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/all.min.css')}}">
     <!-- Flaticon Font CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/flaticon.css')}}">
     <!-- Themify Font CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/themify-icons.css')}}">
     <!--- owl carousel CSS-->
-    <link rel="stylesheet" href="{{asset('front/assets/owlcarousel/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/owlcarousel/css/owl.theme.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/owlcarousel/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/owlcarousel/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/owlcarousel/css/owl.theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/owlcarousel/css/owl.theme.default.min.css')}}">
     <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/magnific-popup.css')}}">
     <!-- jquery-ui CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/jquery-ui.css')}}">
 
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/style.css?v=0.4')}}" />
-    <link rel="stylesheet" href="{{asset('front/assets/css/responsive.css?v=0.4')}}" />
-    <link rel="stylesheet" id="layoutstyle" href="{{asset('front/assets/color/theme-default.css?v=0.4')}}">
+    <link rel="stylesheet" href="{{ asset('front/assets/css/style.css?v=0.4')}}" />
+    <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css?v=0.4')}}" />
+    <link rel="stylesheet" id="layoutstyle" href="{{ asset('front/assets/color/theme-default.css?v=0.4')}}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- <link href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" type="text/css" rel="Stylesheet" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" /> -->
+
 </head>
 
 <body>
-
-<header class="header_wrap fixed-top dark_skin main_menu_uppercase main_menu_weight_600 transparent_header">
+    <!-- START HEADER -->
+    <header class="header_wrap fixed-top dark_skin main_menu_uppercase main_menu_weight_600 transparent_header">
         <div class="container">
             <nav class="navbar navbar-expand-lg row align-items-md-center">
                 <div class="col-lg-3 col-md-12 col-12">
-                    <a class="navbar-brand logo p-0" href="index.html">
+                    <a class="navbar-brand logo p-0" href="{{route('/')}}">
                         <div class="wrapper">
                             <img src="{{asset('front/assets/images/tatvamasi.png')}}">
                         </div>
@@ -62,7 +66,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <img src="{{asset('front/assets/images/icons/menu.png')}}" class="img-fluid" alt="Menu" />
+                        <img src="{{ asset('front/assets/images/icons/menu.png')}}" class="img-fluid" alt="Menu" />
                     </button>
                 </div>
                 <div class="col-lg-9 col-md-12 col-12">
@@ -93,7 +97,7 @@
                             </li>
                             <li>
                                 <a class="btn btn-dark btn-nav1" href="login.html"> <img
-                                        src="{{asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
+                                        src="{{ asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
                             </li>
                         </ul>
                     </div>
@@ -102,11 +106,10 @@
         </div>
     </header>
     <!-- END HEADER -->
-
        
                 {{ $slot }}
-     <!-- START FOOTER -->
-     <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+      <!-- START FOOTER -->
+      <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
         <div class="top_footer">
             <div class="container">
                 <div class="row">
@@ -169,7 +172,7 @@
                             <form>
                                 <input type="text" class="form-control " required="" placeholder="Enter Email Address">
                                 <button type="submit" title="Subscribe" class="btn btn-default " name="submit"
-                                    value="Submit"><Img src="assets/images/icons/right-arrow.png" class="login-icn"
+                                    value="Submit"><Img src="{{ asset('front/assets/images/icons/right-arrow.png')}}" class="login-icn"
                                         alt="Button" /></button>
                             </form>
                         </div>
@@ -302,7 +305,7 @@
                         <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                             <button type="submit" title="Submit" name="submit" value="Submit"
                                 class="btn btn-default submit-btn action-button animation animated fadeInUp">Submit <img
-                                    src="assets/images/icons/right-arrow-btn.png" class="btn-icn"></button>
+                                    src="{{ asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
                         </div>
                     </form>
                 </div>
@@ -312,94 +315,119 @@
 
     <!-- whatsapp start -->
     <a href="https://web.whatsapp.com/send?phone=919355022333&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank" >
-        <img src="{{asset('front/assets/images/icons/whatsapp.png')}}" class="img-fluid w-100" alt="Whatsapp" />
+        <img src="{{ asset('front/assets/images/icons/whatsapp.png')}}" class="img-fluid w-100" alt="Whatsapp" />
     </a>
+    <!-- whatsapp end -->
 
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-modal.style.display = "block";
-}
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-modal.style.display = "none";
-}
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <!-- enquiry end -->
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-if (event.target == modal) {
-modal.style.display = "none";
-}
-}
-</script>
-<!-- enquiry end -->
+    <!-- Latest jQuery -->
+    <script>
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("navbarSupportedContent");
+        var btns = header.getElementsByClassName("nav-link");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+    <script src="{{ asset('front/assets/js/jquery-1.12.4.min.js')}}"></script>
+    <!-- jquery-ui js -->
+    <script src="{{ asset('front/assets/js/jquery-ui.js')}}"></script>
+    <!-- popper min js -->
+    <script src="{{ asset('front/assets/js/popper.min.js')}}"></script>
+    <!-- Latest compiled and minified Bootstrap -->
+    <script src="{{ asset('front/assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- owl-carousel min js  -->
+    <script src="{{ asset('front/assets/owlcarousel/js/owl.carousel.min.js')}}"></script>
+    <!-- magnific-popup min js  -->
+    <script src="{{ asset('front/assets/js/magnific-popup.min.js')}}"></script>
+    <!-- waypoints min js  -->
+    <script src="{{ asset('front/assets/js/waypoints.min.js')}}"></script>
+    <!-- parallax js  -->
+    <script src="{{ asset('front/assets/js/parallax.js')}}"></script>
+    <!-- jquery dd js  -->
+    <script src="{{ asset('front/assets/js/jquery.dd.min.js')}}"></script>
+    <!-- countdown js  -->
+    <script src="{{ asset('front/assets/js/jquery.countdown.min.js')}}"></script>
+    <!-- jquery.counterup.min js -->
+    <script src="{{ asset('front/assets/js/jquery.counterup.min.js')}}"></script>
+    <!-- jquery.parallax-scroll js -->
+    <script src="{{ asset('front/assets/js/jquery.parallax-scroll.js')}}"></script>
+    <!-- fit video  -->
+    <script src="{{ asset('front/assets/js/jquery.fitvids.js')}}"></script>
+    <!-- imagesloaded js -->
+    <script src="{{ asset('front/assets/js/imagesloaded.pkgd.min.js')}}"></script>
+    <!-- isotope min js -->
+    <script src="{{ asset('front/assets/js/isotope.min.js')}}"></script>
+    <!-- cookie js -->
+    <script src="{{ asset('front/assets/js/js.cookie.js')}}"></script>
+    <!-- scripts js -->
+    <script src="{{ asset('front/assets/js/scripts.js')}}"></script>
+    <script src="{{ asset('front/assets/js/custom.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script type="text/javascript"
+        src="https://www.nadayoga.gr/app/plugins/contact-form-7/includes/js/scripts.js?ver=5.3"></script>
 
-<!-- Latest jQuery -->
-<script>
-    // Add active class to the current button (highlight it)
-    var header = document.getElementById("navbarSupportedContent");
-    var btns = header.getElementsByClassName("nav-link");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
-</script>
-<script src="{{asset('front/assets/js/jquery-1.12.4.min.js')}}"></script>
-<!-- jquery-ui js -->
-<script src="{{asset('front/assets/js/jquery-ui.js')}}"></script>
-<!-- popper min js -->
-<script src="{{asset('front/assets/js/popper.min.js')}}"></script>
-<!-- Latest compiled and minified Bootstrap -->
-<script src="{{asset('front/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-<!-- owl-carousel min js  -->
-<script src="{{asset('front/assets/owlcarousel/js/owl.carousel.min.js')}}"></script>
-<!-- magnific-popup min js  -->
-<script src="{{asset('front/assets/js/magnific-popup.min.js')}}"></script>
-<!-- waypoints min js  -->
-<script src="{{asset('front/assets/js/waypoints.min.js')}}"></script>
-<!-- parallax js  -->
-<script src="{{asset('front/assets/js/parallax.js')}}"></script>
-<!-- jquery dd js  -->
-<script src="{{asset('front/assets/js/jquery.dd.min.js')}}"></script>
-<!-- countdown js  -->
-<script src="{{asset('front/assets/js/jquery.countdown.min.js')}}"></script>
-<!-- jquery.counterup.min js -->
-<script src="{{asset('front/assets/js/jquery.counterup.min.js')}}"></script>
-<!-- jquery.parallax-scroll js -->
-<script src="{{asset('front/assets/js/jquery.parallax-scroll.js')}}"></script>
-<!-- fit video  -->
-<script src="{{asset('front/assets/js/jquery.fitvids.js')}}"></script>
-<!-- imagesloaded js -->
-<script src="{{asset('front/assets/js/imagesloaded.pkgd.min.js')}}"></script>
-<!-- isotope min js -->
-<script src="{{asset('front/assets/js/isotope.min.js')}}"></script>
-<!-- cookie js -->
-<script src="{{asset('front/assets/js/js.cookie.js')}}"></script>
-<!-- scripts js -->
-<script src="{{asset('front/assets/js/scripts.js')}}"></script>
-<script src="{{asset('front/assets/js/custom.js')}}"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-    crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script type="text/javascript"
-    src="https://www.nadayoga.gr/app/plugins/contact-form-7/includes/js/scripts.js?ver=5.3"></script>
+        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> -->
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ser-div-partner').slick({
+                draggable: true,
+                autoplay: true,
+                autoplaySpeed: 0,
+                speed: 2000,
+                centerMode: true,
+                easing: 'linear',
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                touchThreshold: 100,
+                variableWidth: true,
+                infinite: true,
+                initialSlide: 1,
+                arrows: false,
+                buttons: false,
+                pauseOnHover: true,
+                swipeToSlide: true,
+                dots: false
+            });
+        })
+    </script> -->
 
 </body>
 

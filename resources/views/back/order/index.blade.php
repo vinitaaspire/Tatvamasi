@@ -28,10 +28,11 @@
                     <tbody>
                       @foreach ($orders as $key => $list)
                       <tr>
-                        <td>{{ $key+1 }}</td>
-                        <td>{{ $list->courses_id ?? ''}}</td>
+                        <td>{{ $key+1    }} </td>
+                        <td>{{ $list->course?->name  }}</td>
                         <td>{{ $list->price ?? ''}} </td>
                         <td>{{ $list->duration ?? '' }}</td>
+                        
                         <td>
                             <button class="btn {{$list->payment_status == 1 ? 'btn-success' : 'btn-danger'}}">
                                 {{$list->payment_status == 1 ? 'Success' : 'Failed'}}

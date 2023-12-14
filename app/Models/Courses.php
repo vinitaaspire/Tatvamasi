@@ -15,10 +15,15 @@ class Courses extends Model
         return $this->belongsTo(CourseCategory::class, 'category_id');
     }
 
-    // Define the relationship with Trainer
     public function trainer()
     {
         return $this->belongsTo(Trainer::class, 'trainer_id');
+    }
+
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1)->orderBy('order', 'asc');
     }
 
 }

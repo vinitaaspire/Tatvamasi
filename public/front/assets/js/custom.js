@@ -81,14 +81,26 @@ $(document).ready(function () {
     /* start*/
     $('.mobile_no').keyup(function () {
         var a = $(this).val().length;
-        if(a == 10) {
+        if (a == 10) {
             $('.otp').removeClass('d-none').addClass('d-block');
         } else {
             $('.otp').removeClass('d-block').addClass('d-none');
         }
-    }); 
+    });
     /* end */
 
-  
+    /* file uplaod start */
+    $('.custom-file-label').text('Upload Photo');
+    $('#customFileLangHTML').on('change', function (e) {
+        if ($("#customFileLangHTML").val() !== '') {
+            let txt = $("#customFileLangHTML").val();
+            $('.custom-file-label').text(txt);
+        } else {
+            $('.custom-file-label').text('Upload Photo');
+        }
+    })
+    /* file upload end */
+
+
 
 });

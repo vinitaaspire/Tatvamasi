@@ -42,7 +42,8 @@ class CoursesController extends Controller
             'category_id' => 'required|exists:course_categories,id',
             'trainer_id' => 'required|exists:trainers,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'duration' => 'required|numeric',
+            'icon' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'short_desc' => 'required',
             'no_of_lecture' => 'required|numeric',
             'price' => 'required|numeric',
             'desc' => 'required',
@@ -56,6 +57,7 @@ class CoursesController extends Controller
             'order' => 'nullable|numeric',
             'months' => 'required|array',
             'price' => 'required|array',
+            'zoom_link' => 'required',
         ]);
 
         $course = new Courses();
@@ -65,13 +67,20 @@ class CoursesController extends Controller
             $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
             $course->image = $imagePath;
         }
+        $iconPath = null;
+        if ($request->hasFile('icon')) {
+            $uniqueFileName = md5(time() . $request->file('icon')->getClientOriginalName());
+            $iconPath = $request->file('icon')->move('uploads', $uniqueFileName);
+            $course->icon = $iconPath;
+        }
 
 
+        $course->zoom_link = $request->input('zoom_link');
         $course->name = $request->input('name');
         $course->category_id = $request->input('category_id');
         $course->trainer_id = $request->input('trainer_id');
 
-        $course->duration = $request->input('duration');
+        $course->short_desc = $request->input('short_desc');
         $course->no_of_lecture = $request->input('no_of_lecture');
         $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');
@@ -145,7 +154,8 @@ class CoursesController extends Controller
             'category_id' => 'required|exists:course_categories,id',
             'trainer_id' => 'required|exists:trainers,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'duration' => 'required|numeric',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'short_desc' => 'required',
             'no_of_lecture' => 'required|numeric',
             'price' => 'required|numeric',
             'desc' => 'required',
@@ -159,6 +169,7 @@ class CoursesController extends Controller
             'order' => 'nullable|numeric',
             'months' => 'required|array',
             'price' => 'required|array',
+            'zoom_link' => 'required',
         ]);
 
         $course =  Courses::findorfail($id);
@@ -169,12 +180,19 @@ class CoursesController extends Controller
             $course->image = $imagePath;
         }
 
+        if ($request->hasFile('icon')) {
+            $uniqueFileName = md5(time() . $request->file('icon')->getClientOriginalName());
+            $iconPath = $request->file('icon')->move('uploads', $uniqueFileName);
+            $course->icon = $iconPath;
+        }
 
+
+        $course->zoom_link = $request->input('zoom_link');
         $course->name = $request->input('name');
         $course->category_id = $request->input('category_id');
         $course->trainer_id = $request->input('trainer_id');
 
-        $course->duration = $request->input('duration');
+        $course->short_desc = $request->input('short_desc');
         $course->no_of_lecture = $request->input('no_of_lecture');
         $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');

@@ -120,7 +120,7 @@ class TrainersContreoller extends Controller
         $trainer = Trainer::findOrFail($id);
     
         // Handle file upload
-        $imagePath = null;
+       
         if ($request->hasFile('image')) {
             // Check if the file is valid
             if ($request->file('image')->isValid()) {
@@ -154,9 +154,18 @@ class TrainersContreoller extends Controller
      */
     public function destroy($id)
     {
-      $banner = Trainer::findorfail($id);
-      $banner->delete();
-      return redirect()->back()->with('success', 'Trainer Delete Successfull!');
-     
+        $trainer = Trainer::findOrFail($id);
+    
+
+        if ($trainer->courses()->exists()) {
+            return redirect()->back()->with('error', 'Trainer has related courses. Delete the courses first.');
+        }
+
+        if ($trainer->delete()) {
+            return redirect()->back()->with('success', 'Trainer Delete Successful!');
+        } else {
+            return redirect()->back()->with('error', 'Failed to delete the trainer.');
+        }
     }
+    
 }

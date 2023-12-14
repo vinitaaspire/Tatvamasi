@@ -393,6 +393,10 @@
 		margin-top: 60px;
 	}
 
+	.pro-div-box {
+		padding: 20px 30px;
+	}
+
 	.trail-sec-img {
 		width: 100%;
 		position: absolute;
@@ -1970,7 +1974,7 @@
 
 	.navbar .btn {
 		padding: 10px 25px;
-		width: 140px;
+		width: fit-content;
 		display: flex;
 		align-items: center;
 	}
@@ -2046,19 +2050,15 @@
 	}
 
 	.why-yoga-img {
-    top: -306px;
-    width: 170px;
-    z-index: -10;
+		top: -256px;
+		z-index: -10;
 	}
 
 	.image-bene {
-    margin-top: 50px;
-    position: absolute;
-    top: -265px;
-    transform: translate(-50%, 0);
-    height: 400px;
-    z-index: -1;
-    left: 50%;
+		margin-top: 50px;
+		position: absolute;
+		top: -265px;
+		z-index: -1;
 	}
 
 	.sec-benefits > .container > .row + .row > div:first-child {
@@ -2066,32 +2066,17 @@
 		z-index: 1;
 	}
 
-.box_icon {
-margin-bottom: 0!important;
-}
-
-.box_icon>img {
-height: 25px!important;
-width: auto!important;
-}
-
 	.icon_box {
 		position: relative;
 		min-height: auto;
-		border-radius: 10px;
+		border-radius: var(--br);
 		background-color: #ffffffc7;
-		padding: 6px 20px!important;
+		padding: 7px 50px 0px !important;
 display: flex;
-text-align: left!important;
 align-items: center;
-justify-content: start;
+justify-content: center;
 MARGIN-BOTTOM: 6PX!IMPORTANT;
 	}
-
-.sec-benefits > .container .heading_s1, .sec-benefits > .container .heading_s1 + p {
-position: relative;
-z-index: 2;
-}
 
 	.sli-content>h5 {
 		font-size: 14px !important;
@@ -2101,12 +2086,6 @@ z-index: 2;
 	#carouselExampleInterval {
 		margin-top: 61px;
 	}
-
-.icon_box_style1:hover:before, .icon_box_style1:hover:after {
-height: 20px;
-border-radius: 10px 0 10px 0;
-width: 20px!important;
-}
 
 	.sli-content {
 		margin-top: -310px;
@@ -2118,12 +2097,9 @@ width: 20px!important;
 }
 
 .box-featur-link .icon_box .intro_desc>h5 {
-    padding-left: 10px;
+padding-left: 10px;
     font-style: italic;
     font-weight: 700;
-margin-bottom: 0;
-    TEXT-ALIGN: START;
-    color: #00010c;
 }
 
 .why .why-box {
@@ -2586,7 +2562,7 @@ display: none;
 	}
 
 	.navbar-brand img {
-		max-width: 120px;
+		max-width: 150px;
 		margin-top:15px;
 	}
 
@@ -3224,6 +3200,11 @@ display: none;
 		font-size: 20px !important;
 	}
 
+	.das-div-box_course h4 {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
 	.about-sec .sub_heading, .mis-txt, .login-head-content>h5,
 	.recent-post-desc>h3>a,
 	.side-bar .widget-box .title,
@@ -3268,15 +3249,15 @@ display: none;
 	.widget_links li a,
 	.footer_desc p,
 	.contact_info i+*,
-	.contact_info span+*,
+	.contact_info span+*, .custom-file-label,
 	.blog_content p,
 	.btn,
-	.content-about>p,
+	.content-about>p,.das-div-box_course p, .box-2 a,
 	.heading_s1+p,
 	.intro_desc p,
-	.top-why-sec h1.content+p,
-	.why .why-box h5+p,
-	.why .why-box2 h5+p,.contact-desc p:last-child,.contact-desc h5,
+	.top-why-sec h1.content+p,.profile-msg-div, 
+	.why .why-box h5+p,.profile-form td,
+	.why .why-box2 h5+p,.contact-desc p:last-child,.contact-desc h5,.profile-navbar-menu ul > li span, .profile-menu-img-cnt p,
 	.testimonial_slider .owl-item.active.center .testimonial_box .testi_desc p, .faq_div-cnt button.accordion-button.collapsed, .faq_div-cnt .accordion-body {
 		font-size: var(--fs14) !important;
 	}
@@ -3287,9 +3268,13 @@ display: none;
 	.test-left-content>h6,
 	.yellow,
 	.sub_heading,
-	.testimonial_slider .owl-item.active.center .testimonial_box .testi_user span,
-	.testimonial_slider .owl-item.active.center .testimonial_box .author_intro span {
+	.testimonial_slider .owl-item.active.center .testimonial_box .testi_user span,.profile-menu-img-cnt span, 
+	.testimonial_slider .owl-item.active.center .testimonial_box .author_intro span, .profile-form th, .das-div-box_course span, .das-div-box_batch > span {
 		font-size: 13px !important;
+	}
+
+	.profile-form td .badge {
+		font-size: 11px;
 	}
 
 	.pr_list li,
@@ -3312,18 +3297,93 @@ display: none;
 
 	/* font end */
 	/* other start */
+	.dsh-div::before {
+		background-position: center;
+	}
 
-.inn-cat-pge > .container-fluid > .row {
-    flex-direction: column-reverse;
-} 
-.inn-cat-pge {
-margin-top: -40px!important;
-}
+	.custom-file {
+		margin-bottom: 15px;
+	}
+
+	.course-div-box-img img { 
+		max-height: 250px;
+		height: auto;
+	}
+
+	.profile-navbar-menu ul > li i {
+		font-size: 18px;
+		color: var(--title);
+		margin-right: 4px;
+	}
+
+	.profile-form td .fa-arrow-down {
+		font-size: 10px;
+		padding: 7px 9px;
+	}
+
+	.profile-form-table {
+		overflow-x: scroll;
+	}
+
+	.profile-menu-img {
+		width: 60px;
+	}
 
 	.contact-icon>img {
 		height: 40px;
 	}
 
+	.profile-navbar-menu {
+		padding: 20px 20px 0 20px;
+	}
+
+	.profile-close img {
+		width: 30px;
+	}
+
+	.profile-close {
+		font-size: 15px;
+		width: 84%;
+		padding: 10px 35px;
+		border-radius: 14px;
+		font-weight: 400;
+	}
+
+	.pro-div-box {
+		min-height: 400px;
+		border-radius: 10px 10px 0 0;
+		background: #fff;
+		padding: 20px 20px;
+		margin-bottom: 40px;
+	}
+
+	.profile-form .form-control {
+		font-size: 15px;
+		font-weight: 400;
+		padding: 10px 24px;
+		min-height: 45px;
+	}
+
+	.pro-div-box-title h2 {
+		font-size: 22px;
+	}
+
+	.profile-menu {
+		border-radius: 10px 10px 0 0;
+	}
+
+	.profile-div > .container > .row:first-child {
+		flex-direction: column-reverse;
+	}
+	
+
+	.dsh-div {
+		height: 325px;
+	}
+	.profile-div {
+		margin-top: -260px;
+	}
+	
 	.contact-desc h5 {
 		margin-bottom: 2px;
 	}
@@ -3453,18 +3513,10 @@ margin-top: 0!important;
 		font-weight: 500;
 	}
 
-.clt_tstmonial-div-cnt {
-	margin-bottom: 0;
-}
-.form-cont-left {
-padding-bottom: 30px!important;
-margin-top: 30px;
-}
-
 	.desc-cont-right {
 		background: linear-gradient(90deg, #0e89b5, #b60bff);
 		margin-top: 50px;
-		padding: 25px 0px 10px;
+		padding: 20px 0px;
 	}
 
 	.fs-title+p {
@@ -3745,7 +3797,7 @@ margin-top: 30px;
 		font-size: 14px;
 		font-weight: 400;
 		letter-spacing: -.5px;
-		width: auto;
+		width: 138px;
 		padding: 10px 15px !important;
 	}
 
@@ -3874,6 +3926,10 @@ margin-top: 30px;
 		margin-top: 60px;
 	}
 
+	.dsh-div::before {
+		background-position: center;
+	}
+
 	.sli-div {
 		height: 450px;
 	}
@@ -3987,6 +4043,10 @@ margin-top: 30px;
 	.image-bene {
 		max-width: 100%;
 		margin-top: 150px;
+	}
+
+	.pro-div-box {
+		padding: 20px 30px;
 	}
 
 	.why-yoga-img>img {
@@ -4372,6 +4432,15 @@ margin-top: 30px;
 	/* other start */
 	.about-sec::before, #carouselExampleInterval button.carousel-control-prev, #carouselExampleInterval button.carousel-control-next {
 		display: none;
+	}
+
+	.pro-div-box {
+		padding: 20px;
+			box-shadow: none;
+			border-top: 1px solid #ebe9e9;
+	}
+	.dsh-div::before {
+		background-position: center;
 	}
 
 	.logo .wrapper {

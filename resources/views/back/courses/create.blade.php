@@ -75,7 +75,20 @@
                   </div>
 
                   <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Duration In Months</label>
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Icon</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="file" class="form-control @error('icon') is-invalid @enderror" name="icon" id="iconInput" accept="image/*" onchange="previewIcon()">
+                      <img id="iconPreview" src="#" alt="Image Preview" style="max-width: 100%; max-height: 150px; display: none;">
+
+                      @error('image')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Desc</label>
                     <div class="col-sm-12 col-md-7">
                       <input type="number" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ old('duration') }}">
                       @error('duration')
@@ -120,7 +133,16 @@
                       @enderror
                     </div>
                   </div>
-                  
+
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Desc</label>
+                    <div class="col-sm-12 col-md-7">
+                      <textarea class="form-control @error('short_desc') is-invalid @enderror" name="short_desc" value="">{{ old('short_desc') }}</textarea>
+                      @error('duration')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                    </div>
+                  </div>
 
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
@@ -182,7 +204,12 @@
                     </div>
                   </div>
 
-
+                  <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Zoom Link</label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" class="form-control" name="zoom_link" value="{{ old('zoom_link')}}">
+                    </div>
+                  </div>
 
 
                   <div class="form-group row mb-4">
@@ -290,6 +317,22 @@
         event.target.closest('.month-price').remove();
       }
     });
+
+
+    function previewIcon() {
+    var input = document.getElementById('iconInput');
+    var preview = document.getElementById('iconPreview');
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    };
+
+    if (input.files && input.files[0]) {
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 
   </script>
 </x-app-layout>

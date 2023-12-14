@@ -90,16 +90,16 @@ class AuthController extends Controller
     public function updateProfile(Request $request)
     {
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|email|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         $admin = Auth::guard('admin')->user();
 
         // Update basic information
-        // $admin->name = $request->input('name');
-        // $admin->email = $request->input('email');
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
 
         // Update password if provided
         if ($request->filled('password')) {
