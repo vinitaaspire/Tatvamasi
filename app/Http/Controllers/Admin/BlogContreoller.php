@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Str;
 
 class BlogContreoller extends Controller
 {
@@ -67,7 +68,11 @@ class BlogContreoller extends Controller
             $blog = new Blog();
         }
         
-        // Set properties of the banner
+        if(isset($request->slug) && $request->slug != null ){
+            $blog->slug = Str::slug($request->slug);
+        }else{
+            $blog->slug = Str::slug($request->input('name'));
+        }
         $blog->name = $request->input('name');
         $blog->image = $imagePath ??  $blog->image;
         $blog->shortdesc = $request->input('shortdesc');
@@ -134,15 +139,17 @@ class BlogContreoller extends Controller
         $blog->longdesc = $request->input('longdesc');
         $blog->status = $request->input('status');
         $blog->order = $request->input('order');
-    
-        // Handle image upload if a new image is provided
-       // Handle file upload
+
+        if(isset($request->slug) && $request->slug != null ){
+            $blog->slug = Str::slug($request->slug);
+        }else{
+            $blog->slug = Str::slug($request->input('name'));
+        }
+     
        if ($request->hasFile('image')) {
-        // Check if the file is valid
         if ($request->file('image')->isValid()) {
             $uniqueFileName = md5(time() . $request->file('image')->getClientOriginalName());
             $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
-    
         } else {
            
             $imagePath = null;
@@ -151,14 +158,8 @@ class BlogContreoller extends Controller
         
         $imagePath = null;
     }
-   
-
-    $blog->image = $imagePath ??  $blog->image;
-
-        // Save the changes to the database
+        $blog->image = $imagePath ??  $blog->image;
         $blog->save();
-    
-        // Redirect to a specific route or URL after the update
         return redirect()->back()->with('success', 'Blog Updated Successfully!');
     }
 

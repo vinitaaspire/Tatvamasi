@@ -9946,6 +9946,14 @@ Sidebar CSS
 	float: right;
 }
 
+.otp-brl {
+	border-right: 1px solid #4f6ee3;
+    padding-right: 16px!important;
+    height: 16px;
+    align-items: center;
+    display: flex;
+}
+
 /*================================/
 	end-----login---page
 /*================================*/
@@ -11113,7 +11121,8 @@ button.previous img {
 }
 
 .profile-navbar-menu {
-	padding: 30px;
+	padding: 10px 30px 30px;
+	background: #9729e926;
 }
 
 /* dashboard menu end */
@@ -11123,7 +11132,7 @@ button.previous img {
 	background: #ad58ec;
 	border-radius: 20px 0 0 0;
 	text-align: center;
-	padding: 20px 20px 40px;
+	padding: 25px 20px 25px;
 }
 
 .profile-menu-img-cnt p {
@@ -11132,6 +11141,10 @@ button.previous img {
 	font-size: 16px;
 	padding-top: 10px;
 	margin-bottom: 0;
+}
+
+.la-rupee-sign {
+	font-size: 17px;
 }
 
 .profile-navbar-menu ul>li:last-child {
@@ -11154,11 +11167,128 @@ button.previous img {
 	color: var(--title);
 }
 
+.pro-div-box .left-img-cours>img {
+	height: 250PX;
+	object-fit: contain;
+}
+
+.bat-tim-div span {
+	font-weight: 600;
+}
+
+.bat-tim-lnk  {
+	display: flex;
+	margin-top: 15px;
+    justify-content: start;
+}
+
+.bat-tim-lnk-btn {
+	font-size: 15px;
+    font-weight: 500;
+    border: none;
+	outline: none;
+	background: transparent;
+    appearance: none;
+    color: var(--text);
+	max-height: 200px;
+}
+
+.active .bat-tim-lnk-btn {
+	appearance: auto!important;
+}
+
+.bat-tim-lnk.active {
+	background: #f1dfff;
+	border-color: #decdeb;
+}
+
+.bat-lnk-bnt a {
+	background: #9474b1;
+    color: #fff!important;
+    padding: 0px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+}
+
+.bat-lnk-bnt-sbt > a:first-child {
+	background: var(--primary);
+}
+
+.bat-lnk-bnt-sbt > a:last-child {
+	background: var(--third);
+	margin-left: 2px;
+}
+
+.bat-tim-lnk{
+    background: #e2e2e2;
+    padding: 5px 10px;
+    color: var(--text);
+    width: fit-content;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+	position: relative;
+}
+
+.bat-tim-lnk::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 50px;
+	cursor: not-allowed;
+    background: transparent;
+}
+
+.active .bat-tim-lnk-btn {
+	cursor: pointer; 
+}
+
+.bat-tim-lnk.active::before {
+	display: none;
+}
+
+.bat-lnk-bnt {
+	margin-left: 20px;
+}
+
+#batchtiming .modal-content {
+	max-width: 500px;
+}
+
+.pro-div-box .main-content-cours h2 {
+	font-size: 20px;
+}
+
+.pro-div-box .desc-course>p, .pro-div-box .desc-course-cnt p {
+    font-size: 16px;
+    line-height: 23px;
+    font-weight: 400;
+    color: #707070;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.desc-course-cnt {
+	display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.desc-course-cnt.active {
+    -webkit-line-clamp: initial;
+}
+
+.pro-div-box .btn {
+	font-size: 15px;
+}
+
 .course-div-box-img img {
 	border-radius: 10px;
     border: 2px solid #939fd7;
     border-bottom: none;
-    height: 250px;
+    height: 220px;
     object-fit: cover;
     object-position: center;
 }
@@ -11250,7 +11380,8 @@ button.previous img {
 
 .profile-navbar-menu ul>li.active,
 .profile-navbar-menu ul>li:hover {
-	background-color: #9729e945;
+    background-color: #ffffffc4;
+    box-shadow: 0px 0px 20px #ad58ec3d;
 }
 
 

@@ -217,6 +217,12 @@
 	.desc-cont-right {
 		min-height: calc(100% + 80px);
 	}
+
+	.bat-lnk-bnt-sbt {
+		white-space: nowrap;
+	}
+
+	
 	
 
 
@@ -257,6 +263,10 @@
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
 	.form-cont-left {
 		margin-top: 90px;
+	}
+
+	.pro-div-box .btn-default {
+		padding: 13px 17px!important;
 	}
 
 	.desc-cont-right {
@@ -391,6 +401,13 @@
 
 	.form-cont-left {
 		margin-top: 60px;
+	}
+
+	.bat-lnk-bnt-sbt {
+		white-space: wrap!important;
+		line-height: 38px;
+		position: absolute;
+		top: -6px;
 	}
 
 	.pro-div-box {
@@ -3256,7 +3273,7 @@ display: none;
 	.heading_s1+p,
 	.intro_desc p,
 	.top-why-sec h1.content+p,.profile-msg-div, 
-	.why .why-box h5+p,.profile-form td,
+	.why .why-box h5+p,.profile-form td,.la-rupee-sign, 
 	.why .why-box2 h5+p,.contact-desc p:last-child,.contact-desc h5,.profile-navbar-menu ul > li span, .profile-menu-img-cnt p,
 	.testimonial_slider .owl-item.active.center .testimonial_box .testi_desc p, .faq_div-cnt button.accordion-button.collapsed, .faq_div-cnt .accordion-body {
 		font-size: var(--fs14) !important;
@@ -3297,6 +3314,43 @@ display: none;
 
 	/* font end */
 	/* other start */
+	.bat-tim-lnk {
+		margin-top: 5px;
+	}
+	.bat-lnk-bnt-sbt {
+		margin-top: -6px;
+	}
+	
+	.bat-lnk-bnt a {
+		margin-top: -29px;
+		display: block;
+		margin-left: 10px;
+	}
+
+	.bat-lnk-bnt-sbt {
+		position: absolute;
+	}
+
+	.bat-lnk-bnt-sbt {
+		display: flex!important;
+		align-items: center!important;
+	}
+
+	.bat-lnk-bnt {
+		margin-left: 0;
+		margin-top: 40px;
+	}
+
+	.pro-div-cnt .btn-default {
+		padding: 10px 20px !important;
+		font-size: 13px!important;
+		margin-bottom: 6px;
+	}
+
+	.pro-div-cnt .btn-default img {
+		display: none;
+	}
+
 	.dsh-div::before {
 		background-position: center;
 	}
@@ -3797,7 +3851,7 @@ margin-top: 0!important;
 		font-size: 14px;
 		font-weight: 400;
 		letter-spacing: -.5px;
-		width: 138px;
+		width: auto;
 		padding: 10px 15px !important;
 	}
 
@@ -3926,6 +3980,11 @@ margin-top: 0!important;
 		margin-top: 60px;
 	}
 
+	
+	.pro-div-cnt .btn-default img {
+		display: none;
+	}
+
 	.dsh-div::before {
 		background-position: center;
 	}
@@ -4045,8 +4104,15 @@ margin-top: 0!important;
 		margin-top: 150px;
 	}
 
+	.bat-lnk-bnt-sbt {
+		white-space: wrap!important;
+		line-height: 38px;
+		position: absolute;
+		top: -6px;
+	}
+
 	.pro-div-box {
-		padding: 20px 30px;
+		padding: 20px;
 	}
 
 	.why-yoga-img>img {
@@ -4434,6 +4500,11 @@ margin-top: 0!important;
 		display: none;
 	}
 
+	.bat-lnk-bnt-sbt {
+		white-space: nowrap!important;
+		margin-left: 10px;
+	}
+
 	.pro-div-box {
 		padding: 20px;
 			box-shadow: none;
@@ -4441,6 +4512,13 @@ margin-top: 0!important;
 	}
 	.dsh-div::before {
 		background-position: center;
+	}
+
+	.pro-div-box .left-img-cours>img {
+		height: 240px;
+		object-fit: contain;
+		opacity: 1;
+		object-position: left;
 	}
 
 	.logo .wrapper {
@@ -4522,6 +4600,11 @@ margin-top: 0!important;
 	z-index:3;
 	position:relative;
 }
+
+.bat-tim-lnk-btn {
+	appearance: auto!important;
+}
+
 .test-left-content{
 	margin-top:100px;
 }

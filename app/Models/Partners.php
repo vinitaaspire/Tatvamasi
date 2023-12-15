@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Partners extends Model
 {
     use HasFactory;
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1)->orderBy('order', 'asc');
+    }
+    
 }

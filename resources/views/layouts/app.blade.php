@@ -85,6 +85,12 @@
                   data-feather="pie-chart"></i><span>Orders</span></a>
             </li>
 
+            <li class="dropdown {{ (request()->is('admin/trial*')) ? 'active' : '' }}">
+              <a href="{{route('trial.index')}}" class=" nav-link "><i
+                  data-feather="server"></i><span>Trial Class </span></a>
+            </li>
+
+
             <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') ? 'active' : '') }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="target"></i><span>Courses</span></a>
               <ul class="dropdown-menu">
@@ -123,10 +129,10 @@
                   data-feather="slack"></i><span>Pricing</span></a>
             </li>
 
-            <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
+            <!-- <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
               <a href="{{route('contactUs.index')}}" class=" nav-link "><i
                   data-feather="radio"></i><span>Contact Us </span></a>
-            </li>
+            </li> -->
             <li class="dropdown {{ (request()->is('admin/order*')) ? 'active' : '' }}">
               <a href="{{route('order.index')}}" class=" nav-link "><i
                   data-feather="pie-chart"></i><span>Orders</span></a>
@@ -145,6 +151,10 @@
               <a href="{{route('partners.index')}}" class=" nav-link "><i
                   data-feather="server"></i><span>Partners</span></a>
             </li>
+            <li class="dropdown {{ (request()->is('admin/setting*')) ? 'active' : '' }}">
+              <a href="{{route('setting.index')}}" class=" nav-link "><i
+                  data-feather="server"></i><span>Setting</span></a>
+            </li>
 
           </ul>
         </aside>
@@ -154,7 +164,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          <a href="{{route('dashboard')}}">Tatvamsi</a></a>
+          <a href="{{route('admin.dashboard')}}">Tatvamsi</a></a>
         </div>
         <div class="footer-right">
         </div>

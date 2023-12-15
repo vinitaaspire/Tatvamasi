@@ -47,12 +47,7 @@ class CoursesController extends Controller
             'no_of_lecture' => 'required|numeric',
             'price' => 'required|numeric',
             'desc' => 'required',
-            'days' => 'required|array',
-            'days.*' => 'integer|between:1,7',
-            'start_times' => 'required|array',
-            'start_times.*' => 'date_format:H:i',
-            'end_times' => 'required|array',
-            'end_times.*' => 'date_format:H:i|after_or_equal:start_times.*',
+            
             'status' => 'required|in:0,1',
             'order' => 'nullable|numeric',
             'months' => 'required|array',
@@ -85,9 +80,29 @@ class CoursesController extends Controller
         $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');
         $course->days = implode(',', $request->input('days'));
-        $course->timeing = $this->formatTimeRanges($request->input('start_times'), $request->input('end_times'));
         $course->status = $request->input('status');
         $course->order = $request->input('order');
+
+
+        $days = $request->input('days');
+        $startTimes = $request->input('start_times');
+        $endTimes = $request->input('end_times');
+
+        $timing = [];
+
+        foreach ($startTimes as $index => $startTime) {
+            // Convert day to uppercase
+            $day = isset($days[$index]) ? strtoupper($days[$index]) : null;
+            $endTime = isset($endTimes[$index]) ? $endTimes[$index] : null;
+
+            $timing[] = [
+                'days' => $day,
+                'start_time' => $startTime,
+                'end_time' => $endTime,
+            ];
+        }
+
+        $course->timeing = json_encode($timing);
 
         $course->save();
 
@@ -159,12 +174,7 @@ class CoursesController extends Controller
             'no_of_lecture' => 'required|numeric',
             'price' => 'required|numeric',
             'desc' => 'required',
-            'days' => 'required|array',
-            'days.*' => 'integer|between:1,7',
-            'start_times' => 'required|array',
-            'start_times.*' => 'date_format:H:i',
-            'end_times' => 'required|array',
-            'end_times.*' => 'date_format:H:i|after_or_equal:start_times.*',
+           
             'status' => 'required|in:0,1',
             'order' => 'nullable|numeric',
             'months' => 'required|array',
@@ -197,9 +207,30 @@ class CoursesController extends Controller
         $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
         $course->desc = $request->input('desc');
         $course->days = implode(',', $request->input('days'));
-        $course->timeing = $this->formatTimeRanges($request->input('start_times'), $request->input('end_times'));
+        // $course->timeing = $this->formatTimeRanges($request->input('start_times'), $request->input('end_times'));
         $course->status = $request->input('status');
         $course->order = $request->input('order');
+
+        $days = $request->input('days');
+        $startTimes = $request->input('start_times');
+        $endTimes = $request->input('end_times');
+
+        $timing = [];
+
+        foreach ($startTimes as $index => $startTime) {
+            // Convert day to uppercase
+            $day = isset($days[$index]) ? $days[$index]: null;
+            $endTime = isset($endTimes[$index]) ? $endTimes[$index] : null;
+
+            $timing[] = [
+                'days' => $day,
+                'start_time' => $startTime,
+                'end_time' => $endTime,
+            ];
+        }
+
+        $course->timeing = json_encode($timing);
+
 
         $course->update();
         return redirect()->back()->with('success', 'Courses Updated Successfully!');

@@ -132,7 +132,7 @@
                         </div>
                         @endforeach
                       </div>
-                      <button type="button" class="btn btn-sm btn-primary" id="addmonthpriuce">Add Month And Price</button>
+                      <button type="button" class="btn btn-sm btn-primary" id="addmonthpriuce">Add Week And Price</button>
                       @error('start_times')
                       <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
@@ -153,72 +153,37 @@
                   </div>
 
 
-
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Days</label>
-                    <div class="col-sm-12 col-md-7 border m-2 p-2">
-
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="selectAllDays" name="select_all_days" {{ old('select_all_days', $courses->select_all_days) ? 'checked' : '' }}>
-                        <label class="form-check-label text-success" for="selectAllDays">Select All</label>
-                      </div>
-
-                      @php
-                      $selectedDays = old('days', explode(',', $courses->days));
-                      @endphp
-
-                      @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $index => $day)
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="{{ $index + 1 }}" id="day{{ $index + 1 }}" {{ in_array($index + 1, $selectedDays) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="day{{ $index + 1 }}">{{ $day }}</label>
-                      </div>
-                      @endforeach
-
-                      @error('days')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
+                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Timing</label>
                     <div class="col-sm-12 col-md-7">
-                      <div id="timeRanges">
-                        @php
-                        $timingArray = explode(', ', $courses->timeing); // 04:02 - 15:08, 10:49 - 10:50
-                        $oldStartTimes = old('start_times', []);
-                        $oldEndTimes = old('end_times', []);
-
-                        @endphp
-
-                        @foreach($timingArray as $index => $time)
-                        @php
-                        list($startTime, $endTime) = explode(' - ', $time);
-                        @endphp
-                        <div class="time-range d-flex">
-                          <input type="time" class="form-control" name="start_times[]" value="{{ $startTime }}">
-                          <span class="m-2">To </span>
-                          <input type="time" class="form-control" name="end_times[]" value="{{ $endTime }}">
-                          <button type="button" class="btn btn-sm btn-danger remove-time-range m-2">Remove</button>
+                        <div id="timeRanges">
+                            @foreach( json_decode($courses->timeing, true) as $index => $timeRange)
+                            <div class="time-range d-flex">
+                                <select name="days[]" class="form-control">
+                                    <option value="" disabled>Select Day</option>
+                                    @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
+                                    <option value="{{ $day }}" @if($timeRange['days'] == $day) selected @endif>{{ $day}}</option>
+                                    @endforeach
+                                </select>
+                                <input type="time" class="form-control" name="start_times[]" value="{{ $timeRange['start_time'] }}" placeholder="Start Time">
+                                <span class="m-2">To </span>
+                                <input type="time" class="form-control" name="end_times[]" value="{{ $timeRange['end_time'] }}">
+                                <button type="button" class="btn btn-sm btn-danger remove-time-range m-2">Remove</button>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
+                        <button type="button" class="btn btn-sm btn-primary" id="addTimeRange">Add Time Range</button>
 
-                     
+                        @error('start_times')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
 
-                      </div>
-
-                      <button type="button" class="btn btn-sm btn-primary" id="addTimeRange">Add Time Range</button>
-
-                      @error('start_times')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-
-                      @error('end_times')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
+                        @error('end_times')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
                     </div>
-                  </div>
+                </div>
+
 
 
                   <div class="form-group row mb-4">
@@ -290,32 +255,8 @@
       }
     }
 
-    document.getElementById('selectAllDays').addEventListener('change', function() {
-      var checkboxes = document.querySelectorAll('[name="days[]"]');
-      checkboxes.forEach(function(checkbox) {
-        checkbox.checked = document.getElementById('selectAllDays').checked;
-      });
-    });
 
 
-    document.getElementById('addTimeRange').addEventListener('click', function() {
-      var timeRangesContainer = document.getElementById('timeRanges');
-      var newTimeRange = document.querySelector('.time-range').cloneNode(true);
-
-      // Clear the values in the new time range
-      newTimeRange.querySelectorAll('input[type="time"]').forEach(function(input) {
-        input.value = '';
-      });
-
-      // Add the new time range
-      timeRangesContainer.appendChild(newTimeRange);
-    });
-
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('remove-time-range')) {
-        event.target.closest('.time-range').remove();
-      }
-    });
 
 
     document.getElementById('addmonthpriuce').addEventListener('click', function() {
@@ -353,6 +294,24 @@
     }
   }
   
+
+
+
+  $(document).ready(function () {
+        // Add time range
+        $("#addTimeRange").click(function () {
+            var clone = $(".time-range:first").clone();
+            clone.find('input, select').val('');
+            clone.find('.remove-time-range').show();
+            $("#timeRanges").append(clone);
+        });
+
+        // Remove time range
+        $("#timeRanges").on("click", ".remove-time-range", function () {
+            $(this).closest(".time-range").remove();
+        });
+    });
+
 
 
   </script>

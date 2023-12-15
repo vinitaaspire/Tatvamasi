@@ -56,3 +56,13 @@ function formatTimings($timing)
     return $formattedTimings;
 }
 
+
+
+function getSetting(){
+    $setting = App\Models\Setting::first();
+    return  $setting;
+}
+function latestpost(){
+    $latestPost = App\Models\Blog::active()->take(2)->get();
+    return  $latestPost;
+}

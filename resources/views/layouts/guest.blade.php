@@ -60,7 +60,7 @@
                 <div class="col-lg-3 col-md-12 col-12">
                     <a class="navbar-brand logo p-0" href="{{route('/')}}">
                         <div class="wrapper">
-                            <img src="{{asset('front/assets/images/tatvamasi.png')}}">
+                            <img src="{{ asset(getSetting()->logo ?? '')}}">
                         </div>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -78,25 +78,25 @@
                             </li>
 
                             <li>
-                                <a class="nav-link" href="about.html">ABOUT US</a>
+                                <a class="nav-link" href="{{route('about')}}">ABOUT US</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="course.html">COURSES</a>
+                                <a class="nav-link" href="{{route('course')}}">COURSES</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="testimonial.html">TESTIMONIALS</a>
+                                <a class="nav-link" href="{{route('testimonial')}}">TESTIMONIALS</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="blog-list.html">BLOG</a>
+                                <a class="nav-link" href="{{route('blogs')}}">BLOG</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="contact.html">CONTACT</a>
+                                <a class="nav-link" href="{{route('contact')}}">CONTACT</a>
                             </li>
                             <li>
-                                <a class="btn btn-dark btn-nav1" href="login.html"> <img
+                                <a class="btn btn-dark btn-nav1" href="{{route('login')}}"> <img
                                         src="{{ asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
                             </li>
                         </ul>
@@ -122,11 +122,11 @@
                         <ul class="contact_info list_none">
                             <li>
                                 <i class="ri-phone-fill"></i>
-                                <p>+91-93550-22333</p>
+                                <p>{{getSetting()->mobile ?? ''}}</p>
                             </li>
                             <li>
                                 <i class="ri-mail-fill"></i>
-                                <a href="#">info@tatvamasi.com</a>
+                                <a href="#">{{getSetting()->email ?? ''}}</a>
 
                             </li>
                         </ul>
@@ -136,34 +136,29 @@
                         <ul class=" widget_links links_style2">
 
                             <li>
-                                <a href="about.html">About Us</a>
+                                <a href="{{route('about')}}">About Us</a>
                             </li>
-                            <li><a href="course.html">Courses</a></li>
-                            <li><a href="testimonial.html">Testimonials</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="blog-list.html">Blog</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="{{route('course')}}">Courses</a></li>
+                            <li><a href="{{route('testimonial')}}">Testimonials</a></li>
+                            <!-- <li><a href="faq">FAQ</a></li> -->
+                            <li><a href="{{route('blogs')}}">Blog</a></li>
+                            <li><a href="{{route('contact')}}">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mb-md-0">
                         <h5 class="widget_title">Latest Post</h5>
                         <ul class="recent_post border_bottom_dash list_none">
+                            @foreach(latestpost() as $latestpost)
                             <li>
                                 <div class="post_footer">
                                     <div class="post_content">
-                                        <h6><a href="#">9 Best Yoga Poses to Become More Flexible</a></h6>
-                                        <span class="post_date"><i class="ri-time-line"></i>April 14, 2023</span>
+                                        <h6><a href="#">{{$latestpost->name ?? '' }}</a></h6>
+                                        <span class="post_date"><i class="ri-time-line"></i>{{ optional($latestpost->created_at)->format('F d, Y') ?? '' }}</span>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="post_footer">
-                                    <div class="post_content">
-                                        <h6><a href="#">Benefits and Specific Yoga Poses/Asanas</a></h6>
-                                        <span class="post_date"><i class="ri-time-line"></i>March 09, 2023</span>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
+                          
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12">
@@ -178,11 +173,11 @@
                         </div>
                         <h5 class="widget_title">Stay Connected</h5>
                         <ul class="list_none social_icons radius_social">
-                            <li><a href="#" class="sc_facebook"><i class="ri-facebook-circle-fill"></i></a></li>
-                            <li><a href="#" class="sc_twitter"><i class="ri-twitter-fill"></i></a></li>
-                            <li><a href="#" class="sc_google"><i class="ri-google-fill"></i></a></li>
-                            <li><a href="#" class="sc_instagram"><i class="ri-instagram-fill"></i></a></li>
-                            <li><a href="#" class="sc_pinterest"><i class="ri-messenger-fill"></i></a></li>
+                            <li><a href="{{getSetting()->facebook ?? ''}}" class="sc_facebook"><i class="ri-facebook-circle-fill"></i></a></li>
+                            <li><a href="{{getSetting()->twitter ?? ''}}" class="sc_twitter"><i class="ri-twitter-fill"></i></a></li>
+                            <li><a href="{{getSetting()->google ?? ''}}" class="sc_google"><i class="ri-google-fill"></i></a></li>
+                            <li><a href="{{getSetting()->instagram ?? ''}}" class="sc_instagram"><i class="ri-instagram-fill"></i></a></li>
+                            <li><a href="{{getSetting()->pinterest ?? ''}}" class="sc_pinterest"><i class="ri-messenger-fill"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -194,13 +189,13 @@
                     <div class="bottom_footer border_top_transparent">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="copyright m-md-0 text-left text-md-left">Copyright © 2023 | <a
-                                        href="index.html" class="text_default text-white">Tatvamasi</a></p>
+                                <p class="copyright m-md-0 text-left text-md-left"><a
+                                        href="{{route('/')}}" class="text_default text-white">{{getSetting()->coppyright ?? ''}}</a></p>
                             </div>
                             <div class="col-md-6">
                                 <ul class="list_none footer_link text-md-right text-sm-right">
                                     <li><a href="#">Terms of use</a></li>
-                                    <li><a href="policy.html">Privacy Policy</a></li>
+                                    <li><a href="{{route('policy')}}">Privacy Policy</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -314,7 +309,7 @@
     </div>
 
     <!-- whatsapp start -->
-    <a href="https://web.whatsapp.com/send?phone=919355022333&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank" >
+    <a href="https://web.whatsapp.com/send?phone={{getSetting()->whatsapp ?? ''}}&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank" >
         <img src="{{ asset('front/assets/images/icons/whatsapp.png')}}" class="img-fluid w-100" alt="Whatsapp" />
     </a>
     <!-- whatsapp end -->
@@ -404,30 +399,30 @@
     <script type="text/javascript"
         src="https://www.nadayoga.gr/app/plugins/contact-form-7/includes/js/scripts.js?ver=5.3"></script>
 
-        <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> -->
-    <!-- <script type="text/javascript">
-        $(document).ready(function () {
-            $('#ser-div-partner').slick({
-                draggable: true,
-                autoplay: true,
-                autoplaySpeed: 0,
-                speed: 2000,
-                centerMode: true,
-                easing: 'linear',
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                touchThreshold: 100,
-                variableWidth: true,
-                infinite: true,
-                initialSlide: 1,
-                arrows: false,
-                buttons: false,
-                pauseOnHover: true,
-                swipeToSlide: true,
-                dots: false
-            });
-        })
-    </script> -->
+        <script>
+    function CouresStatusChange(selectElement) {
+        var courseId = selectElement.value; 
+        $.ajax({
+            url: '/getbatch/' + courseId, // Assuming your route is defined for this URL
+            method: 'GET',
+            success: function (data) {
+                
+                var batchesSelect = $('.batch_category');
+                batchesSelect.empty(); // Clear previous options
+
+             
+                $.each(data.batches, function (index, batch) {
+                    batchesSelect.append('<option value="' + batch + '">Batch ' + (index + 1) + ': ' + batch + '</option>');
+                });
+
+            },
+            error: function (error) {
+                console.error('Error fetching batches: ', error);
+            }
+        });
+    }
+</script>
+
 
 </body>
 

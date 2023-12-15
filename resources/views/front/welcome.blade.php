@@ -252,10 +252,8 @@
                     <div class="form-for-trial mt-lg-5 mt-md-4 animation" data-animation="fadeInUp"
                         data-animation-delay="0.5s">
                         <span class="sub_heading "></span>
-                        <h1>TRIAL CLASS @<span>19<sup><img src="{{asset('front/assets/images/icons/rupee.png')}}"
-                            class="img-fluid login-icn" /></sup></span></h1>
-                        <p>Ready to experience the benefits of our yoga classes? Get started by booking your trial class
-                            today and take the first step towards a healthier and more balanced you.</p>
+                        <h1>{!! $trial->title ?? '' !!}</h1>
+                        <p>{!! $trial->description ?? '' !!}</p>
                         <form>
                             <div class="row pt-md-4 pt-3 ">
                                 <div class="col-lg-6 col-md-6">
@@ -286,41 +284,18 @@
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
-                                        <select class="name-box" required="" onchange="myCategoryStatus(this);">
-                                            <option class="">Select Category *</option>
-                                            <option value="weight_loss_&amp;_fat_burn">Weight Loss, Fat Burn
-                                                &amp;
-                                                Toning</option>
-                                            <option value="general_fitness_&amp;_Endurance">General Fitness And
-                                                Endurance</option>
-                                            <option value="De_Stress_&amp;_Improved_Sleep">De-Stress And Improved Sleep
-                                            </option>
-                                            <option value="thyroid_back_pain_&amp;_diabetes">Thyroid ,
-                                                back pain &amp; Diabetes</option>
-                                            <option value="PCOS_PCOD_Management ">PCOS/PCOD
-                                                Management </option>
-                                            <option value="yoga_for-pregnant_ladies">Yoga For
-                                                Pregnant Ladies</option>
+                                        <select class="name-box" required="" onchange="CouresStatusChange(this);" name="courses">
+                                            <option class="">Select courses *</option>
+                                            @foreach($allCourses as $cours)
+                                            <option value="{{ $cours->id }}">{{ $cours->name ?? '' }}</option>
+                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
-                                        <select class="name-box" required="">
-                                            <option class="" selected="">Select Batch *</option>
-                                            <option value="batch01">Batch 01 : 05:00-06:00 am</option>
-                                            <option value="batch02">Batch 02 : 05:30-06:30 am</option>
-                                            <option value="batch03">Batch 03 : 06:00-07:00 am</option>
-                                            <option value="batch04">Batch 04 : 07:00-08:00 am</option>
-                                            <option value="batch05">Batch 05 : 07:15-08:15 am</option>
-                                            <option value="batch06">Batch 06 : 07:30-08:30 am</option>
-                                            <option value="batch07">Batch 07 : 08:00-09:00 am</option>
-                                            <option value="batch08">Batch 08 : 08:30-09:30 am</option>
-                                            <option value="batch09">Batch 09 : 09:00-10:00 am</option>
-                                            <option value="batch10">Batch 10 : 10:30-11:30 am</option>
-                                            <option value="batch11">Batch 11 : 05:30-06:30 pm</option>
-                                            <option value="batch12">Batch 12 : 06:00-07:00 pm</option>
-                                            <option value="batch13">Batch 13 : 07:00-08:00 pm</option>
+                                        <select class="name-box batch_category" required="" name="batch">
+                                        <option class="">Select Batch *</option>
                                         </select>
                                     </div>
                                 </div>
@@ -627,7 +602,7 @@
                             <li><a href="#"><i class="far fa-comments"></i>4</a></li>
                         </ul> -->
                             <p>{{ $blog->shortdesc ?? '' }}</p>
-                            <a href="blog.html" class="blog_link text-decoration-none">Read More</a>
+                            <a href="{{route('blog',['id' => $blog->slug ]?? '' )}}" class="blog_link text-decoration-none">Read More</a>
                         </div>
                     </div>
                 </div>

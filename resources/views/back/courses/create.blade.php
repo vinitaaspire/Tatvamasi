@@ -90,7 +90,7 @@
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Desc</label>
                     <div class="col-sm-12 col-md-7">
-                      <input type="number" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ old('duration') }}">
+                      <input type="text" class="form-control @error('duration') is-invalid @enderror" name="duration" value="{{ old('duration') }}">
                       @error('duration')
                       <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
@@ -110,13 +110,13 @@
                  
 
                   <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Months wise Price </label>
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Month wise Price </label>
                     <div class="col-sm-12 col-md-7">
                       <div id="monthprice">
                         @foreach(old('months', ['']) as $index => $months)
                         <div class="month-price d-flex">
                           <input type="number" class="form-control" name="months[]" value="{{ $months }}" placeholder="Enter Month here">
-                          <span class="m-2">To </span>
+                          <span class="m-2"> On </span>
                           <input type="number" class="form-control" name="price[]" value="{{ old('price.' . $index, '') }}" placeholder="Enter Price here" >
                           <button type="button" class="btn btn-sm btn-danger remove-month-price m-2">Remove</button>
                         </div>
@@ -155,54 +155,40 @@
                   </div>
 
 
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Days</label>
-                    <div class="col-sm-12 col-md-7 border m-2 p-2">
-
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="selectAllDays" name="select_all_days" {{ old('select_all_days') ? 'checked' : '' }}>
-                        <label class="form-check-label text-success" for="selectAllDays">Select All</label>
-                      </div>
-
-                      @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="days[]" value="{{ $loop->index + 1 }}" id="day{{ $loop->index + 1 }}" {{ in_array($loop->index + 1, old('days', [])) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="day{{ $loop->index + 1 }}">{{ $day }}</label>
-                      </div>
-                      @endforeach
-
-                      @error('days')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-
-                    </div>
-                  </div>
+              
 
 
                   <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Timing</label>
-                    <div class="col-sm-12 col-md-7">
-                      <div id="timeRanges">
-                        @foreach(old('start_times', ['']) as $index => $startTime)
-                        <div class="time-range d-flex">
-                          <input type="time" class="form-control" name="start_times[]" value="{{ $startTime }}">
-                          <span class="m-2">To </span>
-                          <input type="time" class="form-control" name="end_times[]" value="{{ old('end_times.' . $index, '') }}">
-                          <button type="button" class="btn btn-sm btn-danger remove-time-range m-2">Remove</button>
-                        </div>
-                        @endforeach
-                      </div>
-                      <button type="button" class="btn btn-sm btn-primary" id="addTimeRange">Add Time Range</button>
+    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Timing</label>
+    <div class="col-sm-12 col-md-7">
+        <div id="timeRanges">
+            @foreach(old('start_times', ['']) as $index => $startTime)
+            <div class="time-range d-flex">
+                <select name="days[]" class="form-control">
+                    <option value="" disabled selected>Select Day</option>
+                    @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
+                    <option value="{{ $day }}" @if(old('days.' . $index, '') == $day) selected @endif>{{$day}}</option>
+                    @endforeach
+                </select>
+                <input type="time" class="form-control" name="start_times[]" value="{{ $startTime }}" placeholder="Start Time">
+                <span class="m-2">To </span>
+                <input type="time" class="form-control" name="end_times[]" value="{{ old('end_times.' . $index, '') }}">
+                <button type="button" class="btn btn-sm btn-danger remove-time-range m-2">Remove</button>
+            </div>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-sm btn-primary" id="addTimeRange">Add Time Range</button>
 
-                      @error('start_times')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
+        @error('start_times')
+        <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
 
-                      @error('end_times')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-                    </div>
-                  </div>
+        @error('end_times')
+        <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
 
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Zoom Link</label>
@@ -271,33 +257,7 @@
       }
     }
 
-    document.getElementById('selectAllDays').addEventListener('change', function() {
-      var checkboxes = document.querySelectorAll('[name="days[]"]');
-      checkboxes.forEach(function(checkbox) {
-        checkbox.checked = document.getElementById('selectAllDays').checked;
-      });
-    });
-
-
-    document.getElementById('addTimeRange').addEventListener('click', function() {
-      var timeRangesContainer = document.getElementById('timeRanges');
-      var newTimeRange = document.querySelector('.time-range').cloneNode(true);
-
-      // Clear the values in the new time range
-      newTimeRange.querySelectorAll('input[type="time"]').forEach(function(input) {
-        input.value = '';
-      });
-
-      // Add the new time range
-      timeRangesContainer.appendChild(newTimeRange);
-    });
-
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('remove-time-range')) {
-        event.target.closest('.time-range').remove();
-      }
-    });
-
+  
 
     document.getElementById('addmonthpriuce').addEventListener('click', function() {
       var timeRangesContainer = document.getElementById('monthprice');
@@ -333,6 +293,23 @@
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+
+  $(document).ready(function () {
+        // Add time range
+        $("#addTimeRange").click(function () {
+            var clone = $(".time-range:first").clone();
+            clone.find('input, select').val('');
+            clone.find('.remove-time-range').show();
+            $("#timeRanges").append(clone);
+        });
+
+        // Remove time range
+        $("#timeRanges").on("click", ".remove-time-range", function () {
+            $(this).closest(".time-range").remove();
+        });
+    });
+
 
   </script>
 </x-app-layout>

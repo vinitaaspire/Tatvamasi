@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('logo')->nullable();
+            $table->longText('footer_about')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('coppyright')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('google')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('pinterest')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->timestamps();
         });
     }
