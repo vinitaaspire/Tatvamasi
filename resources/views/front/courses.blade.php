@@ -37,7 +37,7 @@
                     <div class="info-content-cours">
                         <div class="details-part mt-1 mb-1">
                         <p><img src="{{asset('front/assets/images/menu.png')}}">Category <span>:</span> <span>{{$course->category->name ?? ''}}</span></p>
-                        <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span>{{$course->price[0] ?? ''}}-weeks</span></p>
+                        <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span>{{$course->price[0] ?? ''}}-Months</span></p>
                         <p><img src="{{asset('front/assets/images/website.png')}}">Lecture <span>:</span><span>{{ $course->no_of_lecture ?? ''}}</span></p>
                     </div>
                         <div class="money-part">
@@ -47,7 +47,7 @@
 
                     <div class="desc-course">
                         <p>Modern postural yoga consists largely but not exclusively of the practice of asanas. There were very few standing asanas before 1900. By 2012, there were at least 19 widespread styles from Ashtanga Yoga to Viniyoga. These emphasise different aspects including aerobic exercise, precision in the asanas, and spirituality in the Haṭha yoga tradition.</p>
-                        <a class="btn btn-default  animation animated fadeInUp" href="javascript:void(0)" data-animation="fadeInUp" data-animation-delay="0.7s" style="animation-delay: 0.7s; opacity: 1;">GET STARTED <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></a>
+                        <a class="btn btn-default  animation animated fadeInUp" href="{{route('course.details',['title' => $course->name ])}}" data-animation="fadeInUp" data-animation-delay="0.7s" style="animation-delay: 0.7s; opacity: 1;">KNOW MORE <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></a>
                     </div>
                 </div>
             </div>

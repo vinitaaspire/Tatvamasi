@@ -63,8 +63,13 @@ class HomeController extends Controller
             $label = "{$days} ({$start} - {$end})";
             $options[] = ['value' => json_encode($batchTime), 'label' => $label];
         }
+
+        $package = [];
+        foreach(explode(',',$course->price) as $price){
+            $package  =  list($month, $amount) = explode('-', $price);
+        }
     
-        return response()->json(['batches' => $options]);
+        return response()->json(['batches' => $options , 'package' => $package ]);
     }
     
 

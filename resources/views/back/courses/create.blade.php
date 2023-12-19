@@ -135,6 +135,19 @@
                   </div>
 
                   <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">One to One price </label>
+                    <div class="col-sm-12 col-md-7">
+                      <input type="text" class="form-control @error('oto_price') is-invalid @enderror" name="oto_price" value="{{ old('oto_price') }}">
+                      @error('oto_price')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Desc</label>
                     <div class="col-sm-12 col-md-7">
                       <textarea class="form-control @error('short_desc') is-invalid @enderror" name="short_desc" value="">{{ old('short_desc') }}</textarea>
@@ -211,7 +224,12 @@
                       @enderror
                     </div>
                   </div>
-
+                  <div class="form-group row mb-4">
+                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Slug</label>
+                      <div class="col-sm-12 col-md-7">
+                      <input type="text" class="form-control" name="slug">
+                      </div>
+                    </div>
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Display Order</label>
                     <div class="col-sm-12 col-md-7">

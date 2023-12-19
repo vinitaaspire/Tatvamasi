@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
      Route::get('/', [AuthController::class, 'showLoginForm'])->name('admin');
      Route::post('/login', [AuthController::class, 'login'])->name('admin.login');
     
-     // Route::middleware('adminauth')->group( function(){
+     Route::middleware('adminauth')->group( function(){
           Route::get('/profile', [AuthController::class, 'profile'])->name('admin.profile');
           Route::post('profile.update',[AuthController::class,'updateProfile'])->name('admin.profile.updateProfile');
           Route::resources([
@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Route;
                'setting' => SettingController::class,
                'trial'   => TrialController::class,
           ]);
-     // });
+     });
    
 
 

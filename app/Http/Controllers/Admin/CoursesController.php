@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Courses;
 use App\Models\CourseCategory;
 use App\Models\Trainer;
-
+use Illuminate\Support\Str;
 class CoursesController extends Controller
 {
     public function index(Request $request)
@@ -56,20 +56,26 @@ class CoursesController extends Controller
         ]);
 
         $course = new Courses();
-        $imagePath = null;
+       
         if ($request->hasFile('image')) {
             $uniqueFileName = md5(time() . $request->file('image')->getClientOriginalName());
             $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
             $course->image = $imagePath;
         }
-        $iconPath = null;
+    
         if ($request->hasFile('icon')) {
             $uniqueFileName = md5(time() . $request->file('icon')->getClientOriginalName());
             $iconPath = $request->file('icon')->move('uploads', $uniqueFileName);
             $course->icon = $iconPath;
         }
 
-
+        if(isset($request->slug) && $request->slug != null ){
+            $course->slug = Str::slug($request->slug);
+        }else{
+            $course->slug = Str::slug($request->input('name'));
+        }
+        
+        $course->oto_price = $request->input('oto_price');
         $course->zoom_link = $request->input('zoom_link');
         $course->name = $request->input('name');
         $course->category_id = $request->input('category_id');
@@ -196,7 +202,12 @@ class CoursesController extends Controller
             $course->icon = $iconPath;
         }
 
-
+        if(isset($request->slug) && $request->slug != null ){
+            $course->slug = Str::slug($request->slug);
+        }else{
+            $course->slug = Str::slug($request->input('name'));
+        }
+        $course->oto_price = $request->input('oto_price');
         $course->zoom_link = $request->input('zoom_link');
         $course->name = $request->input('name');
         $course->category_id = $request->input('category_id');

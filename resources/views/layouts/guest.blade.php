@@ -92,7 +92,16 @@
                                 <a class="nav-link" href="{{route('contact')}}">CONTACT</a>
                             </li>
                             <li>
-                                <a class="btn btn-dark btn-nav1" href="{{route('login')}}"> <img src="{{ asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
+                            @if(Auth::check())
+                                <a class="btn btn-dark btn-nav1" href="{{ route('dashboard') }}">
+                                    <img src="{{ asset('front/assets/images/icons/login.png') }}" class="login-icn" alt="Dashboard" /> Dashboard
+                                </a>
+                            @else
+                                <a class="btn btn-dark btn-nav1" href="{{ route('login') }}">
+                                    <img src="{{ asset('front/assets/images/icons/login.png') }}" class="login-icn" alt="Login" /> Login
+                                </a>
+                            @endif
+
                             </li>
                         </ul>
                     </div>
@@ -385,6 +394,19 @@
                     text: batch.label
                 }));
             });
+
+            // var pakegeselect = $('.package');
+            // pakegeselect.empty();
+
+            // var package = data.package;
+
+            // package.forEach(function(batch) {
+            //     pakegeselect.append($('<option>', {
+            //         value: batch.month,
+            //         text: batch.amount
+            //     }));
+            // });
+
         },
         error: function(error) {
             console.error(error.responseText);

@@ -2,59 +2,47 @@
 function formatDays($days)
 {
     $daysArray = explode(',', $days);
-    $formattedDays = [];
+    $shortFormDays = [];
 
     foreach ($daysArray as $day) {
-        switch ($day) {
-            case 1:
-                $formattedDays[] = 'Mon';
-                break;
-            case 2:
-                $formattedDays[] = 'Tue';
-                break;
-            case 3:
-                $formattedDays[] = 'Wed';
-                break;
-            case 4:
-                $formattedDays[] = 'Thu';
-                break;
-            case 5:
-                $formattedDays[] = 'Fri';
-                break;
-            case 6:
-                $formattedDays[] = 'Sat';
-                break;
-            case 7:
-                $formattedDays[] = 'Sun';
-                break;
-                // Add more cases if needed for additional days
-        }
+        // Get the first two characters of each day and convert to uppercase
+        $shortFormDays[] = strtoupper(substr(trim($day), 0, 3));
     }
 
-    return implode(', ', $formattedDays);
+    // Remove duplicate entries
+    $uniqueShortFormDays = array_unique($shortFormDays);
+
+    return implode(' ', $uniqueShortFormDays);
 }
 
 function formatTimings($timing)
 {
-    $timingArray = explode(',', $timing);
+    // Decode the JSON string into an array
+    $timingArray = json_decode($timing, true);
+
+    if (empty($timingArray)) {
+        return ''; // Handle empty input
+    }
 
     $startTimes = [];
     $endTimes = [];
 
-    // foreach ($timingArray as $timeRange) {
-    //     // Split the time range into start and end times
-    //     list($startTime, $endTime) = explode(' - ', trim($timeRange));
+    // Loop through each timing entry
+    foreach ($timingArray as $entry) {
+        $startTimes[] = $entry['start_time'];
+        $endTimes[] = $entry['end_time'];
+    }
 
-    //     // Collect start and end times
-    //     $startTimes[] = $startTime;
-    //     $endTimes[] = $endTime;
-    // }
+    $firstStartTime = reset($startTimes);
+    $lastEndTime = end($endTimes);
 
-    // Find the earliest start time and the latest end time
-    // $formattedTimings = min($startTimes) . ' - ' . max($endTimes);
+   
+    $formattedResult = $firstStartTime . ' - ' . $lastEndTime;
 
-    return $timing ;
+    return $formattedResult;
 }
+
+
 
 
 
@@ -65,4 +53,39 @@ function getSetting(){
 function latestpost(){
     $latestPost = App\Models\Blog::active()->take(2)->get();
     return  $latestPost;
+}
+
+
+function findSmallestValueAfterDash($data)
+{
+    $prices = [];
+
+    // Split the data by comma and loop through each entry
+    $entries = explode(',', $data);
+    foreach ($entries as $entry) {
+        // Extract the value after the dash
+        $parts = explode('-', trim($entry));
+        if (count($parts) === 2) {
+            $price = intval(trim($parts[1]));
+            $prices[] = $price;
+        }
+    }
+
+    // Find the minimum value
+    $minPrice = min($prices);
+
+    return $minPrice;
+}
+
+
+function formatTime($time) {
+    $formattedTime = $time;
+    if (strlen($time) === 5) {
+        $hours = intval(substr($time, 0, 2));
+        $minutes = substr($time, 3);
+        $period = $hours >= 12 ? 'PM' : 'AM';
+        $hours = $hours % 12 || 12;
+        $formattedTime = $hours . ':' . $minutes . ' ' . $period;
+    }
+    return $formattedTime;
 }

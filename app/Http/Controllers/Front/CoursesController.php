@@ -12,4 +12,16 @@ class CoursesController extends Controller
         $courses = Courses::active()->get();
         return view('front.courses' , compact('courses'));
     }
+
+
+    Public function details($title){
+        $courses = Courses::active()->where('name', $title)->first();
+        if($courses){
+            return view('front.courseDetails', compact('courses'));
+        }else{
+            return redirect()->back()->with('error', 'Course Not found !!!');
+        }
+       
+
+    }
 }

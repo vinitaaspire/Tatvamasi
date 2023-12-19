@@ -465,6 +465,7 @@
                 @foreach($courses as $course)
                 <div class="col-lg-4 col-sm-6">
                     <div class="classes_box   animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+                        <a href="{{route('course.details',['title' => $course->name ])}}">
                         <div class="classes_img">
                             <img src="{{ asset($course->image ?? '')}}" alt="image" />
                             <div class="link_container">
@@ -486,13 +487,14 @@
                             </ul>
 
                         </div>
+                        </a>
                     </div>
                 </div>
                 @endforeach
             
                 <div class="col-lg-12 col-md-12">
                     <div class="trail-sec-inp trail-sec-inp-btn mx-auto">
-                        <a href="course.html" type="button" class="btn btn-default  animation animated fadeInUp"
+                        <a href="{{route('course')}}" type="button" class="btn btn-default  animation animated fadeInUp"
                             data-animation="fadeInUp" data-animation-delay="0.7s"
                             style="animation-delay: 0.7s; opacity: 1;">View More <img
                                 src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></a>
