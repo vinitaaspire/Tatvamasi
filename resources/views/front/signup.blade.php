@@ -74,7 +74,7 @@
                                         rows="4" cols="50" class="form-control"></textarea>
                                 </div>
                             </div>
-
+                
                             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                                 <button type="submit" title="Subscribe" name="submit" value="Submit"
                                     class="btn btn-default submit-btn action-button animation animated fadeInUp">Register

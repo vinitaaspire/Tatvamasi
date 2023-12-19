@@ -43,8 +43,7 @@
     <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css?v=0.4')}}" />
     <link rel="stylesheet" id="layoutstyle" href="{{ asset('front/assets/color/theme-default.css?v=0.4')}}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- <link href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" type="text/css" rel="Stylesheet" />
     <link rel="stylesheet" type="text/css"
@@ -63,18 +62,15 @@
                             <img src="{{ asset(getSetting()->logo ?? '')}}">
                         </div>
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <img src="{{ asset('front/assets/images/icons/menu.png')}}" class="img-fluid" alt="Menu" />
                     </button>
                 </div>
                 <div class="col-lg-9 col-md-12 col-12">
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent"
-                        style="margin-top:-10px">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" style="margin-top:-10px">
                         <ul class="navbar-nav align-items-md-center">
                             <li>
-                                <a class="nav-link active" href="index.html">HOME</a>
+                                <a class="nav-link active" href="{{route('/')}}">HOME</a>
                             </li>
 
                             <li>
@@ -96,8 +92,7 @@
                                 <a class="nav-link" href="{{route('contact')}}">CONTACT</a>
                             </li>
                             <li>
-                                <a class="btn btn-dark btn-nav1" href="{{route('login')}}"> <img
-                                        src="{{ asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
+                                <a class="btn btn-dark btn-nav1" href="{{route('login')}}"> <img src="{{ asset('front/assets/images/icons/login.png')}}" class="login-icn" alt="Login" /> login</a>
                             </li>
                         </ul>
                     </div>
@@ -106,10 +101,10 @@
         </div>
     </header>
     <!-- END HEADER -->
-       
-                {{ $slot }}
-      <!-- START FOOTER -->
-      <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+
+    {{ $slot }}
+    <!-- START FOOTER -->
+    <footer class="footer_dark footer-sec  animation" data-animation="fadeInUp" data-animation-delay="0.3s">
         <div class="top_footer">
             <div class="container">
                 <div class="row">
@@ -158,19 +153,18 @@
                                 </div>
                             </li>
                             @endforeach
-                          
+
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <h5 class="widget_title">Subscribe Newsletter</h5>
                         <div class="newsletter_form mb-4 mb-lg-5">
-                            <form>
-                                <input type="text" class="form-control " required="" placeholder="Enter Email Address">
-                                <button type="submit" title="Subscribe" class="btn btn-default " name="submit"
-                                    value="Submit"><Img src="{{ asset('front/assets/images/icons/right-arrow.png')}}" class="login-icn"
-                                        alt="Button" /></button>
+                            <form method="post" action="{{route('subscribe')}}" id="subscribe">
+                                <input type="text" class="form-control email" name="email" required="" placeholder="Enter Email Address">
+                                <button type="submit" title="Subscribe" class="btn btn-default " name="submit" value="Submit"><Img src="{{ asset('front/assets/images/icons/right-arrow.png')}}" class="login-icn" alt="Button" /></button>
                             </form>
                         </div>
+                        <div class="text-primary responseMessage"></div>
                         <h5 class="widget_title">Stay Connected</h5>
                         <ul class="list_none social_icons radius_social">
                             <li><a href="{{getSetting()->facebook ?? ''}}" class="sc_facebook"><i class="ri-facebook-circle-fill"></i></a></li>
@@ -189,12 +183,11 @@
                     <div class="bottom_footer border_top_transparent">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="copyright m-md-0 text-left text-md-left"><a
-                                        href="{{route('/')}}" class="text_default text-white">{{getSetting()->coppyright ?? ''}}</a></p>
+                                <p class="copyright m-md-0 text-left text-md-left"><a href="{{route('/')}}" class="text_default text-white">{{getSetting()->coppyright ?? ''}}</a></p>
                             </div>
                             <div class="col-md-6">
                                 <ul class="list_none footer_link text-md-right text-sm-right">
-                                    <li><a href="#">Terms of use</a></li>
+                                    <li><a href="{{route('terms')}}">Terms of use</a></li>
                                     <li><a href="{{route('policy')}}">Privacy Policy</a></li>
                                 </ul>
                             </div>
@@ -224,83 +217,60 @@
             <div class="row" style="padding:0 20px;">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h1 class="mt-1 head-content">Enquiry</h1>
-                    <form class="modal-box-info row mt-4 mb-4">
+                    <form class="modal-box-info row mt-4 mb-4 enquirySave" method="post" action="{{route('enquiry.save')}}">
+                        @csrf
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Name *" class="modal-box" required="" />
+                                <input type="text" placeholder="Name *" class="modal-box" required="" name="name" />
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                             <div class="form-group">
-                                <input type="text"
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                    maxlength="10" placeholder="Mobile No. *" required="" class="modal-box mobile_no" />
+                                <input type="text" name="mobile" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="10" placeholder="Mobile No. *" required="" name="name" class="modal-box mobile_no" />
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-12 col-sm-12 otp d-none">
+                        <!-- <div class="col-lg-12 col-md-12 col-12 col-sm-12 otp d-none">
                             <div class="form-group">
-                                <input type="text"
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                    class="modal-box" placeholder="OTP *" name="otp" required="" />
+                                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="modal-box" placeholder="OTP *" name="otp" required="" />
+                            </div>
+                        </div> -->
+
+                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+                            <div class="form-group">
+                                <input type="email" placeholder="Email *" class="modal-box" required="" name="email" />
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                             <div class="form-group">
-                                <input type="email" placeholder="Email *" class="modal-box" required="" />
+                            <select class="name-box" required="" onchange="CouresStatusChange(this);" name="courses">
+                                            <option class="">Select courses *</option>
+                                            @foreach(App\Models\Courses::active()->get() as $cours)
+                                            <option value="{{ $cours->id }}">{{ $cours->name ?? '' }}</option>
+                                             @endforeach
+                                        </select>
+                            
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                             <div class="form-group">
-                                <select class="modal-box" required="" onchange="myCategoryStatus(this);">
-                                    <option class="">Select Category *</option>
-                                    <option value="weight_loss_&amp;_fat_burn">Weight Loss, Fat Burn &amp;Toning
-                                    </option>
-                                    <option value="general_fitness_&amp;_Endurance">General Fitness And Endurance
-                                    </option>
-                                    <option value="De_Stress_&amp;_Improved_Sleep">De-Stress And Improved Sleep</option>
-                                    <option value="thyroid_back_pain_&amp;_diabetes">Thyroid ,back pain &amp; Diabetes
-                                    </option>
-                                    <option value="PCOS_PCOD_Management ">PCOS/PCODManagement </option>
-                                    <option value="yoga_for-pregnant_ladies">Yoga For Pregnant Ladies</option>
-                                </select>
+                            <select class="name-box batch_category" required="" name="batch">
+                                        <option class="">Select Batch *</option>
+                                        </select>
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-12 col-sm-12">
                             <div class="form-group">
-                                <select class="modal-box" required="">
-                                    <option class="" selected="">Select Batch *</option>
-                                    <option value="batch01">Batch 01 : 05:00-06:00 am</option>
-                                    <option value="batch02">Batch 02 : 05:30-06:30 am</option>
-                                    <option value="batch03">Batch 03 : 06:00-07:00 am</option>
-                                    <option value="batch04">Batch 04 : 07:00-08:00 am</option>
-                                    <option value="batch05">Batch 05 : 07:15-08:15 am</option>
-                                    <option value="batch06">Batch 06 : 07:30-08:30 am</option>
-                                    <option value="batch07">Batch 07 : 08:00-09:00 am</option>
-                                    <option value="batch08">Batch 08 : 08:30-09:30 am</option>
-                                    <option value="batch09">Batch 09 : 09:00-10:00 am</option>
-                                    <option value="batch10">Batch 10 : 10:30-11:30 am</option>
-                                    <option value="batch11">Batch 11 : 05:30-06:30 pm</option>
-                                    <option value="batch12">Batch 12 : 06:00-07:00 pm</option>
-                                    <option value="batch13">Batch 13 : 07:00-08:00 pm</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-12 col-12 col-sm-12">
-                            <div class="form-group">
-                                <input type="text" class="modal-box" placeholder="City " />
+                                <input type="text" class="modal-box" placeholder="City "  name="city"/>
                             </div>
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-12 col-sm-12">
-                            <button type="submit" title="Submit" name="submit" value="Submit"
-                                class="btn btn-default submit-btn action-button animation animated fadeInUp">Submit <img
-                                    src="{{ asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
+                            <button type="submit" title="Submit" name="submit" value="Submit" class="btn btn-default submit-btn action-button animation animated fadeInUp">Submit <img src="{{ asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
                         </div>
                     </form>
                 </div>
@@ -309,7 +279,7 @@
     </div>
 
     <!-- whatsapp start -->
-    <a href="https://web.whatsapp.com/send?phone={{getSetting()->whatsapp ?? ''}}&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank" >
+    <a href="https://web.whatsapp.com/send?phone={{getSetting()->whatsapp ?? ''}}&text=Hi" role="button" class="text-decoration-none whatsapp-img" target="_blank">
         <img src="{{ asset('front/assets/images/icons/whatsapp.png')}}" class="img-fluid w-100" alt="Whatsapp" />
     </a>
     <!-- whatsapp end -->
@@ -325,17 +295,17 @@
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal 
-        btn.onclick = function () {
+        btn.onclick = function() {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
+        span.onclick = function() {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -349,7 +319,7 @@
         var header = document.getElementById("navbarSupportedContent");
         var btns = header.getElementsByClassName("nav-link");
         for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
+            btns[i].addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
                 current[0].className = current[0].className.replace(" active", "");
                 this.className += " active";
@@ -390,38 +360,86 @@
     <!-- scripts js -->
     <script src="{{ asset('front/assets/js/scripts.js')}}"></script>
     <script src="{{ asset('front/assets/js/custom.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-    <script type="text/javascript"
-        src="https://www.nadayoga.gr/app/plugins/contact-form-7/includes/js/scripts.js?ver=5.3"></script>
+    <script type="text/javascript" src="https://www.nadayoga.gr/app/plugins/contact-form-7/includes/js/scripts.js?ver=5.3"></script>
 
-        <script>
+    <script>
     function CouresStatusChange(selectElement) {
-        var courseId = selectElement.value; 
-        $.ajax({
-            url: '/getbatch/' + courseId, // Assuming your route is defined for this URL
-            method: 'GET',
-            success: function (data) {
-                
-                var batchesSelect = $('.batch_category');
-                batchesSelect.empty(); // Clear previous options
+    var courseId = selectElement.value;
 
-             
-                $.each(data.batches, function (index, batch) {
-                    batchesSelect.append('<option value="' + batch + '">Batch ' + (index + 1) + ': ' + batch + '</option>');
-                });
+    $.ajax({
+        url: '/getbatch/' + courseId,
+        method: 'GET',
+        success: function(data) {
+            var batchesSelect = $('.batch_category');
+            batchesSelect.empty(); // Clear previous options
 
-            },
-            error: function (error) {
-                console.error('Error fetching batches: ', error);
-            }
+            // Assuming you have received the batches data from the AJAX call
+            var batches = data.batches;
+
+            batches.forEach(function(batch) {
+                batchesSelect.append($('<option>', {
+                    value: batch.value,
+                    text: batch.label
+                }));
+            });
+        },
+        error: function(error) {
+            console.error(error.responseText);
+        }
+    });
+}
+
+
+        $("#subscribe").submit(function(e) {
+            e.preventDefault();
+            var email = $('.email').val();
+            let url = "{{ route('subscribe') }}";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    email: email
+                },
+                dataType: 'json',
+                success: function(response) {
+                    $('.responseMessage').html(response.success);
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    console.error(xhr.responseText);
+                }
+            });
         });
-    }
-</script>
+
+//         $('.enquirySave').on('submit', function(e){
+//     e.preventDefault();
+
+//     var data = $(this).serialize(); 
+
+//     $.ajax({
+//         type: 'POST',
+//         url: '{{ route("enquiry.save") }}',
+//         data: {
+//             _token: '{{ csrf_token() }}',
+//             formData: data // Explicitly specify the key for the data variable
+//         },
+//         dataType: 'json',
+//         success: function(response) {
+//             console.log(response);
+//         },
+//         error: function(xhr) {
+//             console.error(xhr.responseText);
+//         }
+//     });
+// });
+
+
+    </script>
 
 
 </body>

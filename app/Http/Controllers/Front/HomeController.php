@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Courses;
+use App\Models\enquiry;
 use App\Models\Price;
+use App\Models\subscribe;
 use App\Models\WhyUs;
 use App\Models\Testimonial;
 use App\Models\TrailClass;
@@ -47,11 +49,24 @@ class HomeController extends Controller
         ));
     }
 
-    public function getbatch($id){
+    public function getbatch($id)
+    {
         $course = Courses::findOrFail($id);
-        $batches = explode(',', $course->timeing); 
-        return response()->json(['batches' => $batches]);
+        $batchTimes = json_decode($course->timeing, true);
+    
+        $options = [];
+        foreach ($batchTimes as $batchTime) {
+            $start = date('h:i A', strtotime($batchTime['start_time']));
+            $end = date('h:i A', strtotime($batchTime['end_time']));
+            $days = $batchTime['days'];
+    
+            $label = "{$days} ({$start} - {$end})";
+            $options[] = ['value' => json_encode($batchTime), 'label' => $label];
+        }
+    
+        return response()->json(['batches' => $options]);
     }
+    
 
 
 
@@ -61,5 +76,58 @@ class HomeController extends Controller
         return view('front.policy');
 
     }
+
+    Public function terms(){
+
+
+        return view('front.tearm');
+
+    }
+
+    public function subscribe(Request $request)
+    {
+      
+        $request->validate([
+            'email' => 'required|email', 
+        ]);
+
+        // Check if the email already exists
+        $existingSubscription = Subscribe::where('email', $request->email)->first();
+
+        if (!$existingSubscription) {
+            // Email does not exist, so proceed to store it
+            $subscribe = new Subscribe;
+            $subscribe->email = $request->email;
+            $subscribe->save();
+
+            return response()->json(['success' => 'Subscription successful!']);
+        }
+
+        // Email already exists, return a response indicating that
+        return response()->json(['success' => 'Email is already subscribed.']);
+    }
+
+
+    public function enquirySave(Request $request){
+     
+      
+        $enquiry = new Enquiry;
+    
+        // Assign values from the request to the Enquiry model
+        $enquiry->name = $request->input('name');
+        $enquiry->mobile = $request->input('mobile');
+        $enquiry->email = $request->input('email');
+        $enquiry->course = $request->input('courses');
+        $enquiry->batch = $request->input('batch');
+        $enquiry->city = $request->input('city');
+    
+     
+        $enquiry->save();
+
+        return redirect()->back()->with('success', 'Enquiry send successfully');
+        
+        // return response()->json(['success' => true, 'message' => 'Enquiry saved successfully']);
+    }
+
     
 }

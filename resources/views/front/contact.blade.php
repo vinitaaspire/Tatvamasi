@@ -69,33 +69,37 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12">
                 
-                        <form class="tbl-contact-info row"> 
-                        <div class="col-lg-6 col-md-6 col-12 col-sm-12" >
-                          <div class="form-group">
-                            <input type="text"  required data-error="Enter Name" placeholder="Name" class="form-control" >
-                        </div>
-                        </div>
-                       
-                         <div class="col-lg-6 col-md-12 col-12 col-sm-12" >
-                          <div class="form-group">
-                            <input type="text"  required="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Phone Number"  class="form-control" />
-                          </div>
-                          </div>
-                           <div class="col-lg-12 col-md-6 col-12 col-sm-12" >
-                            <div class="form-group">
-                            <input type="email"  required data-error="Enter Your Email" placeholder="Email" class="form-control" >
-                          </div>
-                         </div>
-                            <div class="col-lg-12 col-md-12 col-12 col-sm-12" >
+            <form class="tbl-contact-info row" method="POST" action="{{ route('contact.save') }}">
+    @csrf
+    <div class="col-lg-6 col-md-6 col-12 col-sm-12">
+        <div class="form-group">
+            <input type="text" name="name" required data-error="Enter Name" placeholder="Name" class="form-control">
+        </div>
+    </div>
 
-                            <div class="form-group">
-                            <textarea  required data-error="Enter Your Address" placeholder="Enter Address" rows="4" cols="50"  class="form-control"  ></textarea>
-                            </div>
-                        </div>
-                                                 <div class="col-lg-12 col-md-12 col-12 col-sm-12" >
-                                                    <button type="submit" title="Subscribe" name="submit" value="Submit"  class="btn btn-default submit-btn action-button animation animated fadeInUp" >Submit <img src="{{('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
-                            </div>
-                        </form>
+    <div class="col-lg-6 col-md-12 col-12 col-sm-12">
+        <div class="form-group">
+            <input type="text" name="phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Phone Number" class="form-control">
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-6 col-12 col-sm-12">
+        <div class="form-group">
+            <input type="email" name="email" required data-error="Enter Your Email" placeholder="Email" class="form-control">
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+        <div class="form-group">
+            <textarea name="address" required data-error="Enter Your Address" placeholder="Enter Address" rows="4" cols="50" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+        <button type="submit" title="Subscribe" name="submit" value="Submit" class="btn btn-default submit-btn action-button animation animated fadeInUp">Submit <img src="{{ asset('front/assets/images/icons/right-arrow-btn.png') }}" class="btn-icn"></button>
+    </div>
+</form>
+
             </div>
         </div>
         

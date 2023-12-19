@@ -41,19 +41,19 @@ function formatTimings($timing)
     $startTimes = [];
     $endTimes = [];
 
-    foreach ($timingArray as $timeRange) {
-        // Split the time range into start and end times
-        list($startTime, $endTime) = explode(' - ', trim($timeRange));
+    // foreach ($timingArray as $timeRange) {
+    //     // Split the time range into start and end times
+    //     list($startTime, $endTime) = explode(' - ', trim($timeRange));
 
-        // Collect start and end times
-        $startTimes[] = $startTime;
-        $endTimes[] = $endTime;
-    }
+    //     // Collect start and end times
+    //     $startTimes[] = $startTime;
+    //     $endTimes[] = $endTime;
+    // }
 
     // Find the earliest start time and the latest end time
-    $formattedTimings = min($startTimes) . ' - ' . max($endTimes);
+    // $formattedTimings = min($startTimes) . ' - ' . max($endTimes);
 
-    return $formattedTimings;
+    return $timing ;
 }
 
 
