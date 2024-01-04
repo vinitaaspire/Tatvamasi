@@ -25,14 +25,14 @@
                                 <h2>Messages</h2>
                             </div>
                         </div>
-                        <div class="profile-form-msg">
-                            <div class="profile-msg-div" >
-                                <span>Hello Abhishek, To participate in the yoga class, visit the following page: <a href="https://meet.google.com/yve-xbxj-gwy" class="text-decoration-none" target="_blank" role="button" >https://meet.google.com/yve-xbxj-gwy</a></span>
-                            </div>
-                            <div class="profile-msg-div" >
-                                <span>Good Morning Abhishek, your yoga class is going to be start, click on this link to connect : <a href="https://meet.google.com/yve-xbxj-gwy" class="text-decoration-none" target="_blank"  role="button" >https://meet.google.com/yvb-zbxj-goy</a></span>
-                            </div>
-                        </div>
+                        <!--<div class="profile-form-msg">-->
+                        <!--    <div class="profile-msg-div" >-->
+                        <!--        <span>Hello Abhishek, To participate in the yoga class, visit the following page: <a href="https://meet.google.com/yve-xbxj-gwy" class="text-decoration-none" target="_blank" role="button" >https://meet.google.com/yve-xbxj-gwy</a></span>-->
+                        <!--    </div>-->
+                        <!--    <div class="profile-msg-div" >-->
+                        <!--        <span>Good Morning Abhishek, your yoga class is going to be start, click on this link to connect : <a href="https://meet.google.com/yve-xbxj-gwy" class="text-decoration-none" target="_blank"  role="button" >https://meet.google.com/yvb-zbxj-goy</a></span>-->
+                        <!--    </div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>

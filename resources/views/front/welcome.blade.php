@@ -1,13 +1,14 @@
 <x-guest-layout>
 
     <!---START---HEAD---SECTION-->
-
+   @if(isset($banners) && count($banners) > 0)
     <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach($banners as $key => $banner)
             <div class="carousel-item @if($key == 0) active @endif " data-bs-interval="3000">
                 <section class="sli-div">
-                    <img src="{{ asset( $banner->image ?? '')}}" class="img-fluid w-100" alt="Slider" />
+                   <img src="{{ asset($banner->image ?? '')}}" class="img-fluid d-none d-md-block w-100" alt="Desktop Slider" />
+                   <img src="{{ asset($banner->mobile_image ?? '')}}" class="img-fluid d-md-none w-100" alt="Mobile Slider" />
                     <div class="top-head">
                         <div class="container">
                             <div class="row">
@@ -16,7 +17,7 @@
                                         <div class="sli-content animation" data-animation="fadeInUp"
                                             data-animation-delay="0.5s">
                                             <h4>{{$banner->title ?? ''}}</h4>
-                                            <a class="btn btn-default  animation" href="{{ $banner->link ?? ''}}"
+                                            <a class="btn btn-default  animation" href="{{ $banner->link ?? ''}}" target="_black"
                                                 data-animation="fadeInUp" data-animation-delay="0.7s"
                                                 style="margin-top:45px; border-radius:10px;"><img
                                                     src="{{asset('front/assets/images/icons/namaste.png')}}" class="login-icn"
@@ -47,8 +48,9 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
+  @endif
     <!-- box start -->
+  
     <section class="imp-div position-relative p-0">
         <div class="container">
             <div class="row">
@@ -110,6 +112,7 @@
             </div>
         </div>
     </section>
+  
     <!-- box end -->
 
     <!----END--HEAD--SECTION-->
@@ -117,33 +120,33 @@
     <!-----BOX---end--->
 
     <!-- START SECTION BENEFIT -->
+   @if($abouts->where('module', 'feature')->first()->status == 1)
     <section class="sec-benefits ">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
                     data-animation-delay="0.2s">
                     <div class="heading_s1">
-                        <span class="sub_heading">Features</span>
-                        <h2>What We Help With</h2>
+                        <span class="sub_heading"> {{ $abouts->where('module','feature')->first()->name ?? '' }} </span>
+                        <h2>{{$abouts->where('module','feature')->first()->title ?? ''}}</h2>
                     </div>
-                    <p>Contrary to popular belief Lorem is not simply random text. It has roots in adipiscing ncididunt
-                        piece of classical literature</p>
+                    <p>{!!$abouts->where('module','feature')->first()->shortdesc ?? '' !!}</p>
                     <div class="small_divider clearfix"></div>
                 </div>
             </div>
           
             <div class="row">
                 <div class="col-lg-4 col-sm-12">
-                    @foreach($courses->take(3) as $course)
-                    <a href="weight-fat-ton.html" class="box-featur-link">
+                    @foreach($feature->take(3) as $course)
+                    <a href="{{ route('checkout') }}" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInRight"
                             data-animation-delay="0.3s">
                             <div class="box_icon">
-                                <img src="{{ asset($course->icon ?? '')}}">
+                                <img src="{{ asset($course->image ?? '')}}">
                             </div>
                             <div class="intro_desc">
                                 <h5>{{ $course->name ?? ''}}</h5>
-                                <p> {{ $course->short_desc ?? ''}}</p>
+                                <p> {!! $course->description ?? ''!!}</p>
                             </div>
                         </div>
                     </a>
@@ -162,16 +165,16 @@
                 </div>
 
                 <div class="col-lg-4 col-sm-12">
-                @foreach($courses->slice(-3) as $course)
-                    <a href="weight-fat-ton.html" class="box-featur-link">
+                @foreach($feature->slice(-3) as $course)
+                    <a href="{{ route('checkout') }}" class="box-featur-link">
                         <div class="icon_box  text-center icon_box_style1 animation" data-animation="fadeInRight"
                             data-animation-delay="0.3s">
                             <div class="box_icon">
-                                <img src="{{ asset($course->icon ?? '')}}">
+                                <img src="{{ asset($course->image ?? '')}}">
                             </div>
                             <div class="intro_desc">
                                 <h5>{{ $course->name ?? ''}}</h5>
-                                <p> {{ $course->short_desc ?? ''}}</p>
+                                <p> {!! $course->description ?? ''!!}</p>
                             </div>
                         </div>
                     </a>
@@ -184,10 +187,12 @@
             </div>
         </div>
     </section>
+      @endif
     <!-- END SECTION BENIFIT -->
 
 
     <!---start--why---choose---us--->
+      @if($abouts->where('module', 'whyus')->first()->status == 1)
     <section class="why-us-section">
         <div class="top-why-sec">
             <div class="container-xxl why py-md-4 py-0">
@@ -196,12 +201,9 @@
                    
                         <div class="col-lg-5 left-side-content animation" data-animation="fadeInUp"
                             data-animation-delay="0.5s">
-                            <span class="sub_heading ">Why Choose Us!</span>
-                            <h1 class="content mb-4"> Guiding Your Yoga Journey with Care</h1>
-                            <p class="mb-md-4 mb-0 dark-txt">At Tatvamasi , we're dedicated to your yoga journey. Our
-                                experienced instructors passionately guide you on a path to well-being. We believe in
-                                yoga's transformative power and are committed to nurturing your growth, whether you're a
-                                beginner or an experienced yogi.
+                            <span class="sub_heading ">{{ $abouts->where('module', 'whyus')->first()->name ?? '' }} </span>
+                            <h1 class="content mb-4"> {{ $abouts->where('module', 'whyus')->first()->title ?? '' }}</h1>
+                            <p class="mb-md-4 mb-0 dark-txt"> {{ $abouts->where('module', 'whyus')->first()->shortdesc ?? '' }}
                             </p>
 
                         </div>
@@ -242,9 +244,11 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- why--choose----us---End -->
 
     <!----free-trial--sec--->
+    @if($trial->status == 1)
     <section class="trial-sec position-relative" id="trial-section" >
         <div class="container">
             <div class="row position-relative">
@@ -254,31 +258,35 @@
                         <span class="sub_heading "></span>
                         <h1>{!! $trial->title ?? '' !!}</h1>
                         <p>{!! $trial->description ?? '' !!}</p>
-                        <form>
+                        <form method="POST" action="{{route('trail.class')}}">
+                            @csrf
                             <div class="row pt-md-4 pt-3 ">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
-                                        <input type="text" placeholder="Name *" class="name-box" required="" />
+                                        <input type="text" placeholder="Name *" name="name" class="name-box" required="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
-                                        <input type="text"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                            maxlength="10" placeholder="Mobile No. *" required=""
-                                            class="name-box mobile_no" />
+                                      <input type="number"
+                                           pattern=".{10,}"
+                                           maxlength="10" 
+                                           placeholder="Mobile No. *" 
+                                           required=""
+                                           class="name-box mobile_no" />
+
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 otp d-none">
-                                    <div class="trail-sec-inp">
-                                        <input type="text"
-                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                            class="name-box" placeholder="OTP *" name="otp" required="" />
-                                    </div>
-                                </div>
+                                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-12 otp d-none">-->
+                                <!--    <div class="trail-sec-inp">-->
+                                <!--        <input type="text"-->
+                                           
+                                <!--            class="name-box" placeholder="OTP *" name="otp" required="" />-->
+                                <!--    </div>-->
+                                <!--</div>-->
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
-                                        <input type="email" placeholder="Email *" class="name-box" required="" />
+                                        <input type="email" placeholder="Email *" class="name-box" name="email" required="" />
                                     </div>
                                 </div>
 
@@ -295,7 +303,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="trail-sec-inp">
                                         <select class="name-box batch_category" required="" name="batch">
-                                        <option class="">Select Batch *</option>
+                                        <option selected disabled  class="">Select Batch *</option>
                                         </select>
                                     </div>
                                 </div>
@@ -309,7 +317,8 @@
 
                                 <div class="col-lg-12 col-md-12">
                                     <div class="trail-sec-inp trail-sec-inp-btn">
-                                        <button type="button" style="width: 260px!important; white-space: nowrap!important;" class="btn btn-default  animation"
+                                      
+                                        <button type="submit" name="submit" value="submit" style="width: 260px!important; white-space: nowrap!important;" class="btn btn-default  animation"
                                             data-animation="fadeInUp" data-animation-delay="0.7s">BOOK DEMO CLASSES <img
                                                 src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}"
                                                 class="btn-icn" /></button>
@@ -328,9 +337,12 @@
             </div>
         </div>
     </section>
+    @endif
     <!---END -FREE TRIAL SECTION-->
 
     <!-- START SECTION TESTIMONIAL -->
+     @if($abouts->where('module', 'testimonial')->first()->status == 1)
+     
     <section class="client-sec">
         <div class="top-client">
             <div class="container ">
@@ -338,11 +350,10 @@
                     <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
                         data-animation-delay="0.2s" style="animation-delay: 0.2s; opacity: 1;">
                         <div class="heading_s1">
-                            <span class="sub_heading">Testimonial</span>
-                            <h2>Our Client Say!</h2>
+                            <span class="sub_heading">{{ $abouts->where('module', 'testimonial')->first()->name  ?? ''}}</span>
+                            <h2>{{ $abouts->where('module', 'testimonial')->first()->title  ?? ''}}</h2>
                         </div>
-                        <p>Hear from our satisfied clients and discover how our classes have made a positive impact on
-                            their well-being and find inspiration for your own yoga journey.</p>
+                        <p>{!! $abouts->where('module', 'testimonial')->first()->shortdesc  ?? ''!!}</p>
                         <div class="xs_divider clearfix d-none d-md-block"></div>
                     </div>
                 </div>
@@ -376,10 +387,12 @@
             </div>
         </div>
     </section>
+      @endif
     <!-- END SECTION TESTIMONIAL -->
 
 
     <!---START---ABOUT--->
+      @if($abouts->where('module', 'about')->first()->status == 1)
     <section class="about-sec">
         <div class="top-about">
             <div class="container">
@@ -400,18 +413,22 @@
             </div>
         </div>
     </section>
+    @endif
     <!--END--ABOUT--->
 
 
     <!-- START SECTION TEACHER -->
+     @if($abouts->where('module', 'trainer')->first()->status == 1)
+     
     <section class="team-sec">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-lg-12 col-md-12 text-center animation" data-animation="fadeInUp"
                     data-animation-delay="0.2s">
                     <div class="heading_s1 training animation" data-animation="fadeInUp" data-animation-delay="0.3s">
-                        <span class="outline">Our Expert</span>
-                        <h2>TRAINERS</h2>
+                        <span class="outline">{{$abouts->where('module', 'trainer')->first()->name ?? ''}}</span>
+                        <h2>{{$abouts->where('module', 'trainer')->first()->title ?? ''}}</h2>
+                        <p>{!! $abouts->where('module', 'trainer')->first()->description ?? ''!!}</p>
                     </div>
                 </div>
             </div>
@@ -445,19 +462,21 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- END SECTION TEACHER -->
 
     <!-- START SECTION CLASSES -->
+      @if($abouts->where('module', 'courses')->first()->status == 1)
     <section class=" class-sec">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
                     data-animation-delay="0.2s">
                     <div class="heading_s1 animation" data-animation="fadeInUp" data-animation-delay="0.3s">
-                        <span class="sub_heading">Choose Your Level Best</span>
-                        <h2>Our Courses</h2>
+                        <span class="sub_heading">{{ $abouts->where('module', 'courses')->first()->name ?? ''}}</span>
+                        <h2> {{ $abouts->where('module', 'courses')->first()->title ?? ''}}</h2>
                     </div>
-                    <p>A yoga course is available for every physical and mental issue a person may be experiencing</p>
+                    <p>{!! $abouts->where('module', 'courses')->first()->shortdesc ?? ''!!}</p>
                     <div class="small_divider clearfix"></div>
                 </div>
             </div>
@@ -503,9 +522,11 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- END SECTION CLASSES -->
 
     <!-- START SECTION PRICING TABLE -->
+     @if($abouts->where('module', 'pricing')->first()->status == 1)
     <section class="pricing-sec">
         <div class="top-price">
             <div class="container">
@@ -514,10 +535,10 @@
                      data-animation="fadeInUp"
                         data-animation-delay="0.3s">
                         <div class="heading_s1">
-                            <span class="sub_heading">Choose Our Pricing</span>
-                            <h2>Yoga Pricing Plan</h2>
+                            <span class="sub_heading">{{$abouts->where('module', 'pricing')->first()->name ?? ''}}</span>
+                            <h2>{{$abouts->where('module', 'pricing')->first()->title ?? ''}}</h2>
                         </div>
-                        <p>Below you will find our yoga course pricing. We have a variety of options to suit your needs
+                        <p>{!!$abouts->where('module', 'pricing')->first()->shortdesc ?? ''!!}
                         </p>
                         <div class="small_divider clearfix"></div>
                     </div>
@@ -546,7 +567,7 @@
                                 </ul>
                             </div>
                             <div class="pr_footer">
-                                <a href="get-started.html" class="btn btn-dark text-uppercase">Buy Now <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></a>
+                                <a href="{{ route('checkout') }}" class="btn btn-dark text-uppercase">Buy Now <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></a>
                             </div>
                         </div>
                     </div>
@@ -569,20 +590,22 @@
         </div>
     </div> -->
     </section>
+    @endif 
     <!-- END SECTION PRICING TABLE -->
 
     <!-- START SECTION BLOG -->
+       @if($abouts->where('module', 'blogs')->first()->status == 1)
+       
     <section class="pb_70">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
                     data-animation-delay="0.3s">
                     <div class="heading_s1">
-                        <span class="sub_heading">Our Latest Articles</span>
-                        <h2>From Our Blog & News</h2>
+                        <span class="sub_heading">{{$abouts->where('module', 'blogs')->first()->name  ?? ''}}</span>
+                        <h2>{{$abouts->where('module', 'blogs')->first()->title ?? ''}}</h2>
                     </div>
-                    <p>We have our blogs where we share valuable knowledge content with our clients, helping them stay
-                        informed and updated.</p>
+                    <p>{!! $abouts->where('module', 'blogs')->first()->shortdesc ?? ''!!}</p>
                     <div class="small_divider clearfix"></div>
                 </div>
             </div>
@@ -613,18 +636,21 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- END SECTION BLOG -->
 
 
     <!-- feature start -->
-    <section class="pb_70 featured-by-div d-none">
+          @if($abouts->where('module', 'partners')->first()->status == 1)
+    <section class="pb_70 featured-by-div">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8 col-md-10 text-center animation" data-animation="fadeInUp"
                     data-animation-delay="0.3s">
                     <div class="heading_s1">
-                        <span class="sub_heading">Our Partners</span>
-                        <h2>Featured By</h2>
+                        <span class="sub_heading">{{$abouts->where('module', 'partners')->first()->name ?? ''}}</span>
+                        <h2>{{$abouts->where('module', 'partners')->first()->title ?? ''}}</h2>
+                        <p>{!! $abouts->where('module', 'partners')->first()->shortdesc ?? ''!!}</p>
                     </div>
                     <div class="small_divider clearfix"></div>
                 </div>
@@ -632,53 +658,16 @@
             <div class="row">
                 <!-- partners start -->
                 <div class="col-xl-12 col-lg-12">
-                    <div class="slick slick-slider  client-logo" id="ser-div-partner">
-
+                    <div class="slick slick-slider  client-logo d-flex" id="ser-div-partner">
+                         @foreach($partners as $partner)
                         <div class="item">
-                            <a href="https://www.airtel.com/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/airtel.png"
+                            <a href="{{$partner->name ?? ''}}" target="_blank" class="text-decoration-none">
+                                <img src="{{ asset($partner->image ?? '')}}"
                                     class="img-fluids w-10">
                             </a>
                         </div>
-
-                        <div class="item">
-                            <a href="https://www.heromotocorp.com/en-in.html" target="_blank"
-                                class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/client/hero.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
-
-                        <div class="item">
-                            <a href="https://www.google.com/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/google.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://www.microsoft.com/en-in/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/microsoft.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://www.amazon.in/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/client/amazon.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://english.bmrc.co.in/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/client/bmrcl.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="https://mmrcl.com/" target="_blank" class="text-decoration-none">
-                                <img src="https://www.aspireindia.com/iflow/assets/img/client/mmrc.png"
-                                    class="img-fluids w-10">
-                            </a>
-                        </div>
+                    @endforeach
+                       
 
 
                     </div>
@@ -686,6 +675,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- feature end -->
 
     </x-guest-layout>

@@ -15,6 +15,11 @@ use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TrialController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
+use App\Http\Controllers\Admin\MailSettingController;
+use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\BatchController;
+use App\Http\Controllers\Admin\UserListingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,6 +47,11 @@ use Illuminate\Support\Facades\Route;
                'partners' => PartnersController::class,
                'setting' => SettingController::class,
                'trial'   => TrialController::class,
+               'mail' => MailSettingController::class,
+               'feature'=> FeatureController::class,
+               'coupon'=> CouponController::class,
+               'batch'=>BatchController::class,
+               'user'=>UserListingController::class,
           ]);
      });
    

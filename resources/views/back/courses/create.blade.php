@@ -1,4 +1,17 @@
 <x-app-layout>
+    <style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
   <div class="main-content">
     <section class="section">
       <div class="section-body">
@@ -7,8 +20,11 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h4>Create Courses</h4>
+                <div class="card-header d-flex justify-content-between">
+                <a href="{{ route('courses.index') }}" class="btn btn-success">
+                    <i class="fas fa-arrow-left"></i> Back to Courses
+                </a>
+             <h4>Create Course</h4> 
               </div>
               <div class="card-body">
                 <form action="{{route('courses.store')}}" method="post" enctype="multipart/form-data">
@@ -24,42 +40,67 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
-                    <div class="col-sm-12 col-md-7">
-                      <select class="form-control selectric @error('category_id') is-invalid @enderror" name="category_id">
-                        <option disabled selected>Select Category</option>
-                        @foreach($category as $cat)
-                        <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
-                          {{ $cat->name }}
-                        </option>
-                        @endforeach
-                      </select>
-                      @error('category_id')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-group row mb-4">
+                  
+                      <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Trainer</label>
                     <div class="col-sm-12 col-md-7">
-                      <select class="form-control selectric @error('trainer_id') is-invalid @enderror" name="trainer_id">
-                        <option disabled selected>Select Trainer</option>
-                        @foreach($trainer as $tra)
+                     <select class="form-control selectric @error('trainer_id') is-invalid @enderror" name="trainer_id">
+                    <option disabled selected>Select Trainer</option>
+                    @foreach($trainer as $tra)
                         <option value="{{ $tra->id }}" {{ old('trainer_id') == $tra->id ? 'selected' : '' }}>
-                          {{ $tra->name }}
+                            {{ $tra->name }}
                         </option>
-                        @endforeach
-                      </select>
-
-                      @error('trainer_id')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
+                    @endforeach
+                </select>
+                @error('trainer_id')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
                     </div>
                   </div>
+<!--               <div class="form-row">-->
+    <!--<div class="col-md-6">-->
+    <!--    <div class="form-group row mb-4">-->
+    <!--       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>-->
+    <!--        <div class="col-sm-12 col-md-9">-->
+    <!--            <lable class="col-form-label">Category</lable>-->
+    <!--            <select class="form-control selectric @error('category_id') is-invalid @enderror" name="category_id">-->
+    <!--                <option disabled selected>Select Category</option>-->
+    <!--                @foreach($category as $cat)-->
+    <!--                    <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>-->
+    <!--                        {{ $cat->name }}-->
+    <!--                    </option>-->
+    <!--                @endforeach-->
+    <!--            </select>-->
+    <!--            @error('category_id')-->
+    <!--            <span class="invalid-feedback" role="alert">-->
+    <!--                <strong>{{ $message }}</strong>-->
+    <!--            </span>-->
+    <!--            @enderror-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+
+<!--    <div class="col-md-6">-->
+<!--        <div class="form-group row mb-4">-->
+<!--            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Trainer</label>-->
+<!--            <div class="col-sm-12 col-md-9">-->
+                
+<!--                <select class="form-control selectric @error('trainer_id') is-invalid @enderror" name="trainer_id">-->
+<!--                    <option disabled selected>Select Trainer</option>-->
+<!--                    @foreach($trainer as $tra)-->
+<!--                        <option value="{{ $tra->id }}" {{ old('trainer_id') == $tra->id ? 'selected' : '' }}>-->
+<!--                            {{ $tra->name }}-->
+<!--                        </option>-->
+<!--                    @endforeach-->
+<!--                </select>-->
+<!--                @error('trainer_id')-->
+<!--                <div class="invalid-feedback">{{ $message }}</div>-->
+<!--                @enderror-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 
 
                   <div class="form-group row mb-4">
@@ -74,17 +115,17 @@
                     </div>
                   </div>
 
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Icon</label>
-                    <div class="col-sm-12 col-md-7">
-                      <input type="file" class="form-control @error('icon') is-invalid @enderror" name="icon" id="iconInput" accept="image/*" onchange="previewIcon()">
-                      <img id="iconPreview" src="#" alt="Image Preview" style="max-width: 100%; max-height: 150px; display: none;">
+                  <!--<div class="form-group row mb-4">-->
+                  <!--  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Icon</label>-->
+                  <!--  <div class="col-sm-12 col-md-7">-->
+                  <!--    <input type="file" class="form-control @error('icon') is-invalid @enderror" name="icon" id="iconInput" accept="image/*" onchange="previewIcon()">-->
+                  <!--    <img id="iconPreview" src="#" alt="Image Preview" style="max-width: 100%; max-height: 150px; display: none;">-->
 
-                      @error('image')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-                    </div>
-                  </div>
+                  <!--    @error('image')-->
+                  <!--    <div class="invalid-feedback d-block">{{ $message }}</div>-->
+                  <!--    @enderror-->
+                  <!--  </div>-->
+                  <!--</div>-->
 
 
                   <div class="form-group row mb-4">
@@ -106,7 +147,7 @@
                       @enderror
                     </div>
                   </div>
-
+               
                  
 
                   <div class="form-group row mb-4">
@@ -167,41 +208,56 @@
                     </div>
                   </div>
 
+                    <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Select Days <br> (select mutiple on control + click)</label>
+                        <div class="col-sm-12 col-md-7">
+                            <select class="form-control select2 " style="height:150px" name="days[]" multiple="multiple">
+                                <option value="Monday"  selected class="m-2 p-2" >Monday</option>
+                                <option value="Tuesday"selected class="m-2 p-2">Tuesday</option>
+                                <option value="Wednesday"  selected class="m-2 p-2">Wednesday</option>
+                                <option value="Thursday"selected class="m-2 p-2">Thursday</option>
+                                <option value="Friday" selected class="m-2 p-2">Friday</option>
+                                <option value="Saturday"   class="m-2 p-2">Saturday</option>
+                                <option value="Sunday"  class="m-2 p-2">Sunday</option>
+                            </select>
+                            @error('days')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
 
-              
-
-
-                  <div class="form-group row mb-4">
-    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Timing</label>
-    <div class="col-sm-12 col-md-7">
-        <div id="timeRanges">
-            @foreach(old('start_times', ['']) as $index => $startTime)
-            <div class="time-range d-flex">
-                <select name="days[]" class="form-control">
-                    <option value="" disabled selected>Select Day</option>
-                    @foreach(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
-                    <option value="{{ $day }}" @if(old('days.' . $index, '') == $day) selected @endif>{{$day}}</option>
-                    @endforeach
-                </select>
-                <input type="time" class="form-control" name="start_times[]" value="{{ $startTime }}" placeholder="Start Time">
-                <span class="m-2">To </span>
-                <input type="time" class="form-control" name="end_times[]" value="{{ old('end_times.' . $index, '') }}">
-                <button type="button" class="btn btn-sm btn-danger remove-time-range m-2">Remove</button>
-            </div>
-            @endforeach
-        </div>
-        <button type="button" class="btn btn-sm btn-primary" id="addTimeRange">Add Time Range</button>
-
-        @error('start_times')
-        <div class="invalid-feedback d-block">{{ $message }}</div>
-        @enderror
-
-        @error('end_times')
-        <div class="invalid-feedback d-block">{{ $message }}</div>
-        @enderror
-    </div>
-</div>
-
+             
+                <div class="form-group row mb-4" id="batch-container">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Batch wise no of Seats</label>
+                    <div class="col-sm-12 col-md-7">
+                        <div id="batchandlimit">
+                            <div class="month-price d-flex batch">
+                                <select name="batchs[]" class="form-control">
+                                    <option value="" disabled>Select Batch</option>
+                                    @foreach($batchs as $batchOption)
+                                        <option value="{{ $batchOption->id }}">
+                                            {{ \Carbon\Carbon::parse($batchOption->start)->format('h:i A') }} to
+                                            {{ \Carbon\Carbon::parse($batchOption->end)->format('h:i A') }}  
+                                            ({{ \Carbon\Carbon::parse($batchOption->start)->diff(\Carbon\Carbon::parse($batchOption->end))->format('%hh %im') }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <span class="m-2"> OF </span>
+                                <input type="number" class="form-control" name="no_of_seats[]" placeholder="Enter Seat here">
+                                <button type="button" class="btn btn-sm btn-danger remove-batch m-2">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary" id="addbatch">Add Batch and Seat</button>
+                
+                        @error('batchs')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                
+                        @error('no_of_seats')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Zoom Link</label>
@@ -215,8 +271,8 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                     <div class="col-sm-12 col-md-7">
                       <select class="form-control selectric" name="status">
-                        <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>DeActive</option>
+                        <option value="1"selected >Active</option>
+                        <option value="0" >DeActive</option>
                       </select>
 
                       @error('status')
@@ -241,6 +297,7 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                     <div class="col-sm-12 col-md-7">
                       <button class="btn btn-primary" type="submit">Publish</button>
+                       <a href="{{route('courses.index')}}" class="btn btn-success">Cancel</a>
                     </div>
                   </div>
                 </form>
@@ -328,6 +385,32 @@
         });
     });
 
+ $(document).ready(function() {
+        // Add Batch button click
+        $('#addbatch').on('click', function() {
+            var clone = $('.batch:first').clone();
+            var select = clone.find('select[name="batchs[]"]');
+            var selectedOptions = $('#batch-container select[name="batchs[]"]').map(function() {
+                return $(this).val();
+            }).get();
 
+            // Remove previously selected options from the cloned select
+            select.find('option').each(function() {
+                var optionValue = $(this).val();
+                if (selectedOptions.includes(optionValue)) {
+                    $(this).remove();
+                }
+            });
+
+            // Append the cloned batch to the container
+            clone.find('input[name="no_of_seats[]"]').val('');
+            clone.appendTo('#batchandlimit');
+        });
+
+        // Remove Batch button click (using event delegation)
+        $('#batchandlimit').on('click', '.remove-batch', function() {
+            $(this).closest('.batch').remove();
+        });
+    });
   </script>
 </x-app-layout>

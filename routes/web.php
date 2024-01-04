@@ -37,7 +37,8 @@ Route::get('contact',[ContactController::class,'index'])->name('contact');
 Route::post('contact',[ContactController::class,'save'])->name('contact.save');
 Route::get('login',[AuthController::class,'login'])->name('login');
 Route::Post('login',[AuthController::class,'login'])->name('login.process');
-Route::get('policy',[HomeController::class,'policy'])->name('policy');
+Route::get('policy',[HomeController::class,'returnPolicy'])->name('returnPolicy');
+Route::get('return/policy',[HomeController::class,'policy'])->name('policy');
 Route::get('terms',[HomeController::class,'terms'])->name('terms');
 Route::get('signup',[AuthController::class,'signup'])->name('signup');
 Route::get('forgetPassword',[AuthController::class,'forgetPassword'])->name('forgetPassword');
@@ -45,7 +46,7 @@ Route::get('otp',[AuthController::class,'otp'])->name('otp');
 Route::Post('subscribe',[HomeController::class,'subscribe'])->name('subscribe');
 Route::post('enquiry',[HomeController::class,'enquirySave'])->name('enquiry.save');
 Route::post('/signup', [AuthController::class, 'processSignup'])->name('signup.process');
-
+Route::middleware('guestAuth')->group( function(){
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 Route::get('courseDetails/{id}',[DashboardController::class,'courseDetails'])->name('courseDetails');
 Route::get('message',[DashboardController::class,'message'])->name('message');
@@ -56,6 +57,10 @@ Route::post('profile/update',[DashboardController::class,'profile'])->name('prof
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('checkout/{courses}',[CheckoutController::class,'index'])->name('checkout');
+Route::get('checkout/{courses?}',[CheckoutController::class,'index'])->name('checkout');
+Route::post('checkout/store',[CheckoutController::class,'store'])->name('checkout.store');
+Route::post('checkout/payment',[CheckoutController::class,'payment'])->name('checkout.payment');
+Route::POST('trail/class',[CheckoutController::class,'trail'])->name('trail.class');
 
+});
 

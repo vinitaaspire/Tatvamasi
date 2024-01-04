@@ -37,34 +37,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>79102</td>
-                                        <td class="text-nowrap" >12-12-2023</td>
-                                        <td><i class="las la-rupee-sign"></i>1899</td>
-                                        <td class="d-flex align-items-center border-bottom-0" ><span class="badge bg-success" >Paid</span></td>
-                                        <td><i class="las la-download"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>79101</td>
-                                        <td class="text-nowrap" >12-12-2023</td>
-                                        <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>2894</td>
-                                        <td><span class="badge bg-success" >Paid</span></td>
-                                        <td><i class="las la-download"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>79052</td>
-                                        <td class="text-nowrap" >12-12-2023</td>
-                                        <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>1200</td>
-                                        <td><span class="badge bg-danger" >Cancelled</span></td>
-                                        <td><i class="las la-download"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>79021</td>
-                                        <td class="text-nowrap" >12-12-2023</td>
-                                        <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>1499</td>
-                                        <td><span class="badge bg-warning" >Pending</span></td>
-                                        <td><i class="las la-download" dowload="download" ></i></td>
-                                    </tr>
+                                    <!--<tr>-->
+                                    <!--    <td>79102</td>-->
+                                    <!--    <td class="text-nowrap" >12-12-2023</td>-->
+                                    <!--    <td><i class="las la-rupee-sign"></i>1899</td>-->
+                                    <!--    <td class="d-flex align-items-center border-bottom-0" ><span class="badge bg-success" >Paid</span></td>-->
+                                    <!--    <td><i class="las la-download"></i></td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                    <!--    <td>79101</td>-->
+                                    <!--    <td class="text-nowrap" >12-12-2023</td>-->
+                                    <!--    <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>2894</td>-->
+                                    <!--    <td><span class="badge bg-success" >Paid</span></td>-->
+                                    <!--    <td><i class="las la-download"></i></td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                    <!--    <td>79052</td>-->
+                                    <!--    <td class="text-nowrap" >12-12-2023</td>-->
+                                    <!--    <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>1200</td>-->
+                                    <!--    <td><span class="badge bg-danger" >Cancelled</span></td>-->
+                                    <!--    <td><i class="las la-download"></i></td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                    <!--    <td>79021</td>-->
+                                    <!--    <td class="text-nowrap" >12-12-2023</td>-->
+                                    <!--    <td class="d-flex align-items-center border-bottom-0"  ><i class="las la-rupee-sign"></i>1499</td>-->
+                                    <!--    <td><span class="badge bg-warning" >Pending</span></td>-->
+                                    <!--    <td><i class="las la-download" dowload="download" ></i></td>-->
+                                    <!--</tr>-->
 
                                 </tbody>
                             </table> 

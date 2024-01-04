@@ -3,22 +3,31 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Courses;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class DashboardController extends Controller
 {
     Public function index(){
         if(Auth::check()){
-
-            return view('front.dashboard.index');
+            $order = Order::with('course')
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        
+        
+            
+            return view('front.dashboard.index' , compact('order') );
         }
         return view('front.login');
     }
 
     Public function courseDetails($id){
-        return view('front.dashboard.courseDetails');
+        $course = Courses::where('name', $id)->first();
+        return view('front.dashboard.courseDetails' , compact('course'));
     }
 
     Public function message(){

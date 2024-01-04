@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact_us;
+use App\Models\enquiry;
 class ContactUsContreoller extends Controller
 {
    
@@ -21,7 +22,8 @@ class ContactUsContreoller extends Controller
      */
     public function create()
     {
-        //
+        $contact_enquiry =   enquiry::latest()->get();
+         return  view('back.contactUs.enquiry' , compact('contact_enquiry'));
     }
 
     /**

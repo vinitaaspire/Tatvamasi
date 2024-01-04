@@ -7,8 +7,11 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h4>Edit Courses</h4>
+              <div class="card-header d-flex justify-content-between">
+                <a href="{{ route('courses.index') }}" class="btn btn-success">
+                    <i class="fas fa-arrow-left"></i> Back to Courses
+                </a>
+             <h4>Edit Course</h4> 
               </div>
               <div class="card-body">
                 <form action="{{route('courses.update', ['course' => $courses->id])}}" method="post" enctype="multipart/form-data">
@@ -25,24 +28,24 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
-                    <div class="col-sm-12 col-md-7">
-                      <select class="form-control selectric @error('category_id') is-invalid @enderror" name="category_id">
-                        <option disabled selected>Select Category</option>
-                        @foreach($category as $cat)
-                        <option value="{{ $cat->id }}" {{ $courses->category_id == $cat->id ? 'selected' : '' }}>
-                          {{ $cat->name }}
-                        </option>
-                        @endforeach
-                      </select>
-                      @error('category_id')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                  </div>
+                  <!--<div class="form-group row mb-4">-->
+                  <!--  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>-->
+                  <!--  <div class="col-sm-12 col-md-7">-->
+                  <!--    <select class="form-control selectric @error('category_id') is-invalid @enderror" name="category_id">-->
+                  <!--      <option disabled selected>Select Category</option>-->
+                  <!--      @foreach($category as $cat)-->
+                  <!--      <option value="{{ $cat->id }}" {{ $courses->category_id == $cat->id ? 'selected' : '' }}>-->
+                  <!--        {{ $cat->name }}-->
+                  <!--      </option>-->
+                  <!--      @endforeach-->
+                  <!--    </select>-->
+                  <!--    @error('category_id')-->
+                  <!--    <span class="invalid-feedback" role="alert">-->
+                  <!--      <strong>{{ $message }}</strong>-->
+                  <!--    </span>-->
+                  <!--    @enderror-->
+                  <!--  </div>-->
+                  <!--</div>-->
 
                   <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Trainer</label>
@@ -76,17 +79,17 @@
                   </div>
 
 
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Icon</label>
-                    <div class="col-sm-12 col-md-7">
-                      <input type="file" class="form-control @error('icon') is-invalid @enderror" name="icon" id="iconInput" accept="image/*" onchange="previewIcon()">
-                      <img id="iconPreview" src="{{ asset($courses->icon )}}" alt="Image Preview" style="max-width: 100%; max-height: 150px;">
+                  <!--<div class="form-group row mb-4">-->
+                  <!--  <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Icon</label>-->
+                  <!--  <div class="col-sm-12 col-md-7">-->
+                  <!--    <input type="file" class="form-control @error('icon') is-invalid @enderror" name="icon" id="iconInput" accept="image/*" onchange="previewIcon()">-->
+                  <!--    <img id="iconPreview" src="{{ asset($courses->icon )}}" alt="Image Preview" style="max-width: 100%; max-height: 150px;">-->
 
-                      @error('image')
-                      <div class="invalid-feedback d-block">{{ $message }}</div>
-                      @enderror
-                    </div>
-                  </div>
+                  <!--    @error('image')-->
+                  <!--    <div class="invalid-feedback d-block">{{ $message }}</div>-->
+                  <!--    @enderror-->
+                  <!--  </div>-->
+                  <!--</div>-->
 
 
                   <div class="form-group row mb-4">
@@ -132,7 +135,7 @@
                         </div>
                         @endforeach
                       </div>
-                      <button type="button" class="btn btn-sm btn-primary" id="addmonthpriuce">Add Week And Price</button>
+                      <button type="button" class="btn btn-sm btn-primary" id="addmonthpriuce">Add Months And Price</button>
                       @error('start_times')
                       <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
@@ -236,6 +239,7 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                     <div class="col-sm-12 col-md-7">
                       <button class="btn btn-primary" type="submit">Publish</button>
+                        <a href="{{route('courses.index')}}" class="btn btn-success">Cancel</a>
                     </div>
                   </div>
                 </form>

@@ -7,9 +7,12 @@
             <div class="row">
               <div class="col-12">
                 <div class="card">
-                  <div class="card-header">
-                    <h4>Create Testimonial</h4>
-                  </div>
+                  <div class="card-header d-flex justify-content-between">
+                <a href="{{ route('testimonial.index') }}" class="btn btn-success">
+                    <i class="fas fa-arrow-left"></i> Back to Testimonials
+                </a>
+             <h4>Create Testimonial</h4> 
+              </div>
                   <div class="card-body">
                     <form action="{{route('testimonial.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -63,6 +66,9 @@
                       <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                       <div class="col-sm-12 col-md-7">
                         <button class="btn btn-primary"  type="submit" >Publish</button>
+                         <a href="{{ route('testimonial.index') }}" class="btn btn-success">
+                   Cancel
+                </a>
                       </div>
                     </div>
                     </form>

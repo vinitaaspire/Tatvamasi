@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Courses;
 use App\Models\CourseCategory;
 use App\Models\Trainer;
+use App\Models\Batch;
 use Illuminate\Support\Str;
 class CoursesController extends Controller
 {
@@ -25,8 +26,9 @@ class CoursesController extends Controller
     {
         $category = CourseCategory::where('status', 1)->latest()->get();
         $trainer   = Trainer::latest()->get();
+        $batchs = Batch::active()->get();
 
-        return view('back.courses.create', compact('category', 'trainer'));
+        return view('back.courses.create', compact('category', 'trainer' , 'batchs'));
     }
 
     /**
@@ -39,13 +41,13 @@ class CoursesController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category_id' => 'required|exists:course_categories,id',
+            // 'category_id' => 'required|exists:course_categories,id',
             'trainer_id' => 'required|exists:trainers,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'icon' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'short_desc' => 'required',
             'no_of_lecture' => 'required|numeric',
-            'price' => 'required|numeric',
+            // 'price' => 'required|numeric',
             'desc' => 'required',
             
             'status' => 'required|in:0,1',
@@ -84,6 +86,7 @@ class CoursesController extends Controller
         $course->short_desc = $request->input('short_desc');
         $course->no_of_lecture = $request->input('no_of_lecture');
         $course->price = $this->formatTimeRanges($request->input('months'), $request->input('price'));
+        $course->batch_limit = $this->formatTimeRanges($request->input('batchs'), $request->input('no_of_seats'));
         $course->desc = $request->input('desc');
         $course->days = implode(',', $request->input('days'));
         $course->status = $request->input('status');
@@ -94,21 +97,21 @@ class CoursesController extends Controller
         $startTimes = $request->input('start_times');
         $endTimes = $request->input('end_times');
 
-        $timing = [];
+        // $timing = [];
 
-        foreach ($startTimes as $index => $startTime) {
-            // Convert day to uppercase
-            $day = isset($days[$index]) ? strtoupper($days[$index]) : null;
-            $endTime = isset($endTimes[$index]) ? $endTimes[$index] : null;
+        // foreach ($startTimes as $index => $startTime) {
+        //     // Convert day to uppercase
+        //     $day = isset($days[$index]) ? strtoupper($days[$index]) : null;
+        //     $endTime = isset($endTimes[$index]) ? $endTimes[$index] : null;
 
-            $timing[] = [
-                'days' => $day,
-                'start_time' => $startTime,
-                'end_time' => $endTime,
-            ];
-        }
+        //     $timing[] = [
+        //         'days' => $day,
+        //         'start_time' => $startTime,
+        //         'end_time' => $endTime,
+        //     ];
+        // }
 
-        $course->timeing = json_encode($timing);
+        // $course->timeing = json_encode($timing);
 
         $course->save();
 
@@ -157,7 +160,7 @@ class CoursesController extends Controller
         $category = CourseCategory::where('status', 1)->latest()->get();
         $trainer   = Trainer::latest()->get();
         $courses = Courses::findorfail($id);
-
+        $batchs = Batch::active()->get();
         return view('back.courses.edit', compact('courses' , 'category' , 'trainer'));
     }
 

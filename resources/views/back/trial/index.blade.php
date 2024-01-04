@@ -36,6 +36,25 @@
                       <input type="number" class="form-control" name="price" id="price" value="{{ $trial->price ?? ''}}" >
                       </div>
                     </div>
+                    
+                     <div class="form-group row mb-4">
+                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">days </label>
+                      <div class="col-sm-12 col-md-7">
+                      <input type="number" class="form-control" name="days" id="days" value="{{ $trial->days ?? ''}}" >
+                      </div>
+                    </div>
+                    
+                    
+                      <div class="form-group row mb-4">
+                      <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status </label>
+                      <div class="col-sm-12 col-md-7">
+                       <select name="status" class="form-control">
+                           <option @if($trial->status == 1) selected @endif  value="1">Active</option>
+                             <option  @if($trial->status == 0 ) selected @endif  value="0">Unactive</option>
+                       </select>
+                      </div>
+                    </div>
+                    
 
          
 

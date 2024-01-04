@@ -26,6 +26,8 @@ class TrialController extends Controller
         $trial->title = $request->input('title');
         $trial->description = $request->input('description');
         $trial->price = $request->input('price');
+         $trial->status = $request->status;
+          $trial->days = $request->days;
         $trial->save();
     
         return redirect()->back()->with('success', 'Trial Class  data stored successfully.');

@@ -11,7 +11,7 @@ class BannerController extends Controller
     public function index(Request $request)
     {
            $Banners =  Banner::latest()->get();
-            return view('back.Banner.index', compact('Banners'));
+            return view('back.banner.index', compact('Banners'));
      
     }
 
@@ -22,7 +22,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('back.Banner.create');
+        return view('back.banner.create');
     }
 
     /**
@@ -51,6 +51,16 @@ class BannerController extends Controller
                 $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
             }
         }
+        
+         $mobileImagePath = null;
+        if ($request->hasFile('mobile_image')) {
+            // Check if the file is valid
+            if ($request->file('mobile_image')->isValid()) {
+                $mobileUniqueFileName = md5(time() . $request->file('mobile_image')->getClientOriginalName());
+                $mobileImagePath = $request->file('mobile_image')->move('uploads', $uniqueFileName);
+            }
+        }
+        
     
         // Create a new Banner instance or find an existing one
         $Banner = $request->filled('Banner_id') ? Banner::findOrFail($request->Banner_id) : new Banner();
@@ -58,6 +68,7 @@ class BannerController extends Controller
         // Set properties of the banner
         $Banner->title = $request->input('title');
         $Banner->image = $imagePath ?? $Banner->image;
+        $Banner->mobile_image = $mobileImagePath ?? $Banner->mobile_image;
         $Banner->link = $request->input('link');
         $Banner->status = $request->input('status') ?? 1;
         $Banner->order = $request->input('order');
@@ -96,7 +107,7 @@ class BannerController extends Controller
     public function edit($id)
     {
          $Banner = Banner::findorfail($id);
-       return view('back.Banner.edit', compact('Banner'));
+       return view('back.banner.edit', compact('Banner'));
 
      
     }
@@ -139,7 +150,22 @@ class BannerController extends Controller
         $imagePath = null;
     }
    
-
+    if ($request->hasFile('mobile_image')) {
+        // Check if the file is valid
+        if ($request->file('mobile_image')->isValid()) {
+            $uniqueFileName = md5(time() . $request->file('mobile_image')->getClientOriginalName());
+            $mobileImagePath = $request->file('mobile_image')->move('uploads', $uniqueFileName);
+    
+        } else {
+           
+            $mobileImagePath = null;
+        }
+    } else {
+        
+        $mobileImagePath = null;
+    }
+    
+    $Banner->mobile_image = $mobileImagePath ??  $Banner->mobile_image;
     $Banner->image = $imagePath ??  $Banner->image;
 
         // Save the changes to the database

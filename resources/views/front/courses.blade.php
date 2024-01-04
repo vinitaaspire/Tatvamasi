@@ -26,7 +26,7 @@
         <div class="row align-items-md-center pb-lg-5 pb-4 mb-5" style="border-bottom:1px solid #ebebeb;">
             <div class="col-lg-4 col-md-12 col-sm-12">
                 <div class="left-img-cours">
-                    <img src="{{asset('front/assets/images/course3.jpg')}}">
+                    <img src="{{ asset($course->image ?? '')}}">
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-sm-12">
@@ -37,11 +37,33 @@
                     <div class="info-content-cours">
                         <div class="details-part mt-1 mb-1">
                         <p><img src="{{asset('front/assets/images/menu.png')}}">Category <span>:</span> <span>{{$course->category->name ?? ''}}</span></p>
-                        <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span>{{$course->price[0] ?? ''}}-Months</span></p>
+    
+<?php
+// Assuming $course->price is a string in the format "11 - 307, 8 - 310, 11 - 93, 6 - 492"
+$priceString = $course->price;
+
+// Explode the string into an array based on commas
+$priceArray = explode(', ', $priceString);
+
+// Extract the first entry
+if (!empty($priceArray)) {
+    // Split the first entry into month and price
+    list($firstMonth, $firstPrice) = explode(' - ', $priceArray[0]);
+
+    // Output the first month and price
+   // echo "First Month: $firstMonth, First Price: $firstPrice";
+} else {
+    // echo "No data available";
+}
+?>
+
+
+
+                        <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span>{{ $firstMonth ?? ''}}</span></p>
                         <p><img src="{{asset('front/assets/images/website.png')}}">Lecture <span>:</span><span>{{ $course->no_of_lecture ?? ''}}</span></p>
                     </div>
                         <div class="money-part">
-                            <img src="{{asset('front/assets/images/icons/rupee.png')}}" class="img-fluid" alt="Rupee" title="Rupee" /><p>{{$course->price[0] ?? ''}}</p>
+                            <img src="{{asset('front/assets/images/icons/rupee.png')}}" class="img-fluid" alt="Rupee" title="Rupee" /><p>{{$firstPrice ?? ''}}</p>
                         </div>
                     </div>
 

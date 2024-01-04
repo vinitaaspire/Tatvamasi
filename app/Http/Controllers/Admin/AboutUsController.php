@@ -9,46 +9,56 @@ use Illuminate\Http\Request;
 class AboutUsController extends Controller
 {
     public function index(){
-        $about = About::first();
+        $about = About::where('module','about')->first();
         return view('back.about.index' , compact('about'));
     }
+    
     public function store(Request $request)
     {
-        // Attempt to retrieve an existing About record
-        $about = About::first();
-    
-        // If no existing record is found, create a new one
+     
+          $about = About::where('module', $request->module)->first();
+        
         if (!$about) {
-            $about = new About();
+            // If the record doesn't exist, create a new one
+            $about = new About;
+            $about->module = $request->module;
+            $about->save();
         }
+    
     
         if ($request->hasFile('image')) {
             $uniqueFileName =$request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->move('uploads', $uniqueFileName);
             $about->image = $imagePath;
         }
+       
+       
+        if ($request->hasFile('images')) {
+        $uploadedImages = [];
 
+        foreach ($request->file('images') as $image) {
+            $uniqueFileName = $image->getClientOriginalName();
+            $imagePath = $image->move('uploads', $uniqueFileName);
+            $uploadedImages[] = $imagePath;
+        }
+
+        // Save the array of image paths to the 'images' attribute
+        $about->images = $uploadedImages;
+    }
     
-        // // Handle the multiple image uploads
-        // $imagePaths = [];
-    
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $image) {
-        //         $imagePaths[] = $image->move('uploads', 'public');
-        //     }
-    
-        //     $about->images = json_encode($imagePaths);
-        // } else {
-        //     $about->images = null; // If no images are uploaded, set it to null or an empty value based on your model definition
-        // }
-    
-        // Create a new About model instance
+        $about->name = $request->name;
         $about->title = $request->input('title');
-        $about->description = $request->input('description');
-    
-        $about->save();
-    
-        return redirect()->back()->with('success', 'About data stored successfully.');
+        $about->description = $request->description;
+        $about->shortdesc = $request->shortdesc;
+        $about->status = $request->status;
+
+    if($about->save()){
+         return redirect()->back()->with('success', $request->module . ' info data stored successfully.');
+    }else{
+         return redirect()->back()->with('success', $request->module . ' Somting went wrong.');
+    }
+   
+
     }
     
     

@@ -15,6 +15,8 @@ use App\Models\WhyUs;
 use App\Models\Testimonial;
 use App\Models\TrailClass;
 use App\Models\Trainer;
+use App\Models\Feature;
+use App\Models\Partners;
 
 class HomeController extends Controller
 {
@@ -25,15 +27,16 @@ class HomeController extends Controller
         $courses = Courses::active()->take(6)->get();
         $whyUs   = WhyUs::active()->take(5)->get();
         $testimonial = Testimonial::active()->get();
-        $about = About::first();
+        $about = About::where('module','about')->first();
         $trainers = Trainer::active()->get();
         $courses = Courses::active()->take(6)->get();
         $pricing = Price::active()->take(3)->get();
         $blogs  = Blog::active()->take(3)->get();
         $trial   = TrailClass::first();
         $allCourses = Courses::active()->get();
-
-
+        $partners = Partners::active()->get();
+        $abouts = About::get();
+        $feature = Feature::active()->take(6)->get();
         return view('front.welcome', compact(
             'banners',
             'courses',
@@ -45,7 +48,10 @@ class HomeController extends Controller
             'pricing',
             'blogs',
             'trial',
-            'allCourses'
+            'allCourses',
+            'abouts',
+            'feature',
+            'partners'
         ));
     }
 
@@ -80,6 +86,10 @@ class HomeController extends Controller
 
         return view('front.policy');
 
+    }
+
+    Public function returnPolicy(){
+        return view('front.returnpolicy');
     }
 
     Public function terms(){

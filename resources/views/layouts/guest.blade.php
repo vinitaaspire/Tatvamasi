@@ -70,26 +70,26 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" style="margin-top:-10px">
                         <ul class="navbar-nav align-items-md-center">
                             <li>
-                                <a class="nav-link active" href="{{route('/')}}">HOME</a>
+                                <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }} " href="{{route('/')}}">HOME</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="{{route('about')}}">ABOUT US</a>
+                                <a class="nav-link {{ (request()->is('about')) ? 'active' : '' }}" href="{{route('about')}}">ABOUT US</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="{{route('course')}}">COURSES</a>
+                                <a class="nav-link {{ (request()->is('course')) ? 'active' : '' }}  " href="{{route('course')}}">COURSES</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="{{route('testimonial')}}">TESTIMONIALS</a>
+                                <a class="nav-link {{ (request()->is('testimonial')) ? 'active' : '' }}   " href="{{route('testimonial')}}">TESTIMONIALS</a>
                             </li>
 
                             <li>
-                                <a class="nav-link" href="{{route('blogs')}}">BLOG</a>
+                                <a class="nav-link {{ (request()->is('blogs')) ? 'active' : '' }}  " href="{{route('blogs')}}">BLOG</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="{{route('contact')}}">CONTACT</a>
+                                <a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}  " href="{{route('contact')}}">CONTACT</a>
                             </li>
                             <li>
                             @if(Auth::check())
@@ -198,6 +198,7 @@
                                 <ul class="list_none footer_link text-md-right text-sm-right">
                                     <li><a href="{{route('terms')}}">Terms of use</a></li>
                                     <li><a href="{{route('policy')}}">Privacy Policy</a></li>
+                                    <li><a href="{{route('returnPolicy')}}">Return Policy</a></li>
                                 </ul>
                             </div>
                         </div>

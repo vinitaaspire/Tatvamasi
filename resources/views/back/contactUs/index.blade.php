@@ -7,11 +7,11 @@
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <h4>Contact Us </h4>
-               
+                <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-info"></i></button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-striped">
+                  <table class="table table-striped"  id="table-1" >
                     <thead>
                       <tr>
                         <th class="text-center">
@@ -60,6 +60,55 @@
     </section>
 
   </div>
+  
+     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+               <form class="form" action="{{route('about.store')}}" method="post">
+                   @csrf
+                   @php
+                      $name = 'contact';
+                      $data = App\Models\About::where('module',$name )->first();
+                   @endphp
+                   <input type="hidden" name="module" value="{{$name}}">
+                   <div class="form-group">
+                       <lable>Name</lable>
+                       <input type="text" name="name" placeholder="Enter Name Here ... " value="{{$data->name ?? '' }}" class="form-control">
+                   </div>
+                     <div class="form-group">
+                       <lable>Title</lable>
+                       <input type="text" name="title" placeholder="Enter Title Here ... " value="{{$data->title ?? '' }}"  class="form-control">
+                   </div>
+                    <div class="form-group">
+                       <lable>Description</lable>
+                       <textarea  name="shortdesc" placeholder="Enter Discription Here ... "class="form-control" >{{$data->shortdesc ?? '' }}</textarea>
+                   </div>
+                     <div class="form-group">
+                       <lable>Status</lable>
+                     <select name="status" class="form-control">
+                         <option value="1">Show</option>
+                         <option value="0">Hide</option>
+                     </select>
+                   </div>
+                    <div class="form-group bg-whitesmoke br ">
+                       <input type="submit" name="submit" class="btn btn-primary">
+                   </div>
+                   
+               </form>
+              </div>
+             
+            </div>
+          </div>
+        </div>   
+        
   <script>
     $(document).ready(function() {
       // Update status when the select value changes

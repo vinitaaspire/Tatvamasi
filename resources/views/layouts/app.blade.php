@@ -25,6 +25,11 @@
   <link rel="stylesheet" href="{{asset('back/assets/bundles/codemirror/theme/duotone-dark.css')}}">
   <link rel="stylesheet" href="{{asset('back/assets/bundles/jquery-selectric/selectric.css')}}">
 
+  <!-- Add these links in your HTML head section -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
@@ -85,23 +90,29 @@
                   data-feather="pie-chart"></i><span>Orders</span></a>
             </li>
 
-            <li class="dropdown {{ (request()->is('admin/trial*')) ? 'active' : '' }}">
-              <a href="{{route('trial.index')}}" class=" nav-link "><i
-                  data-feather="server"></i><span>Trial Class </span></a>
-            </li>
+            
 
 
-            <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') ? 'active' : '') }}">
+            <li class="dropdown {{ (request()->is('admin/courses*') || request()->is('admin/category*') || request()->is('admin/trial*') || request()->is('admin/batch*') || request()->is('admin/coupon*')  ? 'active' : '') }}">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="target"></i><span>Courses</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{route('courses.index')}}">Courses</a></li>
-                <li><a class="nav-link" href="{{route('category.index')}}">Categorys</a></li>
+                  <li><a class="nav-link" href="{{route('batch.index')}}">Batch</a></li>
+                <!--<li><a class="nav-link" href="{{route('category.index')}}">Categorys</a></li>-->
+                <li><a class="nav-link" href="{{route('trial.index')}}">Trial Class</a></li>
+                <li><a class="nav-link" href="{{route('coupon.index')}}">Coupon</a></li>
               </ul>
             </li>
-            <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
-              <a href="{{route('contactUs.index')}}" class=" nav-link "><i
-                  data-feather="radio"></i><span>Contact Us </span></a>
+            
+             <li class="dropdown {{ (request()->is('admin/contactUs*') || request()->is('admin/enquiry*') ? 'active' : '') }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="radio"></i><span>Enquiry</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{route('contactUs.index')}}">Contact Us</a></li>
+                <li><a class="nav-link" href="{{route('contactUs.create')}}">Enquiry</a></li>
+              
+              </ul>
             </li>
+         
             <li class="dropdown {{ (request()->is('admin/blog*')) ? 'active' : '' }}  ">
               <a href="{{route('blog.index')}}" class=" nav-link "><i
                   data-feather="umbrella"></i><span>Blog</span></a>
@@ -111,9 +122,14 @@
                   data-feather="camera"></i><span>Banner</span></a>
              
             </li>
+             <li class="dropdown {{ (request()->is('admin/feature*')) ? 'active' : '' }} ">
+              <a href="{{route('feature.index')}}" class=" nav-link "><i
+                  data-feather="cloud-lightning"></i><span>Feature</span></a>
+             
+            </li>
             <li class="dropdown {{ (request()->is('admin/testimonial*')) ? 'active' : '' }}  ">
               <a href="{{route('testimonial.index')}}" class=" nav-link "><i
-                  data-feather="tag"></i><span>Testimonial</span></a>
+                  data-feather="message-circle"></i><span>Testimonial</span></a>
              
             </li>
             <li class="dropdown {{ (request()->is('admin/trainers*')) ? 'active' : '' }}  ">
@@ -129,32 +145,32 @@
                   data-feather="slack"></i><span>Pricing</span></a>
             </li>
 
-            <!-- <li class="dropdown {{ (request()->is('admin/contactUs*')) ? 'active' : '' }}">
-              <a href="{{route('contactUs.index')}}" class=" nav-link "><i
-                  data-feather="radio"></i><span>Contact Us </span></a>
-            </li> -->
-            <li class="dropdown {{ (request()->is('admin/order*')) ? 'active' : '' }}">
-              <a href="{{route('order.index')}}" class=" nav-link "><i
-                  data-feather="pie-chart"></i><span>Orders</span></a>
-            </li>
+          
 
             <li class="dropdown {{ (request()->is('admin/about*')) ? 'active' : '' }}">
               <a href="{{route('about.index')}}" class=" nav-link "><i
-                  data-feather="server"></i><span>About US</span></a>
+                  data-feather="tag"></i><span>About US</span></a>
             </li>
 
             <li class="dropdown {{ (request()->is('admin/whyus*')) ? 'active' : '' }}">
               <a href="{{route('whyus.index')}}" class=" nav-link "><i
-                  data-feather="server"></i><span>Why Choose Us</span></a>
+                  data-feather="navigation"></i><span>Why Choose Us</span></a>
             </li>
             <li class="dropdown {{ (request()->is('admin/partners*')) ? 'active' : '' }}">
               <a href="{{route('partners.index')}}" class=" nav-link "><i
-                  data-feather="server"></i><span>Partners</span></a>
+                  data-feather="gitlab"></i><span>Partners</span></a>
             </li>
-            <li class="dropdown {{ (request()->is('admin/setting*')) ? 'active' : '' }}">
-              <a href="{{route('setting.index')}}" class=" nav-link "><i
-                  data-feather="server"></i><span>Setting</span></a>
+            
+             <li class="dropdown {{ (request()->is('admin/setting*') || request()->is('mail/setting*') ? 'active' : '') }}">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="settings"></i><span>Settings</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{route('setting.index')}}">Setting</a></li>
+                <li><a class="nav-link" href="{{route('mail.index')}}">Mail</a></li>
+                
+              </ul>
             </li>
+            
+           
 
           </ul>
         </aside>
@@ -195,6 +211,11 @@
   <script src="{{asset('back/assets/bundles/ckeditor/ckeditor.js')}}"></script>
   <!-- Page Specific JS File -->
   <script src="{{asset('back/assets/js/page/ckeditor.js')}}"></script>
+    <script src="{{asset('back/assets/js/page/forms-advanced-forms.js')}}"></script>
+    
+ <script src="{{asset('back/assets/js/page/forms-advanced-forms.js')}}"></script>
+    <script src="{{asset('back/assets/bundles/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+  
 
 </body>
 

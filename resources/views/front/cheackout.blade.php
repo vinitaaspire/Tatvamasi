@@ -13,7 +13,7 @@
                                     <h3 class="fs-title"><i class="las la-arrow-left me-md-3 me-2 text-dark" role="button" onclick="history.back()"></i>Start your Weight loss, Fat Burn & Toning</h3>
                                     <p class="text-center">Register with Tatvamasi Yoga: Where Self-Care Begins.</p>
 
-                                    <form id="msform">
+                                 
                                         <!-- progressbar -->
                                         <ul id="progressbar">
 
@@ -29,6 +29,8 @@
 
                                         </ul>
                                         <fieldset class="fieldset-step">
+                                            <form  method="post" action="{{route('checkout.store')}}" class="checkout">
+                                                @csrf
                                             <div class="form-card mt-md-5">
                                                 <div class="row mt-md-3">
                                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -39,14 +41,15 @@
 
                                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                                         <div class="form-group">
-                                                            <input type="text" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control mobile_no box-info" placeholder="Mobile No. *" name="number" required="" />
+                                                        <input type="tel" pattern="[0-9]{10}" class="form-control mobile_no box-info" placeholder="Mobile No. *" name="number" required />
+
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 otp d-none">
+                                                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12 otp d-none">
                                                         <div class="form-group">
                                                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control box-info" placeholder="OTP *" name="otp" required="" />
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                                         <div class="form-group">
                                                             <input type="text" class="form-control box-info" placeholder="Email *" name="email" required="" />
@@ -55,7 +58,7 @@
 
                                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control box-info" placeholder="City " name="city" />
+                                                            <input type="text" required class="form-control box-info" placeholder="City " name="city" />
                                                         </div>
                                                     </div>
 
@@ -73,18 +76,19 @@
                                                  
                                                     <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                                                             <div class="form-group">
-                                                                <select class="form-select form-control package " required="" name="package">
-                                                                    <option class="" selected="">Select Package *</option>
+                                                            <select class="form-select form-control package" required="" name="package">
+                                                                <option class="" selected="">Select Package *</option>
                                                                 
-                                                                    @if($course->price)
-                                                                        @foreach(explode(',',$course->price) as $price)
-                                                                            @php
-                                                                                list($month, $amount) = explode('-', $price);
-                                                                            @endphp
-                                                                            <option value="{{ strtolower($month) }}">{{ ucfirst($month) }} Months : {{ $amount }}/- Rupees</option>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </select>
+                                                                @if($course->price)
+                                                                    @foreach(explode(',',$course->price) as $price)
+                                                                        @php
+                                                                            list($month, $amount) = explode('-', $price);
+                                                                        @endphp
+                                                                        <option value="{{ $month }}-{{ $amount }}">{{ ucfirst($month) }} Months: {{ $amount }}/- Rupees</option>
+                                                                    @endforeach
+                                                                @endif
+                                                            </select>
+
                                                             </div>
                                                         </div>
 
@@ -110,32 +114,33 @@
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div class="toggle-wrap">
-                                                            <input type="hidden" name="gclid_field" value="" />
-                                                            <input type="hidden" name="hsa_cam_field" value="" />
-                                                            <input type="radio" name="subscriptionType" value="onetoone" id="one" />
+                                                            
+                                                            <input type="radio" name="subscriptionType" value="one" name="session" id="one" />
                                                             <label for="one">One to One Session</label>
-                                                            <input type="radio" name="subscriptionType" value="group" id="group" checked="" />
+                                                            <input type="radio" name="subscriptionType" value="group"  name="session"  id="group" checked="" />
                                                             <label for="group">Group Session</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <label class="chk">
-                                                            <input type="checkbox" class="me-2" role="button" />
+                                                            <input type="checkbox" class="me-2" role="term" required="" />
                                                             <span>
-                                                                I have read and agree to Tatvamasi's <a href="#" class="mx-2 text-decoration-none" target="_self">Terms of Use</a> and <a href="#" class="mx-2 text-decoration-none" target="_self">Privacy Policy</a></span>
+                                                                I have read and agree to Tatvamasi's <a href="{{route('terms')}}" class="mx-2 text-decoration-none" target="_self">Terms of Use</a> and <a href="{{route('policy')}}" class="mx-2 text-decoration-none" target="_self">Privacy Policy</a></span>
                                                         </label>
 
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <button type="button" class="btn btn-default next action-button" value="Next">CONTINUE
+                                            <button type="submit" class="btn btn-default next action-button" value="submit">CONTINUE
                                                 <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
-
-
+                                                </form>
                                         </fieldset>
 
-                                        <fieldset class="fieldset-step">
+                                        <fieldset class="fieldset-step d-none">
+                                            <form action="{{route('checkout.payment')}}" method="POST" class="checkoutPayment">
+                                                @csrf
+                                                <input type="hidden" name="order_id" value="" class="order_id">
                                             <div class="form-card mt-md-5">
                                                 <div class="row mt-md-3">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -157,17 +162,17 @@
                                                                             <table class="table mb-0 table-responsive w-100">
                                                                                 <tr>
                                                                                     <td>Course Fee:</td>
-                                                                                    <td>3400</td>
+                                                                                    <td id="course_fee">0</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td>Tax:</td>
-                                                                                    <td>100</td>
+                                                                                    <td id="tax">0</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td> <strong>Total: </strong></td>
                                                                                     <td>
                                                                                         <div class="">
-                                                                                            <strong>3500</strong>
+                                                                                            <strong  class="total">0</strong>
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
@@ -190,14 +195,15 @@
                                                 </div>
                                             </div>
 
-                                            <button type="button" class="btn btn-default next action-button" value="Next">Pay Now
+                                            <button type="submit" class="btn btn-default next action-button" value="sumbit">Pay Now
                                                 <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn"></button>
 
                                             <button type="button" class="btn btn-default previous action-button-previous" value="Previous"> <img src="{{asset('front/assets/images/icons/right-arrow-btn.png')}}" class="btn-icn reverse ">Go Back</button>
-
+                               
+                                                </form>
                                         </fieldset>
 
-                                        <fieldset class="fieldset-step">
+                                        <fieldset class="fieldset-step d-none">
                                             <div class="form-card mt-md-5">
                                                 <div class="row mt-md-3">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -206,7 +212,7 @@
                                                                 <img src="{{asset('front/assets/images/icons/success.png')}}" class="img-fluid w-100" alt="Money" />
                                                             </div>
                                                             <div class="payment-success-cnt">
-                                                                <h3><span>&#8377;</span>5,600</h3>
+                                                                <h3 class="total"><span>&#8377;</span>5,600</h3>
                                                                 <h4>Payment Successful!</h4>
                                                                 <span>The payment has been done successfully.</span>
                                                                 <span>Thanks for being there with us.</span>
@@ -214,8 +220,8 @@
                                                                     PM</p>
                                                             </div>
                                                             <div class="payment-btn">
-                                                                <button>DONE <img src="{{asset('front/assets/images/icons/done.png')}}" class="login-icn" alt="Payment Done" />
-                                                                </button>
+                                                                <a href="{{route('dashboard')}}">DONE <img src="{{asset('front/assets/images/icons/done.png')}}" class="login-icn" alt="Payment Done" />
+</a>
                                                             </div>
                                                             <span>
 
@@ -240,7 +246,7 @@
                                         </fieldset>
 
 
-                                    </form>
+                               
 
 
                                 </div>
@@ -355,6 +361,77 @@
             </div>
         </div>
     </section>
+    
+<!-- Add this in the <head> section of your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script>
+$(document).ready(function () {
+    $(".checkout").on('submit', function (e) {
+        e.preventDefault(); // Prevents the default form submission behavior
+
+        // Serialize form data
+        var formData = $(".checkout").serialize();
+
+        // Get current and next fieldsets
+        current_fs = $(this).closest('fieldset');
+        next_fs = current_fs.next();
+
+        // AJAX request
+        $.ajax({
+            type: "POST",
+            url: "{{ route('checkout.store') }}", // Replace with the actual route
+            data: formData,
+            success: function (response) {
+                $('#course_fee').html(response.data.course_fee);
+
+// Calculate and display tax
+var tax = parseFloat(response.data.course_fee) * 0.18;
+$('#tax').html(tax.toFixed(2)); // Assuming you want to display the tax with two decimal places
+
+// Calculate and display total
+var total = parseFloat(response.data.course_fee) + tax;
+$('.total').html(total.toFixed(2)); // Assuming you want to display the total with two decimal places
+
+
+                current_fs.addClass('d-none');
+                next_fs.removeClass('d-none');
+                $('#packaging').addClass('active');
+               $('.order_id').val(response.data.order);
+            },
+            error: function (error) {
+                // On error, log the error to the console
+                console.log(error.responseJSON);
+            }
+        });
+    });
+
+
+
+
+    $('.checkoutPayment').on('submit' , function(e){
+        e.preventDefault();
+          var formData = $(".checkoutPayment").serialize();
+
+        current_fs = $(this).closest('fieldset');
+        next_fs = current_fs.next();
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('checkout.payment') }}", // Replace with the actual route
+            data: formData,
+            success: function (response) {
+                current_fs.addClass('d-none');
+                next_fs.removeClass('d-none');
+                $('#shipping').addClass('active');
+            }})
+
+
+    })
+});
+
+    </script>
 
     <!--end----client-reviews---->
 </x-guest-layout>

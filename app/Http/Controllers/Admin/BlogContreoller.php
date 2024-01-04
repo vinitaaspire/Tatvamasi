@@ -176,4 +176,9 @@ class BlogContreoller extends Controller
       return redirect()->back()->with('success', 'Blog Delete Successfull!');
      
     }
+    
+    public function info(Request $request){
+        return $request->all();
+        
+    }
 }

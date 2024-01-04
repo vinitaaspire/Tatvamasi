@@ -13,7 +13,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-striped">
+                  <table class="table table-striped"  id="table-1" >
                     <thead>
                       <tr>
                         <th class="text-center">
@@ -36,23 +36,25 @@
                        
                           <form action="{{ route('category.show', ['category' => $list->id]) }}" method="GET">
                             @csrf
-                            <button type="submit" class="{{ $list->status == 1 ? 'btn btn-success' : 'btn btn-danger' }}">
-                              {{ $list->status == 1 ? 'Active' : 'Inactive' }}
+                            <button type="submit"class="{{ $list->status == 1 ? 'btn btn-success' : 'btn btn-danger' }}">
+                            <i class="fas {{ $list->status == 1 ? 'fa-check-circle' : 'fa-times-circle' }}"></i>
                             </button>
 
                           </form>
                         </td>
+            
+
                         <td>{{ $list->order }}</td>
                         <td>
                           <form action="{{ route('category.edit', ['category' => $list->id]) }}" method="GET" class="d-inline">
                             @csrf
-                            <button type="submit" class="edit badge badge-primary btn btn-primary">Edit</button>
+                            <button type="submit" class="edit badge badge-primary btn btn-primary"><i class="fas fa-edit" ></i></button>
                           </form>
 
                           <form id="deleteForm{{ $list->id }}" action="{{ route('category.destroy', ['category' => $list->id]) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="button" onclick="confirmDelete({{ $list->id }})" class="delete badge badge-danger btn btn-danger">Delete</button>
+                            <button type="button" onclick="confirmDelete({{ $list->id }})" class="delete badge badge-danger btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                           </form>
 
 

@@ -25,16 +25,22 @@
                             </div>
                         </div>
                         <div class="pro-div-cnt row">
+                        @foreach($order as $list)
+                        @if($list->course)
                             <div class="col-xl-4 col-lg-5 col-md-10 col-sm-6">
+                             
                                 <div class="course-div-box position-relative mb-md-3 mb-3" role="button">
-                                    <a href="course-jouney.html" class="text-decoration-none text-center d-block" role="button">
+                                    <a href="{{route('courseDetails',['id' => $list->course->name ?? '' ])}}" class="text-decoration-none text-center d-block" role="button">
                                         <div class="course-div-box-img">
-                                            <img src="{{asset('front/assets/images/course3.jpg')}}" class="img-fluid w-100" alt="Course" />
+                                            <img src="{{asset($list->course?->image )}}" class="img-fluid w-100" alt="Course" />
                                         </div>
-                                        <span>Yoga for Beginners Course</span>
+                                        <span> {{$list->course?->name}}</span>
                                     </a>
                                 </div>
+                                
                             </div>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>

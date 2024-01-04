@@ -31,10 +31,30 @@
                         <div class="main-content-cours mt-lg-0 mt-4">
                             <h2>{{$courses->name ?? '' }}</h2>
                         </div>
+                        
+                        <?php
+// Assuming $course->price is a string in the format "11 - 307, 8 - 310, 11 - 93, 6 - 492"
+$priceString = $courses->price;
+
+// Explode the string into an array based on commas
+$priceArray = explode(', ', $priceString);
+
+// Extract the first entry
+if (!empty($priceArray)) {
+    // Split the first entry into month and price
+    list($firstMonth, $firstPrice) = explode(' - ', $priceArray[0]);
+
+    // Output the first month and price
+   // echo "First Month: $firstMonth, First Price: $firstPrice";
+} else {
+    // echo "No data available";
+}
+?>
+
                         <div class="info-content-cours">
                             <div class="details-part mt-1 mb-1">
                                 <p><img src="{{asset('front/assets/images/menu.png')}}">Category <span>:</span> <span>{{ $courses->category?->name ?? ''}}</span></p>
-                                <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span> {{findSmallestValueAfterDash($courses->price ?? '')}}</span></p>
+                                <p><img src="{{asset('front/assets/images/repeat.png')}}">Duration <span>:</span> <span> {{$firstMonth  ?? ''}}</span></p>
                                 <p><img src="{{asset('front/assets/images/website.png')}}">Lecture <span>:</span><span>{{ $courses->no_of_lecture ?? ''}}</span></p>
                             </div>
                         </div>
